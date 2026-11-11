@@ -35,6 +35,9 @@ A 6-slot intelligent 1S LiPo / LiHV battery charger powered via USB-C Power Deli
 │   ├── lipo-6slot-charger.kicad_sch
 │   ├── lipo-6slot-charger.kicad_pcb
 │   ├── charger_slot.kicad_sch    # Hierarchical sheet for charger channels
+│   ├── manual.kicad_sch
+│   ├── lipo-6slot-charger-schematic.pdf # Exported full schematic PDF
+│   ├── schematic_svg/            # Exported SVG vector schematics
 │   ├── lipo_charger_custom.kicad_sym
 │   ├── lipo_charger_custom.pretty/
 │   └── 3dmodels/

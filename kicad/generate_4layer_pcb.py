@@ -56,14 +56,14 @@ RAIL_EXIT = (38.75, 39.5)
 # Bottom-side lanes: (SDA, SCL, VSENSE) x coordinates
 # Dedicated distinct non-overlapping corridors (>= 0.35mm pitch, clear of H5..H8 and each other)
 LANES = {
-    # Left bank: (SDA, SCL, VSENSE) 0.50mm pitch strictly monotonic planar unrolling
-    1: (35.80, 35.30, 32.80),
-    2: (34.80, 34.30, 31.80),
-    3: (33.80, 33.30, 32.30),
-    # Right bank: (SDA, SCL, VSENSE) 0.50mm pitch strictly monotonic planar unrolling
-    4: (40.70, 41.20, 39.20),
-    5: (41.70, 42.20, 39.70),
-    6: (42.70, 43.20, 40.20),
+    # Left bank: (SDA, SCL, VSENSE)
+    3: (33.25, 32.70, 31.10),
+    2: (34.35, 33.80, 31.60),
+    1: (35.45, 34.90, 32.10),
+    # Right bank: (SDA, SCL, VSENSE)
+    4: (39.55, 40.10, 42.85),
+    5: (40.65, 41.20, 43.40),
+    6: (41.75, 42.30, 43.95),
 }
 
 LANE_EXIT_Y = 44.0
@@ -382,7 +382,7 @@ def route_power(cu):
 
     # --- VIN_4V8: trunk and vias into In2 plane ---
     # Start at 7.5 to overlap with F.Cu buck zone and eliminate dangling left tail
-    cu.track("/VIN_4V8", [(7.5, TRUNK_Y), (TRUNK_X[1], TRUNK_Y)], 2.0)
+    cu.track("/VIN_4V8", [(7.5, TRUNK_Y), (40.0, TRUNK_Y)], 2.0)
     for vy in (40.8, 42.2):
         cu.via("/VIN_4V8", SPINE_X, vy, POWER_VIA_D, POWER_VIA_DRILL)
 
@@ -439,7 +439,7 @@ def route_power(cu):
     cu.via("/+3V3", 38.4, 39.5)
     cu.track("/+3V3", [(38.4, 39.5), (38.4, 43.5)], 0.25, pcbnew.B_Cu)
     cu.via("/+3V3", 38.4, 43.5)
-    cu.track("/+3V3", [(38.4, 43.5), (38.4, 69.4)], 0.25)
+    cu.track("/+3V3", [(38.4, 43.5), (38.4, 71.0)], 0.25)
     for s in (4, 5, 6):
         r40_1 = pad(f"R40{s}", "1")
         r50_1 = pad(f"R50{s}", "1")
@@ -482,7 +482,7 @@ def route_power(cu):
 
     # --- Push Buttons & Pull-ups ---
     # GND connections for SW1, SW2, SW3 pad 2s
-    for ref, vx in (("SW1", 47.0), ("SW2", 57.5), ("SW3", 68.0)):
+    for ref, vx in (("SW1", 47.0), ("SW2", 55.8), ("SW3", 68.0)):
         p2_list = [p for p in cu.fps[ref].Pads() if p.GetNumber() == "2"]
         pos = [(pcbnew.ToMM(p.GetPosition().x) - X0, pcbnew.ToMM(p.GetPosition().y) - Y0) for p in p2_list]
         cu.track("/GND", [pos[0], (vx, pos[0][1]), (vx, 40.2)], 0.25)
@@ -540,7 +540,6 @@ def route_power(cu):
 
 
 def route_charger_cells(cu):
-    """Direct top-layer routes between BQ25188 ICs and passives, dropping vias directly on lanes."""
     pad = cu.pad
     for slot in range(1, 7):
         vbat = f"/Slot_{slot}/VBAT_SLOT"
@@ -558,27 +557,27 @@ def route_charger_cells(cu):
 
         if slot <= 3:
             # LEFT BANK: rot 180
-            # VSYS: B2 (30.8, y+0.2) turns south at X=29.8 to (29.8, y+1.6), then west to C30.1 (29.075, y+1.6)
+            # VSYS: B2 (30.8, y+0.2) turns south at X=30.2 to y+1.6, then west to C30.1 (29.075, y+1.6)
             c30_1 = pad(f"C30{slot}", "1")
-            cu.track(vsys, [pad(u, "B2"), (29.8, y + 0.2), (29.8, y + 1.6), c30_1], 0.18)
+            cu.track(vsys, [pad(u, "B2"), (30.2, y + 0.2), (30.2, y + 1.6), c30_1], 0.16)
             c30_2 = pad(f"C30{slot}", "2")
             cu.via("/GND", c30_2[0] - 1.0, c30_2[1])
             cu.track("/GND", [c30_2, (c30_2[0] - 1.0, c30_2[1])], 0.25)
 
-            # VIN_4V8: A2 (30.8, y+0.6) turns south at X=30.3 to (30.3, y+3.2), then west to C10.1 (29.075, y+3.2)
+            # VIN_4V8: A2 (30.8, y+0.6) runs straight south at X=30.8 to y+3.2, then west to C10.1 (29.075, y+3.2)
             c10_1 = pad(f"C10{slot}", "1")
-            cu.track("/VIN_4V8", [pad(u, "A2"), (30.3, y + 0.6), (30.3, y + 3.2), c10_1], 0.18)
+            cu.track("/VIN_4V8", [pad(u, "A2"), (30.8, y + 3.2), c10_1], 0.16)
             cu.via("/VIN_4V8", c10_1[0] - 1.0, c10_1[1] + 0.9, POWER_VIA_D, POWER_VIA_DRILL)
             cu.track("/VIN_4V8", [c10_1, (c10_1[0] - 1.0, c10_1[1] + 0.9)], 0.25)
             c10_2 = pad(f"C10{slot}", "2")
             cu.via("/GND", c10_2[0] - 1.0, c10_2[1])
             cu.track("/GND", [c10_2, (c10_2[0] - 1.0, c10_2[1])], 0.25)
 
-            # VBAT: C2 (30.8, y-0.2) west horizontally to (30.0, y-0.2), then to C20 pad 1 (29.075, y-0.0)
+            # VBAT: C2 (30.8, y-0.2) west to (29.8, y-0.2), south to (29.8, y), then west to C20 pad 1 (29.075, y)
             c20_1 = pad(f"C20{slot}", "1")
-            r20_1 = pad(f"R20{slot}", "1")  # at (27.525, y-1.6)
+            r20_1 = pad(f"R20{slot}", "1")
             pb_1 = pad(pb, "1")
-            cu.track(vbat, [pad(u, "C2"), (30.0, y - 0.2), (30.0, y - 0.0), c20_1], 0.20)
+            cu.track(vbat, [pad(u, "C2"), (29.8, y - 0.2), (29.8, y), c20_1], 0.16)
             cu.track(vbat, [c20_1, (27.525, r20_1[1]), r20_1], 0.25)
             cu.track(vbat, [r20_1, (19.0, r20_1[1]), (19.0, pb_1[1]), pb_1], 0.35)
             c20_2 = pad(f"C20{slot}", "2")
@@ -590,128 +589,127 @@ def route_charger_cells(cu):
             cu.via("/GND", pb_2[0] + 1.2, pb_2[1])
             cu.track("/GND", [pb_2, (pb_2[0] + 1.2, pb_2[1])], 0.30)
 
-            # VSENSE Divider: drop via on B.Cu at (27.5, div_y) west of IC, then track east to vs_x on B.Cu!
+            # VSENSE Divider: midpoint at (29.075, div_y), track on F.Cu to vs_x, drop via directly on lane!
             r20_2 = pad(f"R20{slot}", "2")
             r30_1 = pad(f"R30{slot}", "1")
-            div_y = y - 2.4
-            cu.track(vsense, [r20_2, (29.075, div_y), r30_1], 0.18)
-            cu.track(vsense, [(29.075, div_y), (27.5, div_y)], 0.18)
-            cu.via(vsense, 27.5, div_y)
-            cu.track(vsense, [(27.5, div_y), (vs_x, div_y), (vs_x, LANE_EXIT_Y)], 0.18, pcbnew.B_Cu)
+            div_y = y - 2.5
+            cu.track(vsense, [r20_2, (29.075, div_y), (vs_x, div_y)], 0.16)
+            cu.track(vsense, [r30_1, (29.075, div_y)], 0.16)
+            cu.via(vsense, vs_x, div_y)
+            cu.track(vsense, [(vs_x, div_y), (vs_x, LANE_EXIT_Y)], 0.16, pcbnew.B_Cu)
 
             # R30 pad 2 to GND
             r30_2 = pad(f"R30{slot}", "2")
             cu.via("/GND", r30_2[0] - 1.0, r30_2[1])
             cu.track("/GND", [r30_2, (r30_2[0] - 1.0, r30_2[1])], 0.20)
 
-            # GND pin D2 (30.8, y-0.6)
+            # GND pin D2 (30.8, y-0.6) - drop via west into open bay at (30.0, y-1.4)
             d2 = pad(u, "D2")
-            cu.via("/GND", 29.8, y - 0.6)
-            cu.track("/GND", [d2, (29.8, y - 0.6)], 0.20)
+            cu.via("/GND", 30.0, y - 1.4)
+            cu.track("/GND", [d2, (30.0, y - 0.6), (30.0, y - 1.4)], 0.20)
 
-            # TS (D1 at 31.2, y-0.6 to R10.1 at 32.875, y-1.6): goes purely north/east, 0 crossings!
+            # TS (D1 at 31.2, y-0.6 to R10.1 at 32.875, y-1.6)
             r10_1 = pad(f"R10{slot}", "1")
-            cu.track(ts, [pad(u, "D1"), (32.2, y - 0.6), (32.2, r10_1[1]), r10_1], 0.18)
+            cu.track(ts, [pad(u, "D1"), (32.2, y - 0.6), (32.2, r10_1[1]), r10_1], 0.16)
             r10_2 = pad(f"R10{slot}", "2")
-            cu.via("/GND", r10_2[0] + 0.9, r10_2[1])
-            cu.track("/GND", [r10_2, (r10_2[0] + 0.9, r10_2[1])], 0.20)
+            cu.via("/GND", 36.00, r10_2[1])
+            cu.track("/GND", [r10_2, (36.00, r10_2[1])], 0.20)
 
-            # SCL (B1 at 31.2, y+0.2 to R40.2 at 32.875, y+1.6): via at (scl_x, y + 2.5)
+            # SCL: via dropped at (32.2, y+2.5) on F.Cu, jog on B.Cu to scl_x
             r40_2 = pad(f"R40{slot}", "2")
             scl_y = y + 2.5
-            cu.track(scl, [pad(u, "B1"), (31.9, y + 0.2), (31.9, r40_2[1]), r40_2], 0.16)
-            cu.track(scl, [r40_2, (r40_2[0], scl_y), (scl_x, scl_y)], 0.16)
-            cu.via(scl, scl_x, scl_y)
-            cu.track(scl, [(scl_x, scl_y), (scl_x, LANE_EXIT_Y)], 0.18, pcbnew.B_Cu)
+            cu.track(scl, [pad(u, "B1"), (31.7, y + 0.2), (31.7, r40_2[1]), r40_2], 0.16)
+            cu.track(scl, [r40_2, (32.2, r40_2[1]), (32.2, scl_y)], 0.16)
+            cu.via(scl, 32.2, scl_y)
+            cu.track(scl, [(32.2, scl_y), (scl_x, scl_y), (scl_x, LANE_EXIT_Y)], 0.16, pcbnew.B_Cu)
 
-            # SDA (C1 at 31.2, y-0.2 to R50.2 at 32.875, y+0.0): via at (sda_x, y - 0.9)
+            # SDA: via dropped at (32.2, y-0.7) on F.Cu, jog on B.Cu to sda_x
             r50_2 = pad(f"R50{slot}", "2")
-            sda_y = y - 0.9
-            cu.track(sda, [pad(u, "C1"), (31.9, y - 0.2), (31.9, r50_2[1]), r50_2], 0.16)
-            cu.track(sda, [r50_2, (r50_2[0], sda_y), (sda_x, sda_y)], 0.16)
-            cu.via(sda, sda_x, sda_y)
-            cu.track(sda, [(sda_x, sda_y), (sda_x, LANE_EXIT_Y)], 0.18, pcbnew.B_Cu)
+            sda_y = y - 0.70
+            cu.track(sda, [pad(u, "C1"), (32.2, y - 0.2), (32.2, r50_2[1]), r50_2], 0.16)
+            cu.track(sda, [r50_2, (32.2, r50_2[1]), (32.2, sda_y)], 0.16)
+            cu.via(sda, 32.2, sda_y)
+            cu.track(sda, [(32.2, sda_y), (sda_x, sda_y), (sda_x, LANE_EXIT_Y)], 0.16, pcbnew.B_Cu)
 
         else:
             # RIGHT BANK: rot 0
-            # VIN_4V8: A2 (44.2, y-0.6) turns north at X=44.7 to (44.7, y-3.2), then east to C10.1 (45.925, y-3.2)
+            # VIN_4V8: A2 (44.2, y-0.6) runs straight north at X=44.2 to y-3.2, then east to C10.1 (45.925, y-3.2)
             c10_1 = pad(f"C10{slot}", "1")
-            cu.track("/VIN_4V8", [pad(u, "A2"), (44.7, y - 0.6), (44.7, y - 3.2), c10_1], 0.18)
+            cu.track("/VIN_4V8", [pad(u, "A2"), (44.2, y - 3.2), c10_1], 0.16)
             cu.via("/VIN_4V8", c10_1[0] + 1.0, c10_1[1] - 0.9, POWER_VIA_D, POWER_VIA_DRILL)
             cu.track("/VIN_4V8", [c10_1, (c10_1[0] + 1.0, c10_1[1] - 0.9)], 0.25)
             c10_2 = pad(f"C10{slot}", "2")
             cu.via("/GND", c10_2[0] + 1.0, c10_2[1])
             cu.track("/GND", [c10_2, (c10_2[0] + 1.0, c10_2[1])], 0.25)
 
-            # VSYS: B2 (44.2, y-0.2) turns north at X=45.2 to (45.2, y-1.6), then east to C30.1 (45.925, y-1.6)
+            # VSYS: B2 (44.2, y-0.2) turns north at X=44.8 to y-1.6, then east to C30.1 (45.925, y-1.6)
             c30_1 = pad(f"C30{slot}", "1")
-            cu.track(vsys, [pad(u, "B2"), (45.2, y - 0.2), (45.2, y - 1.6), c30_1], 0.18)
+            cu.track(vsys, [pad(u, "B2"), (44.8, y - 0.2), (44.8, y - 1.6), c30_1], 0.16)
             c30_2 = pad(f"C30{slot}", "2")
             cu.via("/GND", c30_2[0] + 1.0, c30_2[1])
             cu.track("/GND", [c30_2, (c30_2[0] + 1.0, c30_2[1])], 0.25)
 
-            # VBAT: C2 (44.2, y+0.2) east to (45.0, y+0.2), then to C20 pad 1 (45.925, y+0.0)
+            # VBAT: C2 (44.2, y+0.2) east to (45.2, y+0.2), south to (45.2, y), then east to C20 pad 1 (45.925, y)
             c20_1 = pad(f"C20{slot}", "1")
-            r20_1 = pad(f"R20{slot}", "1")  # at (47.475, y+1.6)
+            r20_1 = pad(f"R20{slot}", "1")
             pb_1 = pad(pb, "1")
-            cu.track(vbat, [pad(u, "C2"), (45.0, y + 0.2), (45.0, y + 0.0), c20_1], 0.20)
+            cu.track(vbat, [pad(u, "C2"), (45.2, y + 0.2), (45.2, y), c20_1], 0.16)
             cu.track(vbat, [c20_1, (47.475, r20_1[1]), r20_1], 0.25)
             cu.track(vbat, [r20_1, (55.0, r20_1[1]), pb_1], 0.35)
             c20_2 = pad(f"C20{slot}", "2")
             cu.via("/GND", c20_2[0] + 1.0, c20_2[1])
             cu.track("/GND", [c20_2, (c20_2[0] + 1.0, c20_2[1])], 0.25)
 
-            # PicoBlade GND pad 2 at (56.25, y): drop GND via at (56.25, y + 1.5), purely vertical!
+            # PicoBlade GND pad 2 at (56.25, y)
             pb_2 = pad(pb, "2")
             cu.via("/GND", 56.25, pb_2[1] + 1.5)
             cu.track("/GND", [pb_2, (56.25, pb_2[1] + 1.5)], 0.30)
 
-            # VSENSE Divider: drop via on B.Cu at (47.5, div_y) east of IC, then track west to vs_x on B.Cu!
+            # VSENSE Divider: midpoint at (45.925, div_y), track on F.Cu to vs_x, drop via directly on lane!
             r20_2 = pad(f"R20{slot}", "2")
             r30_1 = pad(f"R30{slot}", "1")
-            div_y = y + 2.8
-            cu.track(vsense, [r20_2, (45.925, div_y), r30_1], 0.18)
-            cu.track(vsense, [(45.925, div_y), (47.5, div_y)], 0.18)
-            cu.via(vsense, 47.5, div_y)
-            cu.track(vsense, [(47.5, div_y), (vs_x, div_y), (vs_x, LANE_EXIT_Y)], 0.18, pcbnew.B_Cu)
+            div_y = y + 2.5
+            cu.track(vsense, [r20_2, (45.925, div_y), (vs_x, div_y)], 0.16)
+            cu.track(vsense, [r30_1, (45.925, div_y)], 0.16)
+            cu.via(vsense, vs_x, div_y)
+            cu.track(vsense, [(vs_x, div_y), (vs_x, LANE_EXIT_Y)], 0.16, pcbnew.B_Cu)
 
             # R30 pad 2 to GND
             r30_2 = pad(f"R30{slot}", "2")
             cu.via("/GND", r30_2[0] + 1.0, r30_2[1])
             cu.track("/GND", [r30_2, (r30_2[0] + 1.0, r30_2[1])], 0.20)
 
-            # GND pin D2 (44.2, y+0.6)
+            # GND pin D2 (44.2, y+0.6) - drop via south into open bay at y+1.4
             d2 = pad(u, "D2")
-            cu.via("/GND", 45.2, y + 0.6)
-            cu.track("/GND", [d2, (45.2, y + 0.6)], 0.20)
+            cu.via("/GND", 44.2, y + 1.4)
+            cu.track("/GND", [d2, (44.2, y + 1.4)], 0.20)
 
-            # TS (D1 to R10 pad 1 at y + 1.6): track along X=43.8 safely east of SDA via
+            # TS (D1 to R10 pad 1 at y + 1.6): jog west to X=43.4 to completely clear D2 GND via
             r10_1 = pad(f"R10{slot}", "1")
-            cu.track(ts, [pad(u, "D1"), (43.8, r10_1[1]), r10_1], 0.18)
+            cu.track(ts, [pad(u, "D1"), (43.4, y + 0.6), (43.4, r10_1[1]), r10_1], 0.16)
             r10_2 = pad(f"R10{slot}", "2")
-            cu.via("/GND", r10_2[0] - 0.9, r10_2[1])
-            cu.track("/GND", [r10_2, (r10_2[0] - 0.9, r10_2[1])], 0.20)
+            cu.via("/GND", 38.95, r10_2[1])
+            cu.track("/GND", [r10_2, (38.95, r10_2[1])], 0.20)
 
-            # SCL (B1 to R40 pad 2 at y - 1.6) - Via at (scl_x, y - 2.5)
+            # SCL: via dropped at (42.8, y-2.5) on F.Cu, jog on B.Cu to scl_x
             r40_2 = pad(f"R40{slot}", "2")
             scl_y = y - 2.5
-            cu.track(scl, [pad(u, "B1"), (43.1, y - 0.2), (43.1, r40_2[1]), r40_2], 0.16)
-            cu.track(scl, [r40_2, (r40_2[0], scl_y), (scl_x, scl_y)], 0.16)
-            cu.via(scl, scl_x, scl_y)
-            cu.track(scl, [(scl_x, scl_y), (scl_x, LANE_EXIT_Y)], 0.18, pcbnew.B_Cu)
+            cu.track(scl, [pad(u, "B1"), (43.2, y - 0.2), (43.2, r40_2[1]), r40_2], 0.16)
+            cu.track(scl, [r40_2, (42.8, r40_2[1]), (42.8, scl_y)], 0.16)
+            cu.via(scl, 42.8, scl_y)
+            cu.track(scl, [(42.8, scl_y), (scl_x, scl_y), (scl_x, LANE_EXIT_Y)], 0.16, pcbnew.B_Cu)
 
-            # SDA (C1 to R50 pad 2 at y + 0.0) - Via at (sda_x, y + 0.9)
+            # SDA: via dropped at (42.8, y+0.7) on F.Cu, jog on B.Cu to sda_x
             r50_2 = pad(f"R50{slot}", "2")
-            sda_y = y + 0.9
-            cu.track(sda, [pad(u, "C1"), (43.1, y + 0.2), (43.1, r50_2[1]), r50_2], 0.16)
-            cu.track(sda, [r50_2, (r50_2[0], sda_y), (sda_x, sda_y)], 0.16)
-            cu.via(sda, sda_x, sda_y)
-            cu.track(sda, [(sda_x, sda_y), (sda_x, LANE_EXIT_Y)], 0.18, pcbnew.B_Cu)
+            sda_y = y + 0.70
+            cu.track(sda, [pad(u, "C1"), (42.8, y + 0.2), (42.8, r50_2[1]), r50_2], 0.16)
+            cu.track(sda, [r50_2, (42.8, r50_2[1]), (42.8, sda_y)], 0.16)
+            cu.via(sda, 42.8, sda_y)
+            cu.track(sda, [(42.8, sda_y), (sda_x, sda_y), (sda_x, LANE_EXIT_Y)], 0.16, pcbnew.B_Cu)
+
 
 def route_upper_lanes(cu):
-    """Route from LANE_EXIT_Y north on B_Cu to U5 and U6, then drop vias to pads on F_Cu."""
     pad = cu.pad
-
     u5_map = {
         1: ("4", "5"),
         2: ("6", "7"),
@@ -733,47 +731,48 @@ def route_upper_lanes(cu):
         sda_net = f"/SDA_SLOT{slot}"
         scl_net = f"/SCL_SLOT{slot}"
         vs_net = f"/VSENSE_SLOT{slot}"
-
         sda_x, scl_x, vs_x = LANES[slot]
 
-        # VSENSE to U6
+        # VSENSE to U6: via dropped at lane X directly, straight track on F.Cu to U6 pad!
         u6_p = pad("U6", u6_map[slot])
-        if slot <= 3:
-            via_x = 31.8
-        else:
-            via_x = 38.8
-        cu.track(vs_net, [(vs_x, LANE_EXIT_Y), (vs_x, u6_p[1]), (via_x, u6_p[1])], 0.18, pcbnew.B_Cu)
-        cu.via(vs_net, via_x, u6_p[1])
-        cu.track(vs_net, [(via_x, u6_p[1]), u6_p], 0.18)
+        cu.track(vs_net, [(vs_x, LANE_EXIT_Y), (vs_x, u6_p[1])], 0.16, pcbnew.B_Cu)
+        cu.via(vs_net, vs_x, u6_p[1])
+        cu.track(vs_net, [(vs_x, u6_p[1]), u6_p], 0.16)
 
-        # SDA & SCL to U5 (staggered vias)
+        # SDA & SCL to U5
         sda_p = pad("U5", u5_map[slot][0])
         scl_p = pad("U5", u5_map[slot][1])
 
         if slot <= 3:
-            sda_via_x = 31.5
-            scl_via_x = 30.2
+            # Staggered vias at X=31.8 (SCL) and X=31.0 (SDA) for 0.8mm delta_X and >0.5mm clearance!
+            cu.track(scl_net, [(scl_x, LANE_EXIT_Y), (scl_x, scl_p[1]), (31.8, scl_p[1])], 0.16, pcbnew.B_Cu)
+            cu.via(scl_net, 31.8, scl_p[1])
+            cu.track(scl_net, [(31.8, scl_p[1]), scl_p], 0.16)
+
+            cu.track(sda_net, [(sda_x, LANE_EXIT_Y), (sda_x, sda_p[1]), (31.0, sda_p[1])], 0.16, pcbnew.B_Cu)
+            cu.via(sda_net, 31.0, sda_p[1])
+            cu.track(sda_net, [(31.0, sda_p[1]), sda_p], 0.16)
         else:
-            sda_via_x = 39.4
-            scl_via_x = 39.8
+            # Right bank: each lane runs straight north on B.Cu directly to its pin Y,
+            # drops via directly on the lane at (lane_x, pin_y), and tracks west on F.Cu to U5 pad!
+            # Zero turns on B.Cu! Zero crossings!
+            cu.track(sda_net, [(sda_x, LANE_EXIT_Y), (sda_x, sda_p[1])], 0.16, pcbnew.B_Cu)
+            cu.via(sda_net, sda_x, sda_p[1])
+            cu.track(sda_net, [(sda_x, sda_p[1]), sda_p], 0.16)
 
-        cu.track(sda_net, [(sda_x, LANE_EXIT_Y), (sda_x, sda_p[1]), (sda_via_x, sda_p[1])], 0.18, pcbnew.B_Cu)
-        cu.via(sda_net, sda_via_x, sda_p[1])
-        cu.track(sda_net, [(sda_via_x, sda_p[1]), sda_p], 0.18)
+            cu.track(scl_net, [(scl_x, LANE_EXIT_Y), (scl_x, scl_p[1])], 0.16, pcbnew.B_Cu)
+            cu.via(scl_net, scl_x, scl_p[1])
+            cu.track(scl_net, [(scl_x, scl_p[1]), scl_p], 0.16)
 
-        cu.track(scl_net, [(scl_x, LANE_EXIT_Y), (scl_x, scl_p[1]), (scl_via_x, scl_p[1])], 0.18, pcbnew.B_Cu)
-        cu.via(scl_net, scl_via_x, scl_p[1])
-        cu.track(scl_net, [(scl_via_x, scl_p[1]), scl_p], 0.18)
 
 def route_aw9523_and_leds(cu):
-    """Flawless, zero-short, DRC-clean routing for AW9523B (U7) and 6x Bi-Color 0603 LEDs (D1..D6)."""
     pad = cu.pad
 
     # 1. U7 Power & Decoupling C16
-    u7_vcc = pad("U7", "21")   # (54.75, 28.713)
-    u7_rst = pad("U7", "23")   # (53.75, 28.713)
-    c16_1 = pad("C16", "1")    # (52.0, 25.375)
-    c16_2 = pad("C16", "2")    # (52.0, 27.025)
+    u7_vcc = pad("U7", "21")
+    u7_rst = pad("U7", "23")
+    c16_1 = pad("C16", "1")
+    c16_2 = pad("C16", "2")
 
     cu.track("/+3V3", [u7_vcc, (54.75, 25.35), c16_1], 0.20)
     cu.track("/+3V3", [u7_rst, (53.75, 25.35)], 0.20)
@@ -783,15 +782,17 @@ def route_aw9523_and_leds(cu):
     cu.via("/GND", 50.6, 27.05)
     cu.track("/GND", [c16_2, (50.6, 27.05)], 0.25)
 
-    # U7.24 (AD1/GND) and U7.18 (AD0/GND) directly to EPAD (GND Pad 25)
+    # U7.24 (AD1/GND) straight south into EPAD at X=u7_ad1[0] (53.25)
     u7_ad1 = pad("U7", "24")
-    cu.track("/GND", [u7_ad1, (53.8, 29.5)], 0.20)
-    u7_ad0 = pad("U7", "18")
-    cu.track("/GND", [u7_ad0, (55.2, 29.8)], 0.20)
+    cu.track("/GND", [u7_ad1, (u7_ad1[0], 29.5)], 0.16)
 
-    # U7.9 (GND) directly north to EPAD (GND Pad 25)
+    # U7.18 (AD0/GND) straight west into EPAD at Y=u7_ad0[1] (30.25)
+    u7_ad0 = pad("U7", "18")
+    cu.track("/GND", [u7_ad0, (55.5, u7_ad0[1])], 0.16)
+
+    # U7.9 (GND) directly north to EPAD
     u7_gnd = pad("U7", "9")
-    cu.track("/GND", [u7_gnd, (54.25, 31.5)], 0.20)
+    cu.track("/GND", [u7_gnd, (54.25, 31.5)], 0.16)
 
     # Thermal Pad (Pad 25) Ground Vias
     u7_center = cu.pad("U7", "25")
@@ -800,7 +801,6 @@ def route_aw9523_and_leds(cu):
             cu.via("/GND", u7_center[0] + dx, u7_center[1] + dy)
 
     # 2. LED Anodes (+3V3 Power) - Hop over TRUNK_Y=41.5 on B.Cu
-    # Left Bank: D1, D2, D3 common anodes (Pads 3 & 4 at x = 12.9)
     cu.via("/+3V3", 12.0, 39.5)
     cu.track("/+3V3", [(12.0, 39.5), (12.0, 43.5)], 0.30, pcbnew.B_Cu)
     cu.via("/+3V3", 12.0, 43.5)
@@ -810,8 +810,6 @@ def route_aw9523_and_leds(cu):
         cu.track("/+3V3", [p3, p4], 0.25)
         cu.track("/+3V3", [(12.9, p3[1]), (12.0, p3[1])], 0.25)
 
-    # Right Bank: D4, D5, D6 common anodes (Pads 3 & 4 at x = 62.1)
-    # Via at (62.8, 39.5) taps +3V3 plane (well north of PLANE_SPLIT[0]=40.2 and clear of SW2 pad 2)
     cu.via("/+3V3", 62.8, 39.5)
     cu.track("/+3V3", [(62.8, 39.5), (62.8, 43.5)], 0.30, pcbnew.B_Cu)
     cu.via("/+3V3", 62.8, 43.5)
@@ -822,70 +820,67 @@ def route_aw9523_and_leds(cu):
         cu.track("/+3V3", [(62.1, p3[1]), (62.8, p3[1])], 0.25)
 
     # 3. Right Bank Cathodes (Slots 4, 5, 6: D4, D5, D6)
-    # Monotonic planar breakout: Slot 4 is eastmost, Slot 6 is westmost
+    # Staggered breakout on F.Cu, concentric lanes on B.Cu, zero crossings!
+    # Pitch >= 0.55mm between vias
     right_bus = [
-        ("17", "/LED_G_SLOT4", "D4", "1", 58.2, 29.75, 58.8, -0.7),
-        ("16", "/LED_R_SLOT4", "D4", "2", 57.9, 30.25, 58.5,  0.7),
-        ("15", "/LED_G_SLOT5", "D5", "1", 57.6, 30.75, 58.2, -0.7),
-        ("14", "/LED_R_SLOT5", "D5", "2", 57.3, 31.25, 57.9,  0.7),
-        ("13", "/LED_G_SLOT6", "D6", "1", 57.0, 31.75, 57.6, -0.7),
-        ("12", "/LED_R_SLOT6", "D6", "2", 56.7, 32.287, 57.3,  0.7),
+        # (u_pin, net, d_ref, d_pin, vx, vy, b_lane_x, via_dy)
+        ("17", "/LED_G_SLOT4", "D4", "1", 59.5, 29.50, 59.5, -0.7),
+        ("16", "/LED_R_SLOT4", "D4", "2", 58.9, 30.10, 58.9,  0.7),
+        ("15", "/LED_G_SLOT5", "D5", "1", 58.3, 30.70, 58.3, -0.7),
+        ("14", "/LED_R_SLOT5", "D5", "2", 57.7, 31.30, 57.7,  0.7),
+        ("13", "/LED_G_SLOT6", "D6", "1", 57.1, 31.90, 57.1, -0.7),
+        ("12", "/LED_R_SLOT6", "D6", "2", 56.5, 32.50, 56.5,  0.7),
     ]
     for u_pin, net, d_ref, d_pin, vx, vy, b_lane_x, via_dy in right_bus:
         u_pt = pad("U7", u_pin)
         d_pt = pad(d_ref, d_pin)
-        cu.track(net, [u_pt, (vx, u_pt[1]), (vx, vy)], 0.18)
+        cu.track(net, [u_pt, (vx, u_pt[1]), (vx, vy)], 0.16)
         cu.via(net, vx, vy)
         led_via_y = d_pt[1] + via_dy
-        # Via to F_Cu placed at x=60.2 (between lane and cathode pad at 60.9)
-        cu.track(net, [(vx, vy), (b_lane_x, vy), (b_lane_x, led_via_y), (60.2, led_via_y)], 0.18, pcbnew.B_Cu)
+        cu.track(net, [(vx, vy), (b_lane_x, vy), (b_lane_x, led_via_y), (60.2, led_via_y)], 0.16, pcbnew.B_Cu)
         cu.via(net, 60.2, led_via_y)
-        cu.track(net, [(60.2, led_via_y), d_pt], 0.18)
+        cu.track(net, [(60.2, led_via_y), d_pt], 0.16)
 
     # 4. Left Bank Cathodes (Slots 1, 2, 3: D1, D2, D3)
-    # Shifted D1 R cathode via to vx=49.9 to completely clear standoff H8
+    # Concentric planar routing with zero crossings:
     left_bus = [
-        ("2", "/LED_R_SLOT1", "D1", "2", 49.9, 29.75, 77.5, 17.0, -0.7),
-        ("1", "/LED_G_SLOT1", "D1", "1", 50.3, 29.25, 77.8, 16.6,  0.7),
-        ("4", "/LED_R_SLOT2", "D2", "2", 50.7, 30.75, 78.1, 16.2, -0.7),
-        ("3", "/LED_G_SLOT2", "D2", "1", 51.1, 30.25, 78.4, 15.8,  0.7),
-        ("6", "/LED_R_SLOT3", "D3", "2", 51.5, 31.75, 78.7, 15.4, -0.7),
-        ("5", "/LED_G_SLOT3", "D3", "1", 51.9, 31.25, 79.0, 15.0,  0.7),
+        # (u_pin, net, d_ref, d_pin, vx, vy, b_y_bot, b_turn_x, via_dy)
+        ("2", "/LED_R_SLOT1", "D1", "2", 49.7, 29.75, 76.5, 17.0, -0.7),
+        ("1", "/LED_G_SLOT1", "D1", "1", 50.3, 29.15, 77.0, 16.5,  0.7),
+        ("4", "/LED_R_SLOT2", "D2", "2", 50.9, 30.75, 77.5, 16.0, -0.7),
+        ("3", "/LED_G_SLOT2", "D2", "1", 51.5, 30.15, 78.0, 15.5,  0.7),
+        ("6", "/LED_R_SLOT3", "D3", "2", 52.1, 31.75, 78.5, 15.0, -0.7),
+        ("5", "/LED_G_SLOT3", "D3", "1", 52.7, 31.15, 79.0, 14.5,  0.7),
     ]
     for u_pin, net, d_ref, d_pin, vx, vy, b_y_bot, b_turn_x, via_dy in left_bus:
         u_pt = pad("U7", u_pin)
         d_pt = pad(d_ref, d_pin)
-        cu.track(net, [u_pt, (vx, vy)], 0.18)
+        cu.track(net, [u_pt, (vx, u_pt[1]), (vx, vy)], 0.16)
         cu.via(net, vx, vy)
         led_via_y = d_pt[1] + via_dy
-        cu.track(net, [
-            (vx, vy),
-            (vx, b_y_bot),
-            (b_turn_x, b_y_bot),
-            (b_turn_x, led_via_y),
-            (14.8, led_via_y)
-        ], 0.18, pcbnew.B_Cu)
+        cu.track(net, [(vx, vy), (vx, b_y_bot), (b_turn_x, b_y_bot), (b_turn_x, led_via_y), (14.8, led_via_y)], 0.16, pcbnew.B_Cu)
         cu.via(net, 14.8, led_via_y)
-        cu.track(net, [(14.8, led_via_y), d_pt], 0.18)
+        cu.track(net, [(14.8, led_via_y), d_pt], 0.16)
 
     # 5. U7 Master I2C Connection to U4 (ESP32-C3)
-    # Routed via dedicated non-overlapping B_Cu lanes: SCL at 53.6, SDA at 54.4
+    # SCL at X=53.6, SDA at X=54.4 (0.8mm clearance, zero short!)
     u7_sda = pad("U7", "20")
     u7_scl = pad("U7", "19")
     u4_sda = pad("U4", "7")
     u4_scl = pad("U4", "8")
 
-    cu.track("/I2C_SCL", [u7_scl, (55.75, 27.5)], 0.18)
+    cu.track("/I2C_SCL", [u7_scl, (55.75, 27.5)], 0.16)
     cu.via("/I2C_SCL", 55.75, 27.5)
-    cu.track("/I2C_SCL", [(55.75, 27.5), (53.6, 27.5), (53.6, 19.0), (54.5, 19.0)], 0.18, pcbnew.B_Cu)
-    cu.via("/I2C_SCL", 54.5, 19.0)
-    cu.track("/I2C_SCL", [(54.5, 19.0), u4_scl], 0.18)
+    cu.track("/I2C_SCL", [(55.75, 27.5), (53.6, 27.5), (53.6, 19.0)], 0.16, pcbnew.B_Cu)
+    cu.via("/I2C_SCL", 53.6, 19.0)
+    cu.track("/I2C_SCL", [(53.6, 19.0), (53.6, u4_scl[1]), u4_scl], 0.16)
 
-    cu.track("/I2C_SDA", [u7_sda, (55.25, 27.0)], 0.18)
+    cu.track("/I2C_SDA", [u7_sda, (55.25, 27.0)], 0.16)
     cu.via("/I2C_SDA", 55.25, 27.0)
-    cu.track("/I2C_SDA", [(55.25, 27.0), (54.4, 27.0), (54.4, 17.5), (54.5, 17.5)], 0.18, pcbnew.B_Cu)
-    cu.via("/I2C_SDA", 54.5, 17.5)
-    cu.track("/I2C_SDA", [(54.5, 17.5), u4_sda], 0.18)
+    cu.track("/I2C_SDA", [(55.25, 27.0), (54.4, 27.0), (54.4, 16.0)], 0.16, pcbnew.B_Cu)
+    cu.via("/I2C_SDA", 54.4, 16.0)
+    cu.track("/I2C_SDA", [(54.4, 16.0), (54.4, u4_sda[1]), u4_sda], 0.16)
+
 
 # ==============================================================================
 # A* router for the remaining top-level signals

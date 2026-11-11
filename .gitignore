@@ -12,8 +12,13 @@ _saved*
 fp-info-cache
 *.lck
 
-# KiCad DRC reports
+# KiCad DRC reports & json logs
 *.rpt
+*.json
+
+# Python cache
+__pycache__/
+*.py[cod]
 
 # Temporary scratch / routing experiments
 scratch/
