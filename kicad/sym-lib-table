@@ -1,4 +1,0 @@
-(sym_lib_table
-  (version 7)
-  (lib (name "LipoCharger")(type "KiCad")(uri "${KIPRJMOD}/lipo_charger_custom.kicad_sym")(options "")(descr "Custom symbols for 6-Slot LiPo/LiHV Charger"))
-)
