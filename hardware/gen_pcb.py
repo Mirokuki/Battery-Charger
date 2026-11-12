@@ -28,14 +28,16 @@ FP_ROOT = r"C:\Program Files\KiCad\10.0\share\kicad\footprints"
 OUT = os.path.join(HERE, "lipo-charger.kicad_pcb")
 
 X0, Y0 = 50.0, 40.0            # board origin on the KiCad sheet
-BOARD_W, BOARD_H = 108.0, 68.0
+BOARD_W, BOARD_H = 108.0, 80.0
+DY = 12.0                      # logic area sits this far below where it was before the balance row
 CELL_W, CELL_X0 = 17.6, 1.2    # slot pitch and left margin
-IC_X, IC_Y = 9.0, 25.0         # charger IC centre inside a slot cell
-ANT = (0.0, 62.0, 27.2, 68.0)  # ESP32 antenna keep-out (x1, y1, x2, y2), from the module footprint
-VBUS_POLY = [(0.5, 0.5), (107.5, 0.5), (107.5, 30.3), (32.0, 30.3), (32.0, 46.3), (0.5, 46.3)]
-V33_POLY = [(32.6, 30.9), (107.5, 30.9), (107.5, 67.5), (ANT[2], 67.5), (ANT[2], ANT[1]),
-            (0.5, ANT[1]), (0.5, 46.9), (32.6, 46.9)]
-GND_POLY = [(0.5, 0.5), (107.5, 0.5), (107.5, 67.5), (ANT[2], 67.5), (ANT[2], ANT[1]), (0.5, ANT[1])]
+IC_X, IC_Y = 9.0, 33.0         # charger IC centre inside a slot cell
+ANT = (0.0, 62.0 + DY, 27.2, 68.0 + DY)  # ESP32 antenna keep-out (x1, y1, x2, y2), from the module footprint
+VBUS_POLY = [(0.5, 0.5), (107.5, 0.5), (107.5, 30.3 + DY), (32.0, 30.3 + DY), (32.0, 46.3 + DY), (0.5, 46.3 + DY)]
+V33_POLY = [(32.6, 30.9 + DY), (107.5, 30.9 + DY), (107.5, BOARD_H - 0.5), (ANT[2], BOARD_H - 0.5),
+            (ANT[2], ANT[1]), (0.5, ANT[1]), (0.5, 46.9 + DY), (32.6, 46.9 + DY)]
+GND_POLY = [(0.5, 0.5), (107.5, 0.5), (107.5, BOARD_H - 0.5), (ANT[2], BOARD_H - 0.5), (ANT[2], ANT[1]),
+            (0.5, ANT[1])]
 
 PITCH = 0.1
 CLR = 0.15                     # router clearance; board rule is 0.127
@@ -76,7 +78,15 @@ SLOT_REL = {  # ref pattern -> (dx, dy, rot) relative to the charger IC centre
     "R{s}07": (2.3, -13.2, 0), "C{s}16": (4.4, -13.2, 0), "R{s}06": (6.5, -13.2, 180),
     "Q{s}06": (-6.0, -10.9, 0), "R{s}11": (-3.0, -10.9, 0),
     "Q{s}05": (6.0, -10.9, 180), "R{s}08": (3.0, -10.9, 180),
-    "J{s}01": (-0.4, -21.0, 180), "J{s}02": (5.2, -20.5, 0),
+    # connectors: XT30 at the rear, then the balance port and the PicoBlade side by side
+    "J{s}01": (-0.4, -29.0, 180), "J{s}03": (-5.5, -22.0, 0), "J{s}02": (5.2, -21.4, 0),
+    # balancer beside the XT30
+    "U{s}02": (5.8, -29.7, 90),          # pins 1-4 (BALP, MID, CB, CD) face the passives below
+    "C{s}19": (4.3, -27.0, 0), "C{s}21": (7.0, -27.0, 0),
+    "C{s}20": (4.3, -25.8, 180), "R{s}14": (7.0, -25.8, 180),
+    "R{s}15": (4.3, -24.6, 0), "C{s}18": (7.0, -24.6, 0),
+    # cell over-voltage flag pulls TS low
+    "Q{s}07": (7.1, 6.5, 90), "R{s}16": (4.2, 6.5, 0),
 }
 
 CORE = {
@@ -102,17 +112,17 @@ CORE = {
     "BZ1": (93.0, 39.6, 0), "Q2": (87.0, 47.0, 0), "D2": (91.0, 47.0, 0), "R17": (84.0, 47.0, 0),
     "J3": (88.0, 56.0, 90),
 }
-HOLES = {"H1": (37.3, 34.6), "H2": (105.0, 32.6), "H3": (31.0, 65.0), "H4": (105.0, 65.0)}
+HOLES = {"H1": (37.3, 47.0), "H2": (104.4, 46.0), "H3": (31.2, 76.4), "H4": (104.4, 76.4)}
 
 
 def placement():
-    pos = dict(CORE)
+    pos = {ref: (x, y + DY, rot) for ref, (x, y, rot) in CORE.items()}
     for s in range(1, design.SLOTS + 1):
         cx, cy = cell_origin(s) + IC_X, IC_Y
         for pat, (dx, dy, rot) in SLOT_REL.items():
             pos[pat.format(s=s)] = (round(cx + dx, 4), round(cy + dy, 4), rot)
         for k, ref in enumerate((f"R{s}12", f"R{s}13")):
-            pos[ref] = (27.6 + 1.5 * (2 * (s - 1) + k), 47.4, 90)
+            pos[ref] = (27.6 + 1.5 * (2 * (s - 1) + k), 47.4 + DY, 90)
     return pos
 
 
@@ -173,7 +183,8 @@ class Board:
             if p["dnp"]:
                 fp.SetDNP(True)
             for item in fp.GraphicalItems():        # library polarity texts collide with the next connector
-                if item.GetLayer() == pcbnew.F_SilkS and isinstance(item, pcbnew.PCB_TEXT):
+                if item.GetLayer() == pcbnew.F_SilkS and (isinstance(item, pcbnew.PCB_TEXT)
+                                                         or (ref[0] == "U" and ref.endswith("02") and len(ref) == 4)):
                     item.SetLayer(pcbnew.F_Fab)
             if ref == "U3":
                 for item in list(fp.GraphicalItems()):
@@ -197,7 +208,7 @@ class Board:
             self.fps[ref] = fp
         lib = os.path.join(FP_ROOT, "MountingHole.pretty")
         for ref, (x, y) in HOLES.items():
-            fp = pcbnew.FootprintLoad(lib, "MountingHole_2.7mm_M2.5")
+            fp = pcbnew.FootprintLoad(lib, "MountingHole_3.2mm_M3")
             fp.SetReference(ref)
             fp.SetBoardOnly(True)
             fp.Reference().SetVisible(False)
@@ -317,6 +328,13 @@ def dilate(mask, r):
     return out
 
 
+def _seg_dist(x, y, p, q):
+    dx, dy = q[0] - p[0], q[1] - p[1]
+    ln = dx * dx + dy * dy
+    t = 0.0 if ln == 0 else max(0.0, min(1.0, ((x - p[0]) * dx + (y - p[1]) * dy) / ln))
+    return math.hypot(x - (p[0] + t * dx), y - (p[1] + t * dy))
+
+
 def in_poly(x, y, poly):
     inside = False
     n = len(poly)
@@ -401,6 +419,11 @@ class Router:
                 sx, sy = pcbnew.ToMM(sz.x), pcbnew.ToMM(sz.y)
                 if abs(pad.GetOrientationDegrees() % 180 - 90) < 10:
                     sx, sy = sy, sx
+                if pad.GetShape(pcbnew.F_Cu) == pcbnew.PAD_SHAPE_CUSTOM:
+                    # the charger IC's corner pins are L-shaped and far larger than their anchor:
+                    # rasterise the real outline
+                    self._custom_pad(ref, pad)
+                    continue
                 code = pad.GetNetCode() or -1
                 if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH or not (on_f or on_b):
                     for layer in (0, 1):
@@ -429,6 +452,32 @@ class Router:
                         continue
                     self.pad_cells.setdefault(key, set()).update(cells)
                     self.tree.setdefault(self.bd.pad_net[key], []).append(set(cells))
+
+    def _custom_pad(self, ref, pad):
+        ps = pad.GetEffectivePolygon(pcbnew.F_Cu, pcbnew.ERROR_INSIDE)
+        ol = ps.Outline(0)
+        pts = [(pcbnew.ToMM(ol.CPoint(i).x) - X0, pcbnew.ToMM(ol.CPoint(i).y) - Y0) for i in range(ol.PointCount())]
+        code = pad.GetNetCode() or -1
+        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+        a, b = self._rng(min(xs) - CLR, max(xs) + CLR, self.nx)
+        c, d = self._rng(min(ys) - CLR, max(ys) + CLR, self.ny)
+        cells = set()
+        for i in range(a, b + 1):
+            for j in range(c, d + 1):
+                x, y = i * PITCH, j * PITCH
+                inside = in_poly(x, y, pts)
+                dist = min(_seg_dist(x, y, pts[k], pts[(k + 1) % len(pts)]) for k in range(len(pts)))
+                if inside or dist <= CLR:
+                    cur = self.occ[0, i, j]
+                    self.occ[0, i, j] = code if cur in (0, code) else -1
+                if inside or dist <= 0.36:
+                    self.novia[i, j] = True
+                if inside and dist >= 0.04:
+                    cells.add((0, i, j))
+        key = (ref, pad.GetNumber())
+        if code > 0 and key in self.bd.pad_net and cells:
+            self.pad_cells.setdefault(key, set()).update(cells)
+            self.tree.setdefault(self.bd.pad_net[key], []).append(set(cells))
 
     # --- copper bookkeeping
     def _merge(self, net):
@@ -775,32 +824,38 @@ def hand_routes(rt):
         rt.add_via(n("SCL"), *P(1.1, 4.8))
         rt.polyline(n("SDA"), [P(1.0, 1.9), P(1.0, 2.6), P(1.9, 3.5), P(1.9, 3.9)], 0.15)
         rt.add_via(n("SDA"), *P(1.9, 3.9))
+        # balancer: ground pin and grounded enable pin straight onto the exposed pad
+        rt.polyline("GND", [P(5.8 + 0.975, -29.7 - 1.45), P(5.8 + 0.975, -29.7 - 0.6)], 0.25)
+        rt.polyline("GND", [P(5.8 + 0.325, -29.7 - 1.45), P(5.8 + 0.325, -29.7 - 0.6)], 0.25)
+        # balance-current pin down the gap between the two columns of passives to its resistor
+        rt.polyline(n("CB"), [P(6.125, -28.25), P(6.125, -27.75), P(5.8, -27.5), P(5.8, -25.8), P(6.52, -25.8)], 0.15)
     # full adapter current enters the VBUS plane here: wide link across both bulk caps, three vias
-    rt.polyline("VBUS_PD", [(24.94, 33.05), (26.2, 33.05), (26.2, 34.4), (30.8, 34.4)], 0.6)
-    rt.polyline("VBUS_PD", [(26.2, 34.4), (26.2, 35.5)], 0.6)
-    rt.polyline("VBUS_PD", [(28.5, 34.4), (28.5, 35.5)], 0.6)
-    for vx, vy in ((26.2, 35.5), (28.5, 35.5), (30.8, 34.4)):
+    rt.polyline("VBUS_PD", [(24.94, 33.05 + DY), (26.2, 33.05 + DY), (26.2, 34.4 + DY), (30.8, 34.4 + DY)], 0.6)
+    rt.polyline("VBUS_PD", [(26.2, 34.4 + DY), (26.2, 35.5 + DY)], 0.6)
+    rt.polyline("VBUS_PD", [(28.5, 34.4 + DY), (28.5, 35.5 + DY)], 0.6)
+    for vx, vy in ((26.2, 35.5 + DY), (28.5, 35.5 + DY), (30.8, 34.4 + DY)):
         rt.add_via("VBUS_PD", vx, vy)
     # PD controller ground pin to its exposed pad, one thermal via in the pad
-    rt.polyline("GND", [(15.98, 37.6), (15.0, 37.6)], 0.2)
-    rt.add_via("GND", 14.5, 38.0)
+    rt.polyline("GND", [(15.98, 37.6 + DY), (15.0, 37.6 + DY)], 0.2)
+    rt.add_via("GND", 14.5, 38.0 + DY)
     # I2C mux address pin A2 to ground
-    rt.polyline("GND", [(36.36, 54.375), (37.75, 54.375)], 0.2)
-    rt.add_via("GND", 37.75, 54.375)
+    rt.polyline("GND", [(36.36, 54.375 + DY), (37.75, 54.375 + DY)], 0.2)
+    rt.add_via("GND", 37.75, 54.375 + DY)
     # I2C mux address pins A0/A1 to ground, and 3V3 vias for its decoupling cap and bus pull-up
-    rt.polyline("GND", [(30.64, 52.425), (29.6, 52.425), (29.6, 53.075), (30.64, 53.075)], 0.2)
-    rt.polyline("GND", [(29.6, 52.75), (29.1, 52.75)], 0.2)
-    rt.add_via("GND", 29.1, 52.75)
-    rt.polyline("+3V3", [(38.72, 51.6), (38.72, 50.6)], 0.25)
-    rt.add_via("+3V3", 38.72, 50.6)
-    rt.polyline("+3V3", [(40.72, 53.6), (40.72, 52.6)], 0.25)
-    rt.add_via("+3V3", 40.72, 52.6)
+    rt.polyline("GND", [(30.64, 52.425 + DY), (29.6, 52.425 + DY), (29.6, 53.075 + DY), (30.64, 53.075 + DY)], 0.2)
+    rt.polyline("GND", [(29.6, 52.75 + DY), (29.1, 52.75 + DY)], 0.2)
+    rt.add_via("GND", 29.1, 52.75 + DY)
+    rt.polyline("+3V3", [(38.72, 51.6 + DY), (38.72, 50.6 + DY)], 0.25)
+    rt.add_via("+3V3", 38.72, 50.6 + DY)
+    rt.polyline("+3V3", [(40.72, 53.6 + DY), (40.72, 52.6 + DY)], 0.25)
+    rt.add_via("+3V3", 40.72, 52.6 + DY)
     for net in ("GND", "VBUS_PD", "CE_ALL_N", "+3V3"):
         rt._merge(net)
 
 
 def slot_nets(s):
     order = ["REGN", "BTST1", "BTST2", "SDRV", "PROG", "BATP", "TS", "LED_A", "STAT",
+             "CB", "CD", "BVDD", "MID", "BALP", "OV",
              "PB_G", "PB_GD", "XT_G", "XT_GD", "PB_S", "XT_S", "PB_P", "XT_P", "EN_PB", "EN_XT",
              "BAT", "PMID", "SYS", "SW1", "SW2"]
     return [f"S{s}_{n}" for n in order]
@@ -855,14 +910,14 @@ def silk(board):
 
     for s in range(1, design.SLOTS + 1):
         x = cell_origin(s)
-        text(str(s), x + 9.0, 9.4, 1.4, 0.22)
-    text("6x 1S/2S LiPo CHARGER  rev A", 60.0, 66.3, 1.0, 0.15)
-    text("UP", 70.0, 39.0, 0.8, 0.13)
-    text("OK", 70.0, 49.5, 0.8, 0.13)
-    text("DN", 70.0, 60.0, 0.8, 0.13)
-    text("OLED: GND VCC SCL SDA", 54.0, 33.6, 0.8, 0.13)
-    text("TX RX GND", 90.5, 53.6, 0.8, 0.13)
-    text("USB-C PD", 6.0, 47.6, 0.8, 0.13)
+        text(str(s), x + 9.0, 17.2, 1.4, 0.22)
+    text("6x 1S/2S LiPo BALANCE CHARGER  rev B", 62.0, 66.3 + DY, 1.0, 0.15)
+    text("UP", 70.0, 39.0 + DY, 0.8, 0.13)
+    text("OK", 70.0, 49.5 + DY, 0.8, 0.13)
+    text("DN", 70.0, 60.0 + DY, 0.8, 0.13)
+    text("OLED: GND VCC SCL SDA", 54.0, 33.6 + DY, 0.8, 0.13)
+    text("TX RX GND", 90.5, 53.6 + DY, 0.8, 0.13)
+    text("USB-C PD", 6.0, 47.6 + DY, 0.8, 0.13)
 
 
 def zones(board):

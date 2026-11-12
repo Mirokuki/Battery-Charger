@@ -31,7 +31,7 @@ def save_png(path, img):
 def main():
     args = [a for a in sys.argv[1:] if not a.endswith(".png")]
     out = next((a for a in sys.argv[1:] if a.endswith(".png")), os.path.join(HERE, "..", "docs", "copper.png"))
-    x1, y1, x2, y2 = (float(a) for a in args) if len(args) == 4 else (0.0, 0.0, 108.0, 68.0)
+    x1, y1, x2, y2 = (float(a) for a in args) if len(args) == 4 else (0.0, 0.0, 108.0, 80.0)
     scale = min(40.0, 2400.0 / (x2 - x1))
     w, h = int((x2 - x1) * scale), int((y2 - y1) * scale)
     img = np.full((h, w, 3), 18, np.uint8)

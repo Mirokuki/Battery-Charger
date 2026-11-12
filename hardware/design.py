@@ -15,6 +15,8 @@ Architecture
   are switched by the charger's own D+ / D- output drivers (I2C register 0x47),
   and the pack voltage is read by the charger's ADC, so a slot needs only SDA
   and SCL from the MCU.
+  2S packs also plug their balance lead into a JST-XH port with its own autonomous
+  balancer (BQ29209), so balancing needs no MCU lines either.
 """
 
 SLOTS = 6
@@ -52,6 +54,7 @@ RES = {  # value -> (mpn, lcsc)
     "100R": ("0402WGF1000TCE", "C25076"),
     "47k": ("0402WGF4702TCE", "C25792"),
     "68k": ("0402WGF6802TCE", "C36871"),
+    "120R": ("0402WGF1200TCE", ""),
 }
 CAPS = {  # value -> (footprint, mpn, lcsc)
     "10uF 25V": (C0805, "CL21A106KAYNNNE", "C15850"),
@@ -241,6 +244,25 @@ for s in range(1, SLOTS + 1):
     part(r("Q", 6), "Transistor_FET:2N7002", SOT23, "2N7002", {1: n("EN_XT"), 2: GND, 3: n("XT_GD")},
          "2N7002", "C8545", g)
     R(r("R", 11), "68k", n("EN_XT"), GND, g)
+
+    # 2S balance port: BQ29209 bleeds the higher cell (about 10 mA through R14) until the two
+    # cells match, and raises OUT if either cell passes 4.30 V.  OUT pulls the charger's TS pin
+    # low, which suspends charging in hardware (the firmware only ignores TS in LiHV mode).
+    part(r("J", 3), "Connector_Generic:Conn_01x03",
+         "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical", "XH balance 2S",
+         {1: GND, 2: n("MID"), 3: n("BALP")}, "B3B-XH-A", "C144394", g, tht=True)
+    part(r("U", 2), "charger:BQ29209", "Package_SON:VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm", "BQ29209",
+         {1: n("BALP"), 2: n("MID"), 3: n("CB"), 4: n("CD"), 5: GND, 6: GND, 7: n("BVDD"), 8: n("OV"), 9: GND},
+         "BQ29209DRBR", "", g)
+    R(r("R", 14), "120R", n("MID"), n("CB"), g)
+    R(r("R", 15), "100R", n("BALP"), n("BVDD"), g)
+    C(r("C", 18), "100nF 50V", n("BVDD"), GND, g)
+    C(r("C", 19), "100nF 50V", n("BALP"), n("MID"), g)
+    C(r("C", 20), "100nF 50V", n("MID"), GND, g)
+    C(r("C", 21), "100nF 50V", n("CD"), GND, g)      # about 0.9 s over-voltage delay
+    part(r("Q", 7), "Transistor_FET:2N7002", SOT23, "2N7002", {1: n("OV"), 2: GND, 3: n("TS")},
+         "2N7002", "C8545", g)
+    R(r("R", 16), "100k", n("OV"), GND, g)
 
     # I2C pull-ups for this mux channel (placed beside the mux)
     R(r("R", 12), "10k", V33, n("SDA"), g)

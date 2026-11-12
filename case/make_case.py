@@ -1,14 +1,16 @@
-#!/usr/bin/env python3
 """
-3D-printable case for the 6-slot 1S/2S LiPo charger.  No dependencies:
+3D-printable case for the 6-slot 1S/2S LiPo balance charger.  No dependencies:
     python make_case.py        -> case_base.stl, case_lid.stl
 
 Two parts, both print flat without supports:
-  base  tray with four screw bosses the PCB sits on (print as modelled)
+  base  tray the PCB sits in (print as modelled)
   lid   top plate with connector / display / button openings (print top-face down;
         the STL is already flipped)
-Four M2.5 x 14 mm self-tapping screws go through lid posts and the PCB holes into
-the base bosses.
+
+Fixing: four M3 x 8 socket-head screws go in from underneath.  Their heads sit in
+counterbores in the base, they pass through the PCB's M3 holes and thread into
+M3 heat-set inserts (5.0 mm knurl, 4.2 mm pilot, 4.0 mm long) melted into the open
+ends of the lid posts.  The top of the lid has no screw holes.
 
 Every solid is an extruded 2D outline.  Coordinates match the PCB (x right,
 y towards the front edge, origin at the board's rear-left corner).
@@ -19,7 +21,8 @@ import os
 import struct
 
 # ------------------------------------------------------------------ parameters (mm)
-BOARD_W, BOARD_H, BOARD_T = 108.0, 68.0, 1.6
+BOARD_W, BOARD_H, BOARD_T = 108.0, 80.0, 1.6
+DY = 12.0            # logic area offset (matches gen_pcb.py)
 GAP = 0.4            # board-to-wall clearance
 WALL = 2.0
 FLOOR = 1.6
@@ -27,23 +30,28 @@ STANDOFF = 4.0       # board underside above the floor (clears through-hole pins
 HEADROOM = 6.0       # board top to lid underside (tallest enclosed part is the OLED, 5.5)
 LID_T = 1.6
 LIP_T, LIP_H, LIP_FIT = 1.2, 2.5, 0.2
-HOLES = [(37.3, 34.6), (105.0, 32.6), (31.0, 65.0), (105.0, 65.0)]   # PCB mounting holes
-BOSS_D, BOSS_HOLE = 6.0, 2.1       # 2.1 mm pilot for M2.5 self-tapping screws
-POST_D, POST_HOLE = 5.4, 2.9
-SCREW_HEAD_D = 5.2
+HOLES = [(37.3, 47.0), (104.4, 46.0), (31.2, 76.4), (104.4, 76.4)]   # PCB M3 holes
+# screws from below
+BOSS_D = 9.5         # boss under the board
+SCREW_CLEAR = 3.4    # M3 clearance
+HEAD_D, HEAD_DEPTH = 6.2, 3.2      # counterbore for an M3 socket head (5.5 x 3.0)
+# heat-set inserts in the lid posts
+POST_D = 7.5
+INSERT_HOLE = 4.2    # for 5.0 mm knurl / 4.2 mm pilot inserts; try 4.0 if yours sit loose
 
 SLOTS, CELL_W, CELL_X0 = 6, 17.6, 1.2
 XT30 = (6.1, 4.0, 11.0, 6.2)       # centre x, centre y in the slot cell, opening w, h
-PICO = (14.9, 4.05, 5.4, 6.0)      # PicoBlade opening (0.6 mm ribs separate it from the XT30 openings)
-SLOT_LED = (2.6, 28.0, 2.0)        # charge LED window: x, y in the cell, diameter
-PD_LED = (15.6, 32.3, 2.0)
-OLED_WIN = (54.0, 46.2, 25.0, 14.5)   # centre x, y, w, h  - check against your module
-BUTTONS = [(76.0, 39.0), (76.0, 49.5), (76.0, 60.0)]
+XH = (6.0, 11.5, 10.6, 6.4)        # JST-XH balance port
+PICO = (14.83, 11.15, 5.4, 6.0)    # PicoBlade
+SLOT_LED = (2.6, 36.0, 2.0)        # charge LED window: x, y in the cell, diameter
+PD_LED = (15.6, 32.3 + DY, 2.0)
+OLED_WIN = (54.0, 46.2 + DY, 25.0, 14.5)   # centre x, y, w, h  - check against your module
+BUTTONS = [(76.0, 39.0 + DY), (76.0, 49.5 + DY), (76.0, 60.0 + DY)]
 BUTTON_D = 4.0
-BUZZER = (93.0, 39.6, 1.6)
-USB = (38.0, 13.0, 7.6)            # centre y on the left wall, opening width, height (fits the plug body)
+BUZZER = (93.0, 39.6 + DY, 1.6)
+USB = (38.0 + DY, 13.0, 7.6)       # centre y on the left wall, opening width, height (fits the plug body)
 # extra rests under the board, placed clear of every through-hole solder joint
-SUPPORTS = [(13.2, 3.0), (48.4, 3.0), (83.6, 3.0), (3.0, 22.0), (60.0, 31.5), (70.0, 64.5), (3.0, 64.5)]
+SUPPORTS = [(15.7, 4.0), (50.9, 4.0), (86.1, 4.0), (3.0, 30.0), (60.0, 44.0), (70.0, 76.5), (3.0, 62.0)]
 
 Z_BOARD = FLOOR + STANDOFF                  # board underside
 Z_TOP = Z_BOARD + BOARD_T + HEADROOM        # wall top = lid underside
@@ -188,7 +196,8 @@ def build_base():
     m = Mesh()
     outer = rect(0, 0, OUT_W, OUT_H)
     inner = rect(WALL, WALL, OUT_W - WALL, OUT_H - WALL)
-    m.prism([outer], 0, FLOOR)
+    heads = [circle(*B(hx, hy), HEAD_D) for hx, hy in HOLES]
+    m.prism([outer] + heads, 0, FLOOR)                 # floor, with the screw-head recesses open below
     # walls, with the USB-C opening cut through the left wall
     uy = USB[0] + OY
     z_usb0 = Z_BOARD + BOARD_T + 1.6 - USB[2] / 2     # receptacle axis is 1.6 mm above the board
@@ -201,7 +210,8 @@ def build_base():
     m.prism([outer, inner], z_usb1 - 0.01, Z_TOP)
     for hx, hy in HOLES:
         x, y = B(hx, hy)
-        m.prism([circle(x, y, BOSS_D), circle(x, y, BOSS_HOLE)], FLOOR - 0.01, Z_BOARD)
+        m.prism([circle(x, y, BOSS_D), circle(x, y, HEAD_D)], FLOOR - 0.01, HEAD_DEPTH)       # recess wall
+        m.prism([circle(x, y, BOSS_D), circle(x, y, SCREW_CLEAR)], HEAD_DEPTH - 0.01, Z_BOARD)  # head seat
     for sx, sy in SUPPORTS:
         x, y = B(sx, sy)
         m.prism([circle(x, y, 3.0, 24)], FLOOR - 0.01, Z_BOARD)
@@ -216,6 +226,7 @@ def build_lid():
     for s in range(SLOTS):
         cx = CELL_X0 + CELL_W * s
         loops.append(crect(*B(cx + XT30[0], XT30[1]), XT30[2], XT30[3]))
+        loops.append(crect(*B(cx + XH[0], XH[1]), XH[2], XH[3]))
         loops.append(crect(*B(cx + PICO[0], PICO[1]), PICO[2], PICO[3]))
         loops.append(circle(*B(cx + SLOT_LED[0], SLOT_LED[1]), SLOT_LED[2], 20))
     loops.append(circle(*B(PD_LED[0], PD_LED[1]), PD_LED[2], 20))
@@ -223,17 +234,15 @@ def build_lid():
     for bx, by in BUTTONS:
         loops.append(circle(*B(bx, by), BUTTON_D))
     loops.append(circle(*B(BUZZER[0], BUZZER[1]), BUZZER[2], 16))
-    for hx, hy in HOLES:
-        loops.append(circle(*B(hx, hy), POST_HOLE))
-    m.prism(loops, z0, z1)
+    m.prism(loops, z0, z1)                             # no screw holes in the top face
     # locating lip inside the walls
     a = WALL + LIP_FIT
     m.prism([rect(a, a, OUT_W - a, OUT_H - a),
              rect(a + LIP_T, a + LIP_T, OUT_W - a - LIP_T, OUT_H - a - LIP_T)], z0 - LIP_H, z0 + 0.01)
-    # screw posts that clamp the board
+    # posts that clamp the board; the heat-set insert goes into the open (board) end
     for hx, hy in HOLES:
         x, y = B(hx, hy)
-        m.prism([circle(x, y, POST_D), circle(x, y, POST_HOLE)], Z_BOARD + BOARD_T + 0.1, z0 + 0.01)
+        m.prism([circle(x, y, POST_D), circle(x, y, INSERT_HOLE)], Z_BOARD + BOARD_T + 0.1, z0 + 0.01)
     # flip so the outside face lies on the print bed
     return m.transformed(lambda v: (v[0], OUT_H - v[1], z1 - v[2]))
 

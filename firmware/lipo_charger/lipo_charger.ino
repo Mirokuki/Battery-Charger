@@ -16,6 +16,12 @@
  *   XT30      2.5-4.45 V  -> ambiguous (1S on XT30, or a flat 2S): asks first
  *   both connectors live   -> fault, nothing is charged
  *
+ * Balancing: a 2S pack's balance lead goes into the slot's JST-XH port.  A
+ * BQ29209 there bleeds the higher cell (about 10 mA) until both match, with no
+ * firmware involved.  If either cell passes 4.30 V it pulls the charger's TS pin
+ * low, which stops charging in hardware and shows up here as "cell>4.3".  That
+ * cut-off is ignored in LiHV mode, where 4.35 V per cell is the target.
+ *
  * Safety: CE of every charger is pulled high by hardware, so a reset or
  * crashed MCU stops all charging.  The charger's own safety timer, input
  * limits and over-voltage protection stay enabled.
@@ -38,7 +44,7 @@ const int SLOTS = 6;
 enum : uint8_t {
   R_VREG = 0x01, R_ICHG = 0x03, R_VINDPM = 0x05, R_IINDPM = 0x06, R_PRECHG = 0x08,
   R_TERM = 0x09, R_RECHG = 0x0A, R_TIMER = 0x0E, R_CTRL0 = 0x0F, R_CTRL1 = 0x10,
-  R_CTRL2 = 0x11, R_CTRL5 = 0x14, R_NTC1 = 0x18, R_STAT0 = 0x1B, R_STAT1 = 0x1C,
+  R_CTRL2 = 0x11, R_CTRL5 = 0x14, R_NTC1 = 0x18, R_STAT0 = 0x1B, R_STAT1 = 0x1C, R_STAT4 = 0x1F,
   R_FAULT0 = 0x20, R_FAULT1 = 0x21, R_ADC_CTRL = 0x2E, R_ADC_DIS0 = 0x2F, R_ADC_DIS1 = 0x30,
   R_IBAT = 0x33, R_VBUS = 0x35, R_VBAT = 0x3B, R_DPDM = 0x47, R_PART = 0x48
 };
@@ -133,7 +139,7 @@ bool chargerInit() {
   ok &= bqUpdate(R_CTRL1, 0x07, 0x00);        // I2C watchdog off: settings must never fall back to the 1 A default
   ok &= bqUpdate(R_CTRL2, 0x78, 0x00);        // no D+/D- adapter detection, no HVDCP
   ok &= bqUpdate(R_CTRL5, 0x02, 0x00);        // ILIM pin unused, register limit only
-  ok &= bqUpdate(R_NTC1, 0x01, 0x01);         // no thermistor
+  ok &= bqUpdate(R_NTC1, 0x01, 0x01);         // TS ignored until a 2S LiPo charge needs the cell cut-off
   ok &= bqWrite8(R_TIMER, 0x39);              // top-off 0, all timers on, 5 h fast-charge limit, 2x slowdown
   ok &= bqWrite8(R_ADC_DIS0, 0x04);           // TS channel off
   ok &= bqWrite8(R_ADC_DIS1, 0xF0);           // D+/D-/VAC channels off
@@ -157,6 +163,9 @@ bool chargerProgram(uint8_t cells, uint16_t cellMv, uint16_t ma) {
   ok &= bqWrite8(R_TIMER, 0x39 | topoff);
   ok &= bqWrite16(R_IINDPM, 100);             // 1 A input cap per slot
   ok &= bqWrite8(R_VINDPM, vbusMv > 7500 ? 78 : 44);   // back off if the adapter sags
+  // TS carries the balancer's "a cell is above 4.30 V" flag.  Honour it for 2S up to 4.20 V/cell.
+  bool cellCutoff = cells == 2 && cellMv <= 4250;
+  ok &= bqUpdate(R_NTC1, 0x01, cellCutoff ? 0x00 : 0x01);
   // read back the two values that matter before anything is enabled
   if (bqRead16(R_VREG) != vreg || bqRead16(R_ICHG) != ma / 10) return false;
   return ok;
@@ -324,6 +333,10 @@ void slotStep(int i) {
       // BAT OVP/OCP, converter OCP, SYS short/OVP, thermal (ignored while the charger settles after a cell-count change)
       if (now - s.tStart > 3000 && ((f0 & 0x2C) || (f1 & 0xC4))) { setFault(i, "charger"); return; }
       if (s.mAh > 1500) { setFault(i, "capacity"); return; }
+      if (s.cells == 2 && cellTarget(s) <= 4250) {       // balancer flagged a cell above 4.30 V
+        int st4 = bqRead8(R_STAT4);
+        if (st4 >= 0 && (st4 & 0x01)) { setFault(i, "cell>4.3"); return; }
+      }
       int chg = (st >> 5) & 7;
       if (chg == 7) {                                   // charger says finished
         bqUpdate(R_CTRL0, CTRL0_EN_CHG, 0);

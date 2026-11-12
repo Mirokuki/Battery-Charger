@@ -59,6 +59,10 @@ def box_symbol(name, left, right):
 
 
 CUSTOM = {
+    "charger:BQ29209": box_symbol(
+        "BQ29209",
+        [(1, "VC2"), (2, "VC1"), (3, "VC1_CB"), (4, "CD")],
+        [(7, "VDD"), (8, "OUT"), (6, "CB_EN"), (5, "GND"), (9, "EPAD")]),
     "charger:AP33771C": box_symbol(
         "AP33771C",
         [(4, "ISENP"), (3, "VCC"), (11, "CC1"), (10, "CC2"), (13, "DP"), (12, "DN"), (5, "GND"), (15, "EPAD")],
