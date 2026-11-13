@@ -55,6 +55,7 @@ RES = {  # value -> (mpn, lcsc)
     "47k": ("0402WGF4702TCE", "C25792"),
     "68k": ("0402WGF6802TCE", "C36871"),
     "120R": ("0402WGF1200TCE", ""),
+    "1M 0.1%": ("RT0402BRD071ML", ""),
 }
 CAPS = {  # value -> (footprint, mpn, lcsc)
     "10uF 25V": (C0805, "CL21A106KAYNNNE", "C15850"),
@@ -264,9 +265,33 @@ for s in range(1, SLOTS + 1):
          "2N7002", "C8545", g)
     R(r("R", 16), "100k", n("OV"), GND, g)
 
+    # Cell-voltage sensing: precision dividers on the balance port (1 M parts only, about
+    # 5 uA total).  MID / 2 and pack+ / 3 go to an ADS1115 input in the logic area.
+    R(r("R", 17), "1M 0.1%", n("MID"), n("MIDS"), g)
+    R(r("R", 18), "1M 0.1%", n("MIDS"), GND, g)
+    R(r("R", 19), "1M 0.1%", n("BALP"), n("BALA"), g)
+    R(r("R", 20), "1M 0.1%", n("BALA"), n("BALS"), g)
+    R(r("R", 21), "1M 0.1%", n("BALS"), GND, g)
+
     # I2C pull-ups for this mux channel (placed beside the mux)
     R(r("R", 12), "10k", V33, n("SDA"), g)
     R(r("R", 13), "10k", V33, n("SCL"), g)
+
+
+# ---------------------------------------------------------------- cell-voltage ADCs
+# One ADS1115 per pair of slots, on the main I2C bus at 0x48 / 0x49 / 0x4A.
+# AIN0 / AIN1 = first slot's MID/2 and pack/3, AIN2 / AIN3 = second slot's.
+for k, addr_net in enumerate((GND, V33, "I2C_SDA")):
+    a, b = 2 * k + 1, 2 * k + 2
+    ref = f"U{6 + k}"
+    part(ref, "Analog_ADC:ADS1115IDGS", "Package_SO:TSSOP-10_3x3mm_P0.5mm", "ADS1115",
+         {1: addr_net, 2: None, 3: GND, 4: f"S{a}_MIDS", 5: f"S{a}_BALS", 6: f"S{b}_MIDS", 7: f"S{b}_BALS",
+          8: V33, 9: "I2C_SDA", 10: "I2C_SCL"}, "ADS1115IDGSR", "C37593")
+    C(f"C{20 + 5 * k}", "100nF 50V", V33, GND)
+    C(f"C{21 + 5 * k}", "100nF 50V", f"S{a}_MIDS", GND)
+    C(f"C{22 + 5 * k}", "100nF 50V", f"S{a}_BALS", GND)
+    C(f"C{23 + 5 * k}", "100nF 50V", f"S{b}_MIDS", GND)
+    C(f"C{24 + 5 * k}", "100nF 50V", f"S{b}_BALS", GND)
 
 
 def nets():

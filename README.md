@@ -4,7 +4,7 @@ A USB-C powered charger with six independent slots. Every slot takes either a
 1S pack (PicoBlade, e.g. Blade Nano 150 mAh) or a 2S pack (XT30 plus its JST-XH
 balance lead, e.g. Mobula8 350 mAh). It works out which one is plugged in and
 charges it at the voltage and rate you set on a small OLED with three buttons.
-2S packs are balanced while they charge.
+2S packs are balanced while they charge, and both cell voltages are shown.
 
 **Status: design files generated, nothing built or powered yet.** See
 [Before you order](#before-you-order).
@@ -17,7 +17,8 @@ USB-C ── AP33771C (asks the adapter for 9 V) ── VBUS ─┬─ AP63203 b
 
 slot:  BQ25798 BAT ──┬── P-FET pair ── PicoBlade (1S)      switch driven by the charger's D+ pin
                      └── P-FET pair ── XT30 (2S)           switch driven by the charger's D- pin
-       JST-XH balance port ── BQ29209 balancer ── over-voltage flag ── charger TS pin
+       JST-XH balance port ─┬─ BQ29209 balancer ── over-voltage flag ── charger TS pin
+                            └─ 1 M dividers ── ADS1115 ADC (one per two slots) ── cell voltages
 ```
 
 - **Any slot, either battery.** The BQ25798 is a buck-boost charger that is
@@ -36,6 +37,10 @@ slot:  BQ25798 BAT ──┬── P-FET pair ── PicoBlade (1S)      switch 
   two cells and bleeds the higher one (about 10 mA) until they match. It starts
   when the cells differ by about 30 mV and needs no firmware. It keeps working
   after the charge finishes for as long as the balance lead is plugged in.
+- **Cell voltages.** Precision dividers on each balance port feed three
+  ADS1115 16-bit ADCs, so the display shows both cells of a 2S pack
+  (`4.12/4.15`). While charging, the firmware stops the slot if a cell goes
+  more than 80 mV over the target (`cell high`), in LiHV mode too.
 - **Per-cell over-voltage cut-off.** If either cell passes 4.30 V the balancer
   pulls the charger's TS pin low, which stops charging in hardware; the display
   shows `cell>4.3`. The cut-off is ignored in LiHV mode, where 4.35 V per cell
@@ -50,11 +55,15 @@ slot:  BQ25798 BAT ──┬── P-FET pair ── PicoBlade (1S)      switch 
 
 ### Limits you should know about
 
-- **Balancing is gentle and invisible to the firmware.** At about 10 mA it
-  corrects roughly 10 mAh per hour, which suits packs that are slightly out,
-  not badly unbalanced ones. The display shows pack voltage only, not cell
-  voltages, and nothing detects a forgotten balance lead: a 2S pack on the
-  XT30 alone still charges, just unbalanced and without the per-cell cut-off.
+- **Balancing is gentle.** At about 10 mA it corrects roughly 10 mAh per
+  hour, which suits packs that are slightly out, not badly unbalanced ones.
+  The balancer runs by itself; the firmware watches the cells but does not
+  steer it.
+- **A forgotten balance lead is not blocked.** A 2S pack on the XT30 alone
+  still charges, unbalanced and without any per-cell protection. You can tell
+  from the display: it shows one pack voltage instead of two cell voltages.
+- **Cell readings are good to about 10 mV** with the 0.1 % divider resistors
+  in the BOM. With 1 % parts expect up to about 40 mV of error.
 - **Small packs stop a little early.** The charger chip's lowest termination
   current is 40 mA. For 150 mAh packs the firmware adds a 15 minute top-off,
   but expect roughly 95 % rather than a full 100 %.
@@ -67,6 +76,10 @@ slot:  BQ25798 BAT ──┬── P-FET pair ── PicoBlade (1S)      switch 
 ## Using it
 
 2S: plug in the balance lead and the XT30. 1S: plug into the PicoBlade.
+
+Each slot has one line on the main screen. A 2S pack with its balance lead
+shows `2S 4.12/4.15` (cell 1 / cell 2) and the charge current; a balance lead
+on its own shows `bal 4.12/4.15`, which makes the charger a quick cell checker.
 
 | Button | Main screen | Slot menu |
 |---|---|---|
@@ -115,7 +128,7 @@ like a netlist rather than a hand-drawn schematic.
   JLCPCB's parts search. The LCSC numbers that are filled in were entered from
   memory and **must be checked** against the part description when you upload.
 - Check part rotations in JLCPCB's placement preview, especially the BQ25798,
-  the BQ29209, the SOT-23 FETs, the LEDs and the ESP32 module.
+  the BQ29209, the ADS1115s, the SOT-23 FETs, the LEDs and the ESP32 module.
 
 Hand-soldered after delivery: 6 x XT30UPB-M, 6 x JST B3B-XH-A, 6 x PicoBlade
 53047-0210, the OLED module on J2. J3 (UART) is optional.
@@ -184,12 +197,12 @@ From the last run on 2026-11-11 (KiCad 10.0, `hardware/make_outputs.py`):
 
 | Check | Result |
 |---|---|
-| Schematic netlist vs `design.py` | 349 of 349 parts, 0 net mismatches |
+| Schematic netlist vs `design.py` | 397 of 397 parts, 0 net mismatches |
 | Board vs schematic (parity) | 0 issues |
 | Board DRC errors | 0 |
 | Unconnected nets | 0 |
-| Board DRC warnings | 7: five unused escape vias on I2C lines, two silkscreen lines of the ESP32 module at the board edge |
-| Schematic ERC | "output pin connected to output pin" entries in which KiCad pairs a pin with itself, "power pin not driven" (no power-flag symbols), and notes about the two generated symbols. None is a wiring fault. |
+| Board DRC warnings | 9: seven unused escape vias on I2C lines, two silkscreen lines of the ESP32 module at the board edge |
+| Schematic ERC | 3 "power pin not driven" (the schematic has no power-flag symbols) and 7 library notes about generated symbols. No wiring faults. |
 | Case meshes | both STLs closed (every edge shared by exactly two faces) |
 
 Board rules used: 0.127 mm clearance, 0.15 mm minimum track, 0.6/0.3 mm vias,

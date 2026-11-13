@@ -22,6 +22,10 @@
  * low, which stops charging in hardware and shows up here as "cell>4.3".  That
  * cut-off is ignored in LiHV mode, where 4.35 V per cell is the target.
  *
+ * Cell voltages: three ADS1115 ADCs (0x48-0x4A on the main bus, two slots each)
+ * read each balance port through 1 M dividers: cell junction / 2 and pack / 3.
+ * They are shown per cell and checked against the target while charging.
+ *
  * Safety: CE of every charger is pulled high by hardware, so a reset or
  * crashed MCU stops all charging.  The charger's own safety timer, input
  * limits and over-voltage protection stay enabled.
@@ -38,6 +42,7 @@ const int PIN_CE_N = 1, PIN_BUZZ = 3, PIN_SDA = 4, PIN_SCL = 5, PIN_MUX_RST = 6;
 const int PIN_UP = 8, PIN_OK = 9, PIN_DN = 10;
 
 const uint8_t MUX_ADDR = 0x70, BQ_ADDR = 0x6B, OLED_ADDR = 0x3C;
+const uint8_t ADS_ADDR[3] = {0x48, 0x49, 0x4A};
 const int SLOTS = 6;
 
 // ---------------------------------------------------------------- BQ25798 registers
@@ -69,6 +74,8 @@ struct Slot {
   Conn conn = CONN_NONE;
   uint8_t cells = 0;
   uint16_t vbat = 0, vpb = 0, vxt = 0;
+  uint16_t cell1 = 0, cell2 = 0;   // from the balance port, mV (valid while balLead)
+  bool balLead = false;
   int16_t ibat = 0;
   uint16_t setMa = 0;          // current actually programmed
   float mAh = 0;
@@ -123,6 +130,55 @@ bool bqUpdate(uint8_t reg, uint8_t mask, uint8_t val) {
 }
 
 void beep(int ms, int hz = 2700) { tone(PIN_BUZZ, hz, ms); }
+
+// ---------------------------------------------------------------- cell-voltage ADCs
+// One single-shot conversion at a time, round-robin over the 12 inputs (about 8 per second
+// in total).  Sampling this rarely keeps the ADC from loading the 1 M dividers.
+bool adsStart(uint8_t addr, uint8_t ch) {
+  uint16_t cfg = 0x8000 | ((4 + ch) << 12) | 0x0200 | 0x0100 | 0x0080 | 0x0003;   // AINch-GND, +-4.096 V, 128 SPS
+  Wire.beginTransmission(addr);
+  Wire.write(0x01); Wire.write(cfg >> 8); Wire.write(cfg & 0xFF);
+  return Wire.endTransmission() == 0;
+}
+long adsReadMv(uint8_t addr) {                // input voltage in mV, or -1
+  Wire.beginTransmission(addr);
+  Wire.write(0x00);
+  if (Wire.endTransmission(false) != 0) return -1;
+  if (Wire.requestFrom((int)addr, 2) != 2) return -1;
+  int16_t raw = (Wire.read() << 8) | Wire.read();
+  if (raw < 0) raw = 0;
+  return (long)raw / 8;                       // 125 uV per count
+}
+void adcStep() {
+  static uint8_t idx = 0;
+  static bool pending = false;
+  static uint32_t t0 = 0, tNext = 0;
+  static long midMv[SLOTS], packMv[SLOTS];
+  uint32_t now = millis();
+  uint8_t chip = idx / 4, ch = idx % 4, sl = chip * 2 + ch / 2;
+  if (!pending) {
+    if (now < tNext) return;
+    pending = adsStart(ADS_ADDR[chip], ch);
+    t0 = now;
+    if (!pending) { slot[sl].balLead = false; idx = (idx + 1) % 12; tNext = now + 100; }
+    return;
+  }
+  if (now - t0 < 12) return;
+  long mv = adsReadMv(ADS_ADDR[chip]);
+  pending = false;
+  tNext = now + 110;
+  if (ch % 2 == 0) midMv[sl] = mv < 0 ? -1 : mv * 2;
+  else {
+    packMv[sl] = mv < 0 ? -1 : mv * 3;
+    Slot &s = slot[sl];
+    if (midMv[sl] > 2000 && packMv[sl] > midMv[sl] + 2000) {
+      s.cell1 = midMv[sl];
+      s.cell2 = packMv[sl] - midMv[sl];
+      s.balLead = true;
+    } else s.balLead = false;
+  }
+  idx = (idx + 1) % 12;
+}
 
 // ---------------------------------------------------------------- charger control
 // All of these expect muxSelect(slot) to have been called.
@@ -333,6 +389,11 @@ void slotStep(int i) {
       // BAT OVP/OCP, converter OCP, SYS short/OVP, thermal (ignored while the charger settles after a cell-count change)
       if (now - s.tStart > 3000 && ((f0 & 0x2C) || (f1 & 0xC4))) { setFault(i, "charger"); return; }
       if (s.mAh > 1500) { setFault(i, "capacity"); return; }
+      if (s.cells == 2 && s.balLead) {                    // measured cell voltages
+        uint16_t hi = max(s.cell1, s.cell2), lo = min(s.cell1, s.cell2);
+        if (hi > cellTarget(s) + 80) { setFault(i, "cell high"); return; }
+        if (lo < CELL_MIN_MV - 300) { setFault(i, "cell low"); return; }
+      }
       if (s.cells == 2 && cellTarget(s) <= 4250) {       // balancer flagged a cell above 4.30 V
         int st4 = bqRead8(R_STAT4);
         if (st4 >= 0 && (st4 & 0x01)) { setFault(i, "cell>4.3"); return; }
@@ -473,16 +534,27 @@ void draw() {
       if (i == cursor) { oled.fillRect(0, y - 1, 128, 9, SSD1306_WHITE); oled.setTextColor(SSD1306_BLACK); }
       else oled.setTextColor(SSD1306_WHITE);
       oled.setCursor(1, y);
-      if (s.cells && s.state != ST_EMPTY && s.state != ST_FAULT)
+      if (s.cells == 2 && s.balLead && s.state != ST_EMPTY && s.state != ST_FAULT) {
+        oled.printf("%d 2S %u.%02u/%u.%02u ", i + 1, s.cell1 / 1000, (s.cell1 % 1000) / 10,
+                    s.cell2 / 1000, (s.cell2 % 1000) / 10);
+        if (s.state == ST_CHARGE) oled.printf("%dmA", s.ibat); else oled.print(stateText(s));
+      } else if (s.cells && s.state != ST_EMPTY && s.state != ST_FAULT)
         oled.printf("%d %dS %u.%02uV %4dmA %s", i + 1, s.cells, s.vbat / 1000, (s.vbat % 1000) / 10,
                     s.state == ST_CHARGE ? s.ibat : 0, s.state == ST_CHARGE ? "" : stateText(s));
+      else if (s.balLead && s.state == ST_EMPTY)          // balance lead only: still worth showing
+        oled.printf("%d bal %u.%02u/%u.%02u", i + 1, s.cell1 / 1000, (s.cell1 % 1000) / 10,
+                    s.cell2 / 1000, (s.cell2 % 1000) / 10);
       else
         oled.printf("%d %s", i + 1, stateText(s));
     }
   } else {
     Slot &s = slot[cursor];
     oled.setCursor(0, 0);
-    oled.printf("SLOT %d  %s %umAh", cursor + 1, stateText(s), (unsigned)s.mAh);
+    if (s.balLead)
+      oled.printf("S%d %u.%02u/%u.%02uV %umAh", cursor + 1, s.cell1 / 1000, (s.cell1 % 1000) / 10,
+                  s.cell2 / 1000, (s.cell2 % 1000) / 10, (unsigned)s.mAh);
+    else
+      oled.printf("SLOT %d  %s %umAh", cursor + 1, stateText(s), (unsigned)s.mAh);
     oled.drawFastHLine(0, 9, 128, SSD1306_WHITE);
     for (int m = 0; m < MENU_ITEMS; m++) {
       int y = 11 + m * 9;
@@ -560,6 +632,7 @@ void loop() {
   handleButtons();
   slotStep(next);
   next = (next + 1) % SLOTS;
-  muxSelect(-1);                              // OLED lives on the upstream bus
+  muxSelect(-1);                              // OLED and the cell ADCs live on the upstream bus
+  adcStep();
   if (millis() - tDraw > 150) { tDraw = millis(); draw(); }
 }

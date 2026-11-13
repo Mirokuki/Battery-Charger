@@ -7574,4 +7574,449 @@
 		)
 		(uuid "29e73d94-f2ab-592c-8b76-26647cf99e59")
 	)
+	(symbol
+		(lib_id "Device:R")
+		(at 537.21 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "36ad117d-89de-5fc6-a131-a00dddd71b49")
+		(property "Reference" "R317"
+			(at 537.21 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 537.21 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 537.21 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 537.21 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 537.21 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8442f61e-1554-5560-9f95-725540003597")
+		)
+		(pin "2"
+			(uuid "f372398d-a81a-5884-b8cc-56f3313def96")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/88ee49d3-64c9-5234-9ddb-cc4794754006"
+					(reference "R317")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S3_MID"
+		(shape passive)
+		(at 537.21 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "467f61da-0fcc-524d-b2d1-8e169e41d445")
+	)
+	(global_label "S3_MIDS"
+		(shape passive)
+		(at 537.21 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "17358d84-f0f7-5499-a516-8ccc6757088e")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 549.91 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "603aa749-a372-57a3-9d29-3e05e73064ee")
+		(property "Reference" "R318"
+			(at 549.91 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 549.91 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 549.91 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 549.91 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 549.91 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b866436f-ed3b-5e70-992a-b1f0309ca63a")
+		)
+		(pin "2"
+			(uuid "2148c332-a754-51d9-8e37-86a3b0e23833")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/88ee49d3-64c9-5234-9ddb-cc4794754006"
+					(reference "R318")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S3_MIDS"
+		(shape passive)
+		(at 549.91 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "2cfb6cc1-bcca-5d90-a5bd-57135ebcf370")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 549.91 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "c761dd4b-b51f-576d-a7de-21687d5db85b")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 34.29 375.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8a2a6055-a708-5995-89cf-c94dddaeff8f")
+		(property "Reference" "R319"
+			(at 34.29 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 34.29 382.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 34.29 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 34.29 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 34.29 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "55cd9bd5-bb54-5c44-b23c-01d8762d0a27")
+		)
+		(pin "2"
+			(uuid "df834886-343c-52d8-adad-9287438e2132")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/88ee49d3-64c9-5234-9ddb-cc4794754006"
+					(reference "R319")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S3_BALP"
+		(shape passive)
+		(at 34.29 372.11 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "05019093-db20-52e4-ab6e-ec927f3d3649")
+	)
+	(global_label "S3_BALA"
+		(shape passive)
+		(at 34.29 379.73 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "e3171f58-3d32-5b41-8244-0685adff8c6d")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 45.72 375.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "256fd745-a3ac-5607-bdc6-0f32232f704a")
+		(property "Reference" "R320"
+			(at 45.72 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 45.72 382.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 45.72 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 45.72 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 45.72 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e28b6d2f-3031-5ae3-89a8-99357f95cbc5")
+		)
+		(pin "2"
+			(uuid "c3605103-61d7-512d-922d-7ef9053ed8f9")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/88ee49d3-64c9-5234-9ddb-cc4794754006"
+					(reference "R320")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S3_BALA"
+		(shape passive)
+		(at 45.72 372.11 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "53e273c9-0f26-5580-80bb-c559202bc80a")
+	)
+	(global_label "S3_BALS"
+		(shape passive)
+		(at 45.72 379.73 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "c4632a94-c690-54e4-b991-dc7ad03a9da7")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 58.42 375.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "350d4257-6312-50ca-b10e-f6dd08e27d67")
+		(property "Reference" "R321"
+			(at 58.42 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 58.42 382.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 58.42 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 58.42 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 58.42 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4ebcfa9e-9c9b-5433-afdb-a1e4df1d2543")
+		)
+		(pin "2"
+			(uuid "c04491ef-bf5a-5bcd-84ce-33a38da63253")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/88ee49d3-64c9-5234-9ddb-cc4794754006"
+					(reference "R321")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S3_BALS"
+		(shape passive)
+		(at 58.42 372.11 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "80b7acf0-616a-540e-be84-918104637ffc")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 58.42 379.73 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3359b03f-92f7-52bc-8f48-1d2c24668346")
+	)
 )

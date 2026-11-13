@@ -661,14 +661,9 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "lipo-6slot-charger.kicad_sch",
-        "name": "lipo-6slot-charger",
-        "uuid": "d3acfb59-6545-53bf-ad84-201aa45c333d"
-      },
-      {
-        "filename": "manual.kicad_sch",
-        "name": "Manual",
-        "uuid": "f71a9c4c-0d5a-4ee3-ae10-361a805ce357"
+        "filename": "lipo-charger.kicad_sch",
+        "name": "lipo-charger",
+        "uuid": "2ec4bc2e-299c-51d0-8e3e-20eeebee05c7"
       }
     ],
     "used_designators": "#PWR1-21,C1-23,D1-13,J1-6,L1-2,Q1-3,R1-22,SW1-6,U1-8,U1'1",

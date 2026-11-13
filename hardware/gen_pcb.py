@@ -85,6 +85,9 @@ SLOT_REL = {  # ref pattern -> (dx, dy, rot) relative to the charger IC centre
     "C{s}19": (4.3, -27.0, 0), "C{s}21": (7.0, -27.0, 0),
     "C{s}20": (4.3, -25.8, 180), "R{s}14": (7.0, -25.8, 180),
     "R{s}15": (4.3, -24.6, 0), "C{s}18": (7.0, -24.6, 0),
+    # cell-voltage dividers in the gap between the two FET pairs, right under the balance port
+    "R{s}19": (-0.6, -16.9, 270), "R{s}20": (-0.6, -14.9, 270), "R{s}21": (-0.6, -12.9, 270),
+    "R{s}17": (0.6, -16.9, 270), "R{s}18": (0.6, -14.9, 270),
     # cell over-voltage flag pulls TS low
     "Q{s}07": (7.1, 6.5, 90), "R{s}16": (4.2, 6.5, 0),
 }
@@ -111,6 +114,13 @@ CORE = {
     "R14": (81.0, 39.0, 90), "R15": (81.0, 49.5, 90), "R16": (81.0, 60.0, 90),
     "BZ1": (93.0, 39.6, 0), "Q2": (87.0, 47.0, 0), "D2": (91.0, 47.0, 0), "R17": (84.0, 47.0, 0),
     "J3": (88.0, 56.0, 90),
+    # cell-voltage ADCs (pins face up / down) with their filter caps in a column to the right
+    "U6": (84.2, 62.3, 90),
+    "C20": (87.2, 60.5, 0), "C23": (87.2, 61.5, 0), "C24": (87.2, 62.5, 0), "C21": (87.2, 63.5, 0), "C22": (87.2, 64.5, 0),
+    "U7": (90.3, 62.3, 90),
+    "C25": (93.3, 60.5, 0), "C28": (93.3, 61.5, 0), "C29": (93.3, 62.5, 0), "C26": (93.3, 63.5, 0), "C27": (93.3, 64.5, 0),
+    "U8": (96.4, 62.3, 90),
+    "C30": (99.4, 60.5, 0), "C33": (99.4, 61.5, 0), "C34": (99.4, 62.5, 0), "C31": (99.4, 63.5, 0), "C32": (99.4, 64.5, 0),
 }
 HOLES = {"H1": (37.3, 47.0), "H2": (104.4, 46.0), "H3": (31.2, 76.4), "H4": (104.4, 76.4)}
 
@@ -161,7 +171,8 @@ class Board:
             import xml.etree.ElementTree as ET
             for net in ET.parse(nl).getroot().find("nets"):
                 name = net.get("name")
-                if name.startswith("unconnected-"):
+                if name.startswith("unconnected-") and name not in self.nets:
+                    name = name.replace("/", "{slash}")     # how KiCad itself writes a '/' in a pin name
                     ni = pcbnew.NETINFO_ITEM(self.b, name)
                     self.b.Add(ni)
                     self.nets[name] = ni
@@ -849,13 +860,26 @@ def hand_routes(rt):
     rt.add_via("+3V3", 38.72, 50.6 + DY)
     rt.polyline("+3V3", [(40.72, 53.6 + DY), (40.72, 52.6 + DY)], 0.25)
     rt.add_via("+3V3", 40.72, 52.6 + DY)
+    # cell-voltage ADCs: the middle pins of each row get a fixed escape and via
+    for k, addr in enumerate(("GND", "+3V3", None)):
+        ax, ay = 84.2 + 6.1 * k, 62.3 + DY
+        rt.polyline("+3V3", [(ax, ay - 2.15), (ax, ay - 3.9)], 0.2)          # pin 8 VDD
+        rt.add_via("+3V3", ax, ay - 3.9)
+        rt.polyline("GND", [(ax, ay + 2.15), (ax, ay + 3.9)], 0.2)           # pin 3 GND
+        rt.add_via("GND", ax, ay + 3.9)
+        if addr == "GND":                                                    # pin 1 ADDR strap
+            rt.polyline("GND", [(ax - 1.0, ay + 2.15), (ax - 1.0, ay + 3.3), (ax, ay + 3.3)], 0.2)
+        elif addr == "+3V3":
+            rt.polyline("+3V3", [(ax - 1.0, ay + 2.15), (ax - 1.0, ay + 3.3), (ax - 1.7, ay + 3.3),
+                                 (ax - 1.7, ay + 3.9)], 0.2)
+            rt.add_via("+3V3", ax - 1.7, ay + 3.9)
     for net in ("GND", "VBUS_PD", "CE_ALL_N", "+3V3"):
         rt._merge(net)
 
 
 def slot_nets(s):
     order = ["REGN", "BTST1", "BTST2", "SDRV", "PROG", "BATP", "TS", "LED_A", "STAT",
-             "CB", "CD", "BVDD", "MID", "BALP", "OV",
+             "CB", "CD", "BVDD", "MID", "BALP", "BALA", "OV",
              "PB_G", "PB_GD", "XT_G", "XT_GD", "PB_S", "XT_S", "PB_P", "XT_P", "EN_PB", "EN_XT",
              "BAT", "PMID", "SYS", "SW1", "SW2"]
     return [f"S{s}_{n}" for n in order]
@@ -868,7 +892,7 @@ def route_all(rt):
         rt.route_block(slot_nets(s), f"slot {s}")
         if debug:
             return 0
-    core = [n for n in design.nets() if not n.startswith("S") or n.split("_", 1)[1] in ("SDA", "SCL")]
+    core = [n for n in design.nets() if not n.startswith("S") or n.split("_", 1)[1] in ("SDA", "SCL", "MIDS", "BALS")]
     core = [n for n in core if n not in PLANE_NETS]
     first = ["USB_DP", "USB_DN", "USB_CC1", "USB_CC2", "VBUS_RAW", "VBUS_SNS", "BUCK_SW", "BUCK_BST",
              "PD_GATE", "PD_PWR_EN", "PD_VOUT", "PD_V5V", "PD_VSEL", "PD_ISEL", "PD_LED", "PD_LED_A"]
@@ -910,8 +934,8 @@ def silk(board):
 
     for s in range(1, design.SLOTS + 1):
         x = cell_origin(s)
-        text(str(s), x + 9.0, 17.2, 1.4, 0.22)
-    text("6x 1S/2S LiPo BALANCE CHARGER  rev B", 62.0, 66.3 + DY, 1.0, 0.15)
+        text(str(s), x + 3.0, 39.0, 1.4, 0.22)
+    text("6x 1S/2S LiPo BALANCE CHARGER  rev C", 62.0, 66.3 + DY, 1.0, 0.15)
     text("UP", 70.0, 39.0 + DY, 0.8, 0.13)
     text("OK", 70.0, 49.5 + DY, 0.8, 0.13)
     text("DN", 70.0, 60.0 + DY, 0.8, 0.13)
