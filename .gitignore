@@ -1,30 +1,16 @@
-# KiCad Local History & Backups
-.history/
+# KiCad backups and caches
 *.bak
-*.bak[0-9]*
-*.kicad_pcb-bak
-*.kicad_sch-bak
 *-bak
-_saved*
-*-save.kicad_pcb
-*-save.kicad_sch
 *.kicad_prl
-fp-info-cache
 *.lck
-
-# KiCad DRC reports & json logs
-*.rpt
-*.json
-
-# Python cache
+fp-info-cache
+*-backups/
+# generator scratch
+hardware/route.log
+hardware/out.log
+hardware/sch_netlist.xml
+hardware/s1.xml
+hardware/drc.json
+hardware/erc.json
 __pycache__/
 *.py[cod]
-
-# Temporary scratch / routing experiments
-scratch/
-
-# OS & Editor files
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/

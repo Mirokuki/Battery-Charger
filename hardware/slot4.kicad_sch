@@ -1,0 +1,8022 @@
+(kicad_sch
+	(version 20260306)
+	(generator "gen_schematic")
+	(generator_version "10.0")
+	(uuid "bcfdafb3-19ee-5f97-9a71-b23ddd4b630b")
+	(paper "A2")
+	(title_block
+		(title "Charger slot 4: BQ25798 + PicoBlade (1S) / XT30 (2S) switches")
+		(rev "A")
+	)
+	(lib_symbols
+		(symbol "Connector_Generic:Conn_01x02"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_01x02_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Connector_Generic:Conn_01x03"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "J"
+				(at 0 5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x03"
+				(at 0 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "Conn_01x03_1_1"
+				(rectangle
+					(start -1.27 3.81)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 2.667)
+					(end 0 2.413)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 2.54 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Battery_Management:BQ25798"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at -7.62 31.75 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "BQ25798"
+				(at 2.54 31.75 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Package_DFN_QFN:Texas_RQM0029A_VQFN-29_4x4mm_P0.4mm"
+				(at 0 -62.484 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/bq25798.pdf"
+				(at 0 -60.452 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "I2C controlled, 5A Buck-Boost battery charger (1-4 cell, Li-Ion / Li-Polymer), USB BC1.2 / HVDCP detection, 3.6..24V VBUS, 3..18.8V charge voltage regulation, 0.75..1.5 MHz, VQFN-29 (Texas RQM0029A)"
+				(at 0 -58.42 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Texas-Instruments fast-charger Power-Path-Management USB-OTG BQ25798RQMR"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*VQFN*4x4mm?P0.4mm*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "BQ25798_0_1"
+				(rectangle
+					(start -7.62 30.48)
+					(end 7.62 -30.48)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "BQ25798_1_1"
+				(pin open_collector line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "STAT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 27.94 0)
+					(length 2.54)
+					(name "VBUS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 27.94 0)
+					(length 2.54)
+					(hide yes)
+					(name "VBUS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 22.86 180)
+					(length 2.54)
+					(name "BTST1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "REGN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -10.16 5.08 0)
+					(length 2.54)
+					(name "D+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -10.16 7.62 0)
+					(length 2.54)
+					(name "D-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 15.24 0)
+					(length 2.54)
+					(name "VAC2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 22.86 0)
+					(length 2.54)
+					(name "VAC1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 12.7 0)
+					(length 2.54)
+					(name "ACDRV2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 20.32 0)
+					(length 2.54)
+					(name "ACDRV1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -15.24 0)
+					(length 2.54)
+					(name "~{QON}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -10.16 0)
+					(length 2.54)
+					(name "~{CE}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "SCL"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "SDA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -27.94 0)
+					(length 2.54)
+					(name "TS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -20.32 0)
+					(length 2.54)
+					(name "ILIM_HIZ"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 10.16 -27.94 180)
+					(length 2.54)
+					(name "BATP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "BTST2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -22.86 0)
+					(length 2.54)
+					(name "PROG"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin open_collector line
+					(at -10.16 -7.62 0)
+					(length 2.54)
+					(name "~{INT}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 -17.78 180)
+					(length 2.54)
+					(name "BAT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -17.78 180)
+					(length 2.54)
+					(hide yes)
+					(name "BAT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "23"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -22.86 180)
+					(length 2.54)
+					(name "SDRV"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "24"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 -12.7 180)
+					(length 2.54)
+					(name "SYS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "25"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 7.62 180)
+					(length 2.54)
+					(name "SW2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "26"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -33.02 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "27"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 17.78 180)
+					(length 2.54)
+					(name "SW1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "28"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 27.94 180)
+					(length 2.54)
+					(name "PMID"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "29"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "charger:BQ29209"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 0 8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "BQ29209"
+				(at 0 -8.89 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "BQ29209_0_1"
+				(rectangle
+					(start -10.16 7.62)
+					(end 10.16 -7.62)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "BQ29209_1_1"
+				(pin passive line
+					(at -15.24 5.08 0)
+					(length 5.08)
+					(name "VC2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -15.24 2.54 0)
+					(length 5.08)
+					(name "VC1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -15.24 0 0)
+					(length 5.08)
+					(name "VC1_CB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -15.24 -2.54 0)
+					(length 5.08)
+					(name "CD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 15.24 5.08 180)
+					(length 5.08)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 15.24 2.54 180)
+					(length 5.08)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 15.24 0 180)
+					(length 5.08)
+					(name "CB_EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 15.24 -2.54 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 15.24 -5.08 180)
+					(length 5.08)
+					(name "EPAD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Transistor_FET:AO3401A"
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "AO3401A"
+				(at 5.08 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 5.08 -1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+				)
+			)
+			(property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf"
+				(at 5.08 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Description" "-4.0A Id, -30V Vds, P-Channel MOSFET, SOT-23"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "P-Channel MOSFET"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(symbol "AO3401A_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905)
+						(xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0)
+						(xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286)
+						(xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 1.778)
+						(xy 3.302 1.778)
+						(xy 3.302 -1.778)
+						(xy 0.762 -1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508)
+						(xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27)
+						(xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.286 0)
+						(xy 1.27 0.381)
+						(xy 1.27 -0.381)
+						(xy 2.286 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54)
+						(xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54)
+						(xy 2.54 0)
+						(xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.794 -0.508)
+						(xy 2.921 -0.381)
+						(xy 3.683 -0.381)
+						(xy 3.81 -0.254)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 -0.381)
+						(xy 2.921 0.254)
+						(xy 3.683 0.254)
+						(xy 3.302 -0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "AO3401A_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Transistor_FET:2N7002"
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "2N7002"
+				(at 5.08 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 5.08 -1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+				)
+			)
+			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/NDS7002A-D.PDF"
+				(at 5.08 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Description" "0.115A Id, 60V Vds, N-Channel MOSFET, SOT-23"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "N-Channel Switching MOSFET"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(symbol "2N7002_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905)
+						(xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0)
+						(xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286)
+						(xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508)
+						(xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27)
+						(xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778)
+						(xy 3.302 -1.778)
+						(xy 3.302 1.778)
+						(xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0)
+						(xy 2.032 0.381)
+						(xy 2.032 -0.381)
+						(xy 1.016 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54)
+						(xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54)
+						(xy 2.54 0)
+						(xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.921 0.381)
+						(xy 3.683 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 0.381)
+						(xy 2.921 -0.254)
+						(xy 3.683 -0.254)
+						(xy 3.302 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "2N7002_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:L"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "L"
+				(at -1.27 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "L"
+				(at 1.905 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Inductor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "inductor choke coil reactor magnetic"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Choke_* *Coil* Inductor_* L_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "L_0_1"
+				(arc
+					(start 0 2.54)
+					(mid 0.6323 1.905)
+					(end 0 1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 1.27)
+					(mid 0.6323 0.635)
+					(end 0 0)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 0)
+					(mid 0.6323 -0.635)
+					(end 0 -1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0 -1.27)
+					(mid 0.6323 -1.905)
+					(end 0 -2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "L_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:LED"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "LED"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Light emitting diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "LED diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "LED_0_1"
+				(polyline
+					(pts
+						(xy -3.048 -0.762)
+						(xy -4.572 -2.286)
+						(xy -3.81 -2.286)
+						(xy -4.572 -2.286)
+						(xy -4.572 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -0.762)
+						(xy -3.302 -2.286)
+						(xy -2.54 -2.286)
+						(xy -3.302 -2.286)
+						(xy -3.302 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0)
+						(xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.27)
+						(xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27)
+						(xy 1.27 1.27)
+						(xy -1.27 0)
+						(xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "LED_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:C"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762)
+						(xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762)
+						(xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.032 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R res resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(text "BQ25798 buck-boost charger.  D+ drives the PicoBlade switch, D- the XT30 switch (register 0x47).\nEach connector has a back-to-back P-FET pair so the two packs can never be connected together."
+		(at 30 28 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+			)
+			(justify left bottom)
+		)
+		(uuid "bfbd511b-dba7-5da6-8ade-b9219c5efec2")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 64.77 45.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2283a9fe-e9cb-51d1-b8e8-285a0ec26c56")
+		(property "Reference" "J401"
+			(at 64.77 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "XT30 2S"
+			(at 64.77 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_AMASS:AMASS_XT30UPB-M_1x02_P5.0mm_Vertical"
+			(at 64.77 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "XT30UPB-M"
+			(at 64.77 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C99101"
+			(at 64.77 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1566cf06-c5e6-5d49-a934-a300cda0ec1d")
+		)
+		(pin "2"
+			(uuid "30a5ec48-713f-5b6d-a652-19f91cc4f499")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "J401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 59.69 45.72 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "fa6768aa-b8a6-51b0-92e6-1540691cdbd5")
+	)
+	(global_label "S4_XT_P"
+		(shape passive)
+		(at 59.69 48.26 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "71c25feb-a35d-5da8-9f1b-1490f4ed9152")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 129.54 45.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a8f298ef-4410-5ffa-93c1-1a76728ecc83")
+		(property "Reference" "J402"
+			(at 129.54 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PicoBlade 1S"
+			(at 129.54 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_Molex:Molex_PicoBlade_53047-0210_1x02_P1.25mm_Vertical"
+			(at 129.54 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0530470210"
+			(at 129.54 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 129.54 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "713b345b-8adb-510b-9013-58f873ca5959")
+		)
+		(pin "2"
+			(uuid "26567829-f534-5bcb-9c22-d9f35655cf35")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "J402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PB_P"
+		(shape passive)
+		(at 124.46 45.72 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "6c4f7b74-6468-549e-93cc-52972049b425")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 124.46 48.26 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "2e72f93d-0e26-5889-84a2-0a74e0255c43")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 193.04 48.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0cff7d1c-2485-5dde-9da8-7df2766b61c6")
+		(property "Reference" "J403"
+			(at 193.04 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "XH balance 2S"
+			(at 193.04 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical"
+			(at 193.04 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "B3B-XH-A"
+			(at 193.04 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C144394"
+			(at 193.04 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e752831b-5d7d-5ab7-92f9-999664e764a4")
+		)
+		(pin "2"
+			(uuid "d1bf7f05-be4a-54a5-bb7a-6440fbb98af3")
+		)
+		(pin "3"
+			(uuid "0213a079-850f-5933-a514-bbf448af8d14")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "J403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 187.96 45.72 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "ad5f7fed-4918-56c6-ba24-ad1e20d8a40a")
+	)
+	(global_label "S4_MID"
+		(shape passive)
+		(at 187.96 48.26 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "58569c11-2acc-5c79-9305-aa139a4ecdd8")
+	)
+	(global_label "S4_BALP"
+		(shape passive)
+		(at 187.96 50.8 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "4b563288-3623-59bc-a45a-39be242c6fc0")
+	)
+	(symbol
+		(lib_id "Battery_Management:BQ25798")
+		(at 261.62 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5b3741ee-39cc-5719-b681-ae3dee1d974c")
+		(property "Reference" "U401"
+			(at 261.62 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BQ25798"
+			(at 261.62 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_DFN_QFN:Texas_RQM0029A_VQFN-29_4x4mm_P0.4mm"
+			(at 261.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "BQ25798RQMR"
+			(at 261.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2876768"
+			(at 261.62 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ae774ba8-d45a-5c34-a962-cd9ea537d5fd")
+		)
+		(pin "2"
+			(uuid "3289a23e-1497-5369-8c59-f21d7f5a9e47")
+		)
+		(pin "3"
+			(uuid "c4ae36e7-4f80-5282-8b00-b1174d6bb174")
+		)
+		(pin "4"
+			(uuid "fc25ab2a-04fd-53b6-8934-eb04116922bb")
+		)
+		(pin "5"
+			(uuid "f6fc7acb-582f-5325-9fae-1aa308310408")
+		)
+		(pin "6"
+			(uuid "7e0526c3-6ee2-5371-bf99-4bd1920e090a")
+		)
+		(pin "7"
+			(uuid "7f3cc9eb-1489-54e0-b9e8-7ed6ac9feeea")
+		)
+		(pin "8"
+			(uuid "fdaf74e5-1bb1-516a-8367-f6bd55fc7050")
+		)
+		(pin "9"
+			(uuid "a664ad1d-1a98-568c-9d15-871ddd18a978")
+		)
+		(pin "10"
+			(uuid "985284f9-c04f-5db4-822f-e8abbb0ac877")
+		)
+		(pin "11"
+			(uuid "fe7e5e3c-f984-5b5d-bae6-c6128125724e")
+		)
+		(pin "12"
+			(uuid "5f9617d4-ef2c-5416-a7e2-21dc1189dc9c")
+		)
+		(pin "13"
+			(uuid "76f89e58-24f5-580e-a01c-ea1cb84c8e74")
+		)
+		(pin "14"
+			(uuid "71e1deec-f927-5b95-9abd-886441b1dbfd")
+		)
+		(pin "15"
+			(uuid "510a70df-a3a1-5468-9a46-5cf045b31df7")
+		)
+		(pin "16"
+			(uuid "52b7723c-f64c-56ae-b3e9-93cc8e258c04")
+		)
+		(pin "17"
+			(uuid "9ed6663a-3ec7-54c6-9aa0-cafc2e854fe2")
+		)
+		(pin "18"
+			(uuid "64dd4cea-f871-5ad2-b71a-864dcb751d10")
+		)
+		(pin "19"
+			(uuid "0e5dc3bc-a85e-504f-876a-ce4c49c4188f")
+		)
+		(pin "20"
+			(uuid "1f701535-8627-5c78-80c8-14baf8970765")
+		)
+		(pin "21"
+			(uuid "1b80e098-cfad-5832-acb2-34c91898ee83")
+		)
+		(pin "22"
+			(uuid "fdb40afb-33ae-5577-aeaa-2675736d364e")
+		)
+		(pin "23"
+			(uuid "93fd6f26-11fd-51e9-8247-0e86b71160e2")
+		)
+		(pin "24"
+			(uuid "6b9179fb-ee4a-56a7-bf66-b46d14016bc0")
+		)
+		(pin "25"
+			(uuid "f5f0b736-cd8e-5b59-aa23-6d94d779bf16")
+		)
+		(pin "26"
+			(uuid "eab500bd-282a-5731-8a6f-6ae143c0f7d6")
+		)
+		(pin "27"
+			(uuid "4de48112-c60b-57e6-b1a0-5a33d587013d")
+		)
+		(pin "28"
+			(uuid "0bd594ee-39ca-597a-ac85-9e63e54e61f2")
+		)
+		(pin "29"
+			(uuid "8eb6f8fe-c951-51c9-b43a-60d95437342d")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "U401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_STAT"
+		(shape passive)
+		(at 271.78 100.33 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "ba93d212-244b-5a11-90f0-854faf5cbf40")
+	)
+	(global_label "VBUS_PD"
+		(shape passive)
+		(at 251.46 69.85 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "7eb8138e-9832-52af-b4b3-5e75d4649f50")
+	)
+	(global_label "VBUS_PD"
+		(shape passive)
+		(at 251.46 69.85 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "817c5f5e-b7c2-5bf4-9b8e-e4d904787a4d")
+	)
+	(global_label "S4_BTST1"
+		(shape passive)
+		(at 271.78 74.93 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "0ea2e034-db01-5b17-8412-d515d8c107e3")
+	)
+	(global_label "S4_REGN"
+		(shape passive)
+		(at 271.78 105.41 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "decbadc1-c89f-5051-b3a8-ce12e1216a45")
+	)
+	(global_label "S4_EN_PB"
+		(shape passive)
+		(at 251.46 92.71 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "74af93fd-775e-5ed3-b4ca-bd2264c95aeb")
+	)
+	(global_label "S4_EN_XT"
+		(shape passive)
+		(at 251.46 90.17 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "6d124bd1-d16f-5888-9798-e2be0f3320ce")
+	)
+	(global_label "VBUS_PD"
+		(shape passive)
+		(at 251.46 82.55 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "bc5a9796-a981-51a4-aed7-6df37a4bd816")
+	)
+	(global_label "VBUS_PD"
+		(shape passive)
+		(at 251.46 74.93 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "435c0618-4161-5855-8e37-cb55ac2a75ef")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 251.46 85.09 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "22bb80bf-47df-5405-bf1a-61ab75d0e889")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 251.46 77.47 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "f38cd773-485b-5d16-ac3d-7ceff04f6a3d")
+	)
+	(no_connect
+		(at 251.46 113.03)
+		(uuid "ea9100a7-928d-5981-8f73-2b0c25af567a")
+	)
+	(global_label "CE_ALL_N"
+		(shape passive)
+		(at 251.46 107.95 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "fcfb960a-8a1c-56c6-b0c7-d90e1b730779")
+	)
+	(global_label "S4_SCL"
+		(shape passive)
+		(at 251.46 97.79 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "36477cfa-d3b0-5c2e-927f-c1a09d375b0d")
+	)
+	(global_label "S4_SDA"
+		(shape passive)
+		(at 251.46 100.33 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "74bc1190-3499-5324-8d94-28b2dc2ea456")
+	)
+	(global_label "S4_TS"
+		(shape passive)
+		(at 251.46 125.73 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3aec4f0e-fb08-57e8-a364-28ef6ce964f4")
+	)
+	(global_label "S4_REGN"
+		(shape passive)
+		(at 251.46 118.11 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "05920ccb-8d4e-5029-9d73-9d9c0095bd94")
+	)
+	(global_label "S4_BATP"
+		(shape passive)
+		(at 271.78 125.73 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "99620184-3771-5490-ba30-a10e1aa3c452")
+	)
+	(global_label "S4_BTST2"
+		(shape passive)
+		(at 271.78 95.25 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "fc06bbc0-60d1-53d8-a6b3-e042ca51fc65")
+	)
+	(global_label "S4_PROG"
+		(shape passive)
+		(at 251.46 120.65 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "89d17d1a-c914-5fe8-a47c-60e5405cea2f")
+	)
+	(no_connect
+		(at 251.46 105.41)
+		(uuid "620fdd4f-0cb4-5d99-9930-e102c809ad23")
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 271.78 115.57 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "3f5297d7-afc3-5139-916e-af29046be103")
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 271.78 115.57 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "64bc3433-542b-512b-a4ff-01540c0d5262")
+	)
+	(global_label "S4_SDRV"
+		(shape passive)
+		(at 271.78 120.65 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "d871bd3c-9cc6-57fd-b64c-4a83c5019ed0")
+	)
+	(global_label "S4_SYS"
+		(shape passive)
+		(at 271.78 110.49 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "3ae6ea2b-b979-54d7-876d-ff86e0ef8d32")
+	)
+	(global_label "S4_SW2"
+		(shape passive)
+		(at 271.78 90.17 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "1d911e05-6fa4-5bcd-a539-9ef80259f4c9")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 261.62 130.81 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "6a6b9b51-0be2-5fc0-ad4d-df95c5770027")
+	)
+	(global_label "S4_SW1"
+		(shape passive)
+		(at 271.78 80.01 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "df3df1f9-71f3-571f-8c03-3a3029543b52")
+	)
+	(global_label "S4_PMID"
+		(shape passive)
+		(at 271.78 69.85 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "0da4c47c-289b-563a-919a-888cf618361d")
+	)
+	(symbol
+		(lib_id "charger:BQ29209")
+		(at 351.79 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "45d1dae8-36df-5777-97cb-df2b8f24a488")
+		(property "Reference" "U402"
+			(at 351.79 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BQ29209"
+			(at 351.79 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SON:VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm"
+			(at 351.79 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "BQ29209DRBR"
+			(at 351.79 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 351.79 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2ec83e4a-d7cc-536f-84e0-7036a8cde2f0")
+		)
+		(pin "2"
+			(uuid "22293560-f2b8-54e5-aaaf-822f6bb371ce")
+		)
+		(pin "3"
+			(uuid "a65e8bba-6d65-5d1d-b1f8-bbc45d9f0977")
+		)
+		(pin "4"
+			(uuid "4b8159f2-2a84-5911-9d1c-f3686c4b9ec1")
+		)
+		(pin "7"
+			(uuid "5ff7a830-1616-569e-b320-07e61b1c1469")
+		)
+		(pin "8"
+			(uuid "f742c16d-72dd-5f12-991b-3274d523cb79")
+		)
+		(pin "6"
+			(uuid "c39fc5a3-b713-5379-ada6-b00863e7e7f2")
+		)
+		(pin "5"
+			(uuid "a7b6d41f-8cd3-522d-a556-4b3b982fc6cb")
+		)
+		(pin "9"
+			(uuid "f9170da0-7b12-5ed2-b5fa-5e48903f4924")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "U402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BALP"
+		(shape passive)
+		(at 336.55 45.72 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "cdda73c7-c380-52d7-acbf-ed37121bd052")
+	)
+	(global_label "S4_MID"
+		(shape passive)
+		(at 336.55 48.26 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "a7add87f-0cd8-5f41-822e-30eb08ad90e6")
+	)
+	(global_label "S4_CB"
+		(shape passive)
+		(at 336.55 50.8 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "490e5af0-5102-5f22-972a-ef85cfa030e7")
+	)
+	(global_label "S4_CD"
+		(shape passive)
+		(at 336.55 53.34 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "2a492921-d637-59a6-84fe-e1f9bb1d00ac")
+	)
+	(global_label "S4_BVDD"
+		(shape passive)
+		(at 367.03 45.72 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "97615a73-2187-5f56-bba8-3b14e3debe88")
+	)
+	(global_label "S4_OV"
+		(shape passive)
+		(at 367.03 48.26 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "3a3b1a2e-2b16-52be-ba12-2657f347cef6")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 367.03 50.8 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "f614fe63-81c8-5334-8497-19de52a1f66d")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 367.03 53.34 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "a46bf84d-fa39-5a6f-b246-2d179905a3f7")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 367.03 55.88 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "a806460a-c4e4-5ce7-b1ea-c2a4dbc92674")
+	)
+	(symbol
+		(lib_id "Transistor_FET:AO3401A")
+		(at 435.61 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "600e8323-423b-5f63-a464-75297a4386a2")
+		(property "Reference" "Q401"
+			(at 435.61 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AO3401A"
+			(at 435.61 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 435.61 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "AO3401A"
+			(at 435.61 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 435.61 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d4aebee6-3a44-5bd4-ba70-f9f47c8a6235")
+		)
+		(pin "2"
+			(uuid "470564d1-8010-5cf3-99ce-c4a9c25408a5")
+		)
+		(pin "3"
+			(uuid "ef81a5e1-7382-5633-894b-a9ff9bc2f885")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PB_G"
+		(shape passive)
+		(at 430.53 74.93 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "b693dd76-f154-5d70-9dad-2fb1627bb379")
+	)
+	(global_label "S4_PB_S"
+		(shape passive)
+		(at 438.15 80.01 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "5b38f00f-0d4e-58ec-b911-b7055f272189")
+	)
+	(global_label "S4_PB_P"
+		(shape passive)
+		(at 438.15 69.85 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "ee454e63-3d30-560f-96e7-5ea134c1aef3")
+	)
+	(symbol
+		(lib_id "Transistor_FET:AO3401A")
+		(at 508 74.93 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7ef05865-c04c-5778-b9a6-68c09c2bccaa")
+		(property "Reference" "Q402"
+			(at 508 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AO3401A"
+			(at 508 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 508 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "AO3401A"
+			(at 508 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 508 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "884b9089-55c0-515d-852e-08a8929e2a23")
+		)
+		(pin "2"
+			(uuid "82769a25-96ce-5c9d-8b44-4d784ed26cd8")
+		)
+		(pin "3"
+			(uuid "8faeb40d-d7c6-5128-9286-e532fbe868f0")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PB_G"
+		(shape passive)
+		(at 502.92 74.93 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "88ca295a-ebd7-5100-83df-d7dde035b666")
+	)
+	(global_label "S4_PB_S"
+		(shape passive)
+		(at 510.54 80.01 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "218160b0-02fb-5c3b-800e-0c7d3eee3e6f")
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 510.54 69.85 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "c10f17f2-9504-5a2d-a0f1-8c1e5e924f63")
+	)
+	(symbol
+		(lib_id "Transistor_FET:AO3401A")
+		(at 64.77 208.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e5b2ffbc-0f12-578c-bd86-dbdfcd326cd4")
+		(property "Reference" "Q403"
+			(at 64.77 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AO3401A"
+			(at 64.77 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 64.77 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "AO3401A"
+			(at 64.77 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 64.77 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eb4cc935-1392-5100-a1f0-6b624d75de75")
+		)
+		(pin "2"
+			(uuid "0bee008a-7658-5e5d-b613-3cced360a2e6")
+		)
+		(pin "3"
+			(uuid "9d32d6b2-eda7-52c1-be91-85ecd440dfcc")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_XT_G"
+		(shape passive)
+		(at 59.69 208.28 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "189a7074-62cf-5fb7-b7be-6d4295de8924")
+	)
+	(global_label "S4_XT_S"
+		(shape passive)
+		(at 67.31 213.36 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "fbfc2c92-f322-55ef-bdd7-70204c9796ca")
+	)
+	(global_label "S4_XT_P"
+		(shape passive)
+		(at 67.31 203.2 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "6f9073d6-2805-511e-93a7-a68bae78dc92")
+	)
+	(symbol
+		(lib_id "Transistor_FET:AO3401A")
+		(at 137.16 208.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d64398cd-9f1f-5957-8ebb-16fb9c4b7f51")
+		(property "Reference" "Q404"
+			(at 137.16 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "AO3401A"
+			(at 137.16 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 137.16 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "AO3401A"
+			(at 137.16 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15127"
+			(at 137.16 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c2122e26-84fc-589c-bc5b-a25ddbc5eb13")
+		)
+		(pin "2"
+			(uuid "9ac5f404-9e07-5e29-b9a3-f487c545f0be")
+		)
+		(pin "3"
+			(uuid "13576bc4-0386-5243-9ff4-aa69818e1508")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q404")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_XT_G"
+		(shape passive)
+		(at 132.08 208.28 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "fd037d38-16fc-5891-b79c-519dabebce1d")
+	)
+	(global_label "S4_XT_S"
+		(shape passive)
+		(at 139.7 213.36 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "94f82ed5-9351-5527-aeec-69e7ce290f06")
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 139.7 203.2 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "6deebc21-e516-546a-839f-50fac50bf5b9")
+	)
+	(symbol
+		(lib_id "Transistor_FET:2N7002")
+		(at 208.28 208.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "08957f80-1c9e-5528-96a9-dfc84b9985b5")
+		(property "Reference" "Q405"
+			(at 208.28 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2N7002"
+			(at 208.28 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 208.28 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "2N7002"
+			(at 208.28 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C8545"
+			(at 208.28 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "03c4736d-2f78-5da6-8855-fab75abe89e1")
+		)
+		(pin "2"
+			(uuid "705a314c-d56c-5f82-a7d8-b26c54bf986a")
+		)
+		(pin "3"
+			(uuid "ac20d8c6-a8af-5099-8a10-ce46ca11f2e8")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q405")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_EN_PB"
+		(shape passive)
+		(at 203.2 208.28 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "e227531b-9500-56a5-bdd3-b18209faf1c8")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 210.82 213.36 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "ac3b3f75-c4a8-5d56-b50b-639398ee3e2f")
+	)
+	(global_label "S4_PB_GD"
+		(shape passive)
+		(at 210.82 203.2 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "30a49419-ff76-5839-a077-b4e6ca154434")
+	)
+	(symbol
+		(lib_id "Transistor_FET:2N7002")
+		(at 279.4 208.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "173c5671-ce40-58de-8847-c60602adcfb1")
+		(property "Reference" "Q406"
+			(at 279.4 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2N7002"
+			(at 279.4 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 279.4 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "2N7002"
+			(at 279.4 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C8545"
+			(at 279.4 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1b895d80-1edb-52ed-9774-4c474806807a")
+		)
+		(pin "2"
+			(uuid "1b9559ed-a44e-56cb-bd21-94f5ecfdb792")
+		)
+		(pin "3"
+			(uuid "c348ebd9-3bc2-54ea-80ba-ba70fa28260b")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q406")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_EN_XT"
+		(shape passive)
+		(at 274.32 208.28 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "91dd2d9e-f77a-5994-a1bd-3e4362efbc23")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 281.94 213.36 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "001bcfe1-d776-524c-b53c-60b754d3402e")
+	)
+	(global_label "S4_XT_GD"
+		(shape passive)
+		(at 281.94 203.2 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "5ba82ad5-1113-51fb-b4ba-a0df580395c5")
+	)
+	(symbol
+		(lib_id "Transistor_FET:2N7002")
+		(at 351.79 208.28 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4d042daa-3584-5775-94a8-084bb4320c20")
+		(property "Reference" "Q407"
+			(at 351.79 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2N7002"
+			(at 351.79 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 351.79 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "2N7002"
+			(at 351.79 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C8545"
+			(at 351.79 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "78b7f9df-7ee6-5590-a9ed-08ec60ecde55")
+		)
+		(pin "2"
+			(uuid "787f1a9d-47a1-5f69-8f8e-d814517c13c3")
+		)
+		(pin "3"
+			(uuid "f2cb625d-0387-59e0-b14b-f26fe3c14ef3")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "Q407")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_OV"
+		(shape passive)
+		(at 346.71 208.28 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "c658230a-14da-5ce1-80df-998342d79e86")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 354.33 213.36 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "a376e705-dff5-5ea0-9f7f-cd8b01366b81")
+	)
+	(global_label "S4_TS"
+		(shape passive)
+		(at 354.33 203.2 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "31e814da-a67f-5ed3-bea6-806023a69536")
+	)
+	(symbol
+		(lib_id "Device:L")
+		(at 392.43 207.01 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cf427cde-bdac-516b-aa62-11622af11967")
+		(property "Reference" "L401"
+			(at 392.43 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "2.2uH 3A"
+			(at 392.43 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Inductor_SMD:L_Changjiang_FNR4030S"
+			(at 392.43 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "FNR4030S2R2MT"
+			(at 392.43 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 392.43 207.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "30e24575-a811-59a7-b883-8c871bde24f0")
+		)
+		(pin "2"
+			(uuid "5e4bd67c-3169-55d5-8dea-d5fa13bbb64d")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "L401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_SW1"
+		(shape passive)
+		(at 392.43 203.2 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "7c32a4c9-2b38-5b3d-9c67-292af57bf1ac")
+	)
+	(global_label "S4_SW2"
+		(shape passive)
+		(at 392.43 210.82 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "54e2ecac-6065-5c80-9851-cd985101da5f")
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 63.5 269.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a85e78be-9413-50b8-92f1-aa90a39f715b")
+		(property "Reference" "D401"
+			(at 63.5 266.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "CHARGING (green)"
+			(at 63.5 271.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
+			(at 63.5 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "19-217/GHC-YR1S2/3T"
+			(at 63.5 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C72043"
+			(at 63.5 269.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bb711dd0-5818-57de-87e9-476549f90f6d")
+		)
+		(pin "2"
+			(uuid "0795d67e-2e7e-5885-9ed2-96ed7280f349")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "D401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_STAT"
+		(shape passive)
+		(at 59.69 269.24 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "644596e8-47e2-540c-9a51-28a956766fda")
+	)
+	(global_label "S4_LED_A"
+		(shape passive)
+		(at 67.31 269.24 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "720d9428-b6f3-5ac3-99af-a143616ae554")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 105.41 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cb897ff0-7a45-543a-b2cf-ba7e110c0802")
+		(property "Reference" "C401"
+			(at 105.41 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47nF 50V"
+			(at 105.41 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 105.41 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B473KB5NNNC"
+			(at 105.41 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 105.41 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f7884f28-f03f-5c9d-8eda-480c499351ef")
+		)
+		(pin "2"
+			(uuid "de502197-2dab-54e0-b677-b88628fe8e1f")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BTST1"
+		(shape passive)
+		(at 105.41 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "1d2823a7-5b13-59e6-a7ac-bbff43efa570")
+	)
+	(global_label "S4_SW1"
+		(shape passive)
+		(at 105.41 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "f32868b3-1aa5-5ad6-ba87-754ef4b65b41")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 118.11 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a3d991b6-e99b-53d1-834b-62e5a7411790")
+		(property "Reference" "C402"
+			(at 118.11 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4.7uF 16V"
+			(at 118.11 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 118.11 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL10A475KO8NNNC"
+			(at 118.11 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C19666"
+			(at 118.11 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bab983c8-8bd1-52a6-a505-9d628f4ddafa")
+		)
+		(pin "2"
+			(uuid "d039bf29-7c33-554a-87f3-3b1802ce5a81")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_REGN"
+		(shape passive)
+		(at 118.11 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "79a7fd97-8271-5d52-beac-8ace0920913a")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 118.11 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3cd9807e-e428-51c4-b5b1-bf04108f301f")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 129.54 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "41bfa86f-a5f2-5b1e-9fc4-b4d679f550e5")
+		(property "Reference" "C403"
+			(at 129.54 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47nF 50V"
+			(at 129.54 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 129.54 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B473KB5NNNC"
+			(at 129.54 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 129.54 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1f8a0478-d8b2-5bf6-9288-f126b642abfc")
+		)
+		(pin "2"
+			(uuid "05f21f74-cdec-5f71-ab52-51db68fa3476")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BTST2"
+		(shape passive)
+		(at 129.54 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "d4afc056-f016-570c-8041-1b6c599d5482")
+	)
+	(global_label "S4_SW2"
+		(shape passive)
+		(at 129.54 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "87bfcdb4-821f-560f-8889-d1b7adc1e0d2")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 142.24 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "513c68b6-a837-56b1-ab5e-7f802489d680")
+		(property "Reference" "C404"
+			(at 142.24 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1nF 50V"
+			(at 142.24 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 142.24 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B102KB5NNNC"
+			(at 142.24 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1523"
+			(at 142.24 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2e374460-7f35-5da1-b993-f02e336e2d4c")
+		)
+		(pin "2"
+			(uuid "e6cc6b02-d9db-5774-b2b5-d6c98b048611")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C404")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_SDRV"
+		(shape passive)
+		(at 142.24 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "6cf2585f-0489-5fd2-ac6f-e6e1a447ad48")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 142.24 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "365f928e-9a4b-57d4-9ff6-e08015a2be05")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 153.67 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "89e58681-fa85-561e-aa8e-ce44652db7a1")
+		(property "Reference" "C405"
+			(at 153.67 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10uF 25V"
+			(at 153.67 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 153.67 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A106KAYNNNE"
+			(at 153.67 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 153.67 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1b457735-8ced-5697-a144-e23b0b37d602")
+		)
+		(pin "2"
+			(uuid "2e857b67-ada3-5e40-a927-6ce522c34a31")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C405")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "VBUS_PD"
+		(shape passive)
+		(at 153.67 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "135d5f88-1f43-552b-924a-38d1685dd150")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 153.67 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "101b3a5e-f549-5568-b167-11ed189c90a0")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 165.1 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c24eb3a5-e155-57ec-bfc3-85dfb7cde4d8")
+		(property "Reference" "C406"
+			(at 165.1 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 165.1 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 165.1 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 165.1 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 165.1 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "66ddbfed-6159-565c-9ad5-01c954637bec")
+		)
+		(pin "2"
+			(uuid "df27937f-c201-5501-8281-1313e9b6b786")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C406")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "VBUS_PD"
+		(shape passive)
+		(at 165.1 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "97dc7e95-a059-534b-96a4-94c10bc4401d")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 165.1 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "9a82b3b8-ca54-5647-ab55-43c50c381c00")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 177.8 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9a4def88-3be7-5f09-86a7-7458188b17fa")
+		(property "Reference" "C407"
+			(at 177.8 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10uF 25V"
+			(at 177.8 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 177.8 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A106KAYNNNE"
+			(at 177.8 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 177.8 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7e13f7b1-0024-58a5-a9b8-fe662156ffbf")
+		)
+		(pin "2"
+			(uuid "f0bfb9cc-a7e8-5a39-bbf4-1f8c0247e5b8")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C407")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PMID"
+		(shape passive)
+		(at 177.8 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "d803902d-d58a-5575-af28-e53dbd551022")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 177.8 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "1f991b71-3e64-5928-a0d9-7792596f23fe")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 189.23 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c7324051-9495-5e62-a096-887147980ed6")
+		(property "Reference" "C408"
+			(at 189.23 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10uF 25V"
+			(at 189.23 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 189.23 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A106KAYNNNE"
+			(at 189.23 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 189.23 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b68f8230-6fbe-5799-8adb-d4fa92424943")
+		)
+		(pin "2"
+			(uuid "a4cfc93a-6e98-589f-8d53-76c73c650f94")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C408")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PMID"
+		(shape passive)
+		(at 189.23 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "d9d9916f-b794-5a15-90f7-dc7ef8dbc17d")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 189.23 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "7b28afd8-b1c3-5c89-8662-700d24ea6dda")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 201.93 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d7998f6a-0b90-58ce-9977-52fa2331c8b9")
+		(property "Reference" "C409"
+			(at 201.93 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 201.93 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 201.93 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 201.93 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 201.93 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "901f9432-b037-55c6-8aac-ab0835b0be48")
+		)
+		(pin "2"
+			(uuid "f07d5444-7a83-569e-bdcb-780492751841")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C409")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PMID"
+		(shape passive)
+		(at 201.93 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "403878e8-7842-55ef-9238-654b4daad77a")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 201.93 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "f5dc51e2-10e1-529e-8a1f-758b5d444866")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 213.36 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "89ab1dc8-00dd-5b68-8ab7-32521e6aabc7")
+		(property "Reference" "C410"
+			(at 213.36 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22uF 25V"
+			(at 213.36 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 213.36 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A226MAQNNNE"
+			(at 213.36 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 213.36 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "95fcb761-fe8d-5a42-bdeb-ee6b09e195ae")
+		)
+		(pin "2"
+			(uuid "72b3bb68-17a4-5efd-99b8-b74a10b5b203")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C410")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_SYS"
+		(shape passive)
+		(at 213.36 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "33bbd348-634e-56f9-89e6-7f68b21c18a8")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 213.36 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "d79953c4-6039-5e93-b3ab-ea43abc44ba6")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 226.06 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "906b4636-2b88-5c66-a4ab-e48143b492bb")
+		(property "Reference" "C411"
+			(at 226.06 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22uF 25V"
+			(at 226.06 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 226.06 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A226MAQNNNE"
+			(at 226.06 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C45783"
+			(at 226.06 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "611a8740-9de0-537d-bff1-364bcdd2d0d3")
+		)
+		(pin "2"
+			(uuid "f5a2860d-d591-5b92-bc3b-502881d89281")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C411")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_SYS"
+		(shape passive)
+		(at 226.06 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "9ff2d6c6-183f-52fc-9999-b70294c3cf47")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 226.06 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "225a9074-af12-5656-9e09-d0b4a5d44671")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 237.49 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "618fc42b-092d-556d-b0da-013a68b50f72")
+		(property "Reference" "C413"
+			(at 237.49 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 237.49 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 237.49 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 237.49 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 237.49 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2e40af3f-b2a3-5d0d-bab0-48556fc7ee6c")
+		)
+		(pin "2"
+			(uuid "599b6c03-c086-5825-a5f2-9040b637f8be")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C413")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_SYS"
+		(shape passive)
+		(at 237.49 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "0de83ba5-80ef-5282-b533-7631c97745fb")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 237.49 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "8440b22e-93ff-5975-a603-9b95d8b91915")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 250.19 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "63ea5fe7-fb1f-521a-87f4-56a2c1fd7b19")
+		(property "Reference" "C414"
+			(at 250.19 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10uF 25V"
+			(at 250.19 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 250.19 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A106KAYNNNE"
+			(at 250.19 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 250.19 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6c31ee28-28a2-5a59-b664-681be8695471")
+		)
+		(pin "2"
+			(uuid "65b21290-990c-5118-af1c-002789d1f105")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C414")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 250.19 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "4c41b4ee-4bc9-5b9f-a778-787b03afd515")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 250.19 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "1ba8c721-3da9-5b56-af21-b7cb20f13fc2")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 261.62 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5a84174f-1dd5-5b11-8a0c-48c025fc8008")
+		(property "Reference" "C415"
+			(at 261.62 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10uF 25V"
+			(at 261.62 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 261.62 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL21A106KAYNNNE"
+			(at 261.62 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C15850"
+			(at 261.62 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "04862445-b204-5a8a-93b7-bb567bb30c0f")
+		)
+		(pin "2"
+			(uuid "fa452f85-cb3d-58af-af1d-f779cfef09b8")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C415")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 261.62 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "f2876b1e-89ab-5a54-9988-bf69934da4f7")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 261.62 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "5948ec46-9bf7-5c07-9373-05cee32f8361")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 273.05 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1e922e84-84f4-5796-b029-63a93531b141")
+		(property "Reference" "C416"
+			(at 273.05 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 273.05 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 273.05 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 273.05 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 273.05 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "13dbe8b5-f35a-5c85-809b-2bae1de0aeec")
+		)
+		(pin "2"
+			(uuid "3d45bd72-53d9-528f-9fc8-5d6f322c11bc")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C416")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PB_G"
+		(shape passive)
+		(at 273.05 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "1b9578a0-9e63-564b-9980-961f2c8f0eb0")
+	)
+	(global_label "S4_PB_S"
+		(shape passive)
+		(at 273.05 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "9af8211e-360a-59c6-b1d4-b597a56975b3")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 285.75 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e1e979a5-1ef1-54ca-8a04-6dd34002e79b")
+		(property "Reference" "C417"
+			(at 285.75 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 285.75 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 285.75 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 285.75 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 285.75 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8d740c7e-72f8-5cf7-9e8a-fab04a4f934e")
+		)
+		(pin "2"
+			(uuid "b7a2c530-21c7-5257-9172-f904b855a2c6")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C417")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_XT_G"
+		(shape passive)
+		(at 285.75 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "ff241563-7bb1-5514-847f-dcd618c3f96b")
+	)
+	(global_label "S4_XT_S"
+		(shape passive)
+		(at 285.75 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "c2c6c71f-b315-58af-8908-f84ad514c422")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 297.18 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2ff444ed-56e2-5e3d-b5b4-14c09d7bcd8f")
+		(property "Reference" "C418"
+			(at 297.18 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 297.18 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 297.18 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 297.18 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 297.18 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bbb3c363-b52c-595b-9c2d-ed36cc56e01f")
+		)
+		(pin "2"
+			(uuid "373b7d9c-0e70-5d3d-89a3-c7b3294300f9")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C418")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BVDD"
+		(shape passive)
+		(at 297.18 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "901ec1df-b579-5d93-b819-c5409c6c2501")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 297.18 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "782c1c71-2b10-5ddf-9a28-5ca913ed91de")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 309.88 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3aa6f6cf-f89b-5470-87c3-139b0d4211d0")
+		(property "Reference" "C419"
+			(at 309.88 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 309.88 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 309.88 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 309.88 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 309.88 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bd0eacdb-5d85-56cd-996f-cf5b62567f4e")
+		)
+		(pin "2"
+			(uuid "72421806-05b8-5044-b01e-937f35fd5640")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C419")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BALP"
+		(shape passive)
+		(at 309.88 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "adf02ed9-81e6-52e7-b1bc-3e6a098cb491")
+	)
+	(global_label "S4_MID"
+		(shape passive)
+		(at 309.88 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "0ccb8576-9702-5681-ba22-4f9a88f8db48")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 321.31 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "777d90dc-7ec3-56d7-9e44-b0b4858ca465")
+		(property "Reference" "C420"
+			(at 321.31 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 321.31 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 321.31 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 321.31 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 321.31 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dbf0fed2-9883-565f-ab35-f56020a8593a")
+		)
+		(pin "2"
+			(uuid "8b18b7ff-97f0-5cb4-a6a0-eff8768d6bb3")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C420")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_MID"
+		(shape passive)
+		(at 321.31 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "2d3676d0-cf67-52fb-b2be-ac90785678f4")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 321.31 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "a0240bac-83f8-5bda-9aa0-2be12f6cc5c3")
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 334.01 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "73f440be-755e-5396-bfd7-019985817bdd")
+		(property "Reference" "C421"
+			(at 334.01 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF 50V"
+			(at 334.01 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 334.01 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "CL05B104KB54PNC"
+			(at 334.01 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C307331"
+			(at 334.01 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "10d97d4d-72c5-54d2-aeec-d156cf90bb8d")
+		)
+		(pin "2"
+			(uuid "e91d7ad2-4268-5dc7-9f66-1e1894e7375d")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "C421")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_CD"
+		(shape passive)
+		(at 334.01 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "668babaf-9651-58c9-adf4-7893a05be41d")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 334.01 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "bfc048a1-dc63-5a8e-be3b-bfd9f25463b4")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 345.44 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "692b042d-a581-5a2a-a6a1-f5f495284fa7")
+		(property "Reference" "R401"
+			(at 345.44 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 345.44 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 345.44 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1001TCE"
+			(at 345.44 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C11702"
+			(at 345.44 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "681d1ce8-4f70-593b-bbb1-e1858c1769a9")
+		)
+		(pin "2"
+			(uuid "996a3b81-78c0-58fa-b46d-b4c4892e247b")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_REGN"
+		(shape passive)
+		(at 345.44 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "61734a24-adbf-5d6b-9440-d66f76813e64")
+	)
+	(global_label "S4_LED_A"
+		(shape passive)
+		(at 345.44 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "8f4946b8-8223-5fad-b37b-02a6695d9215")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 358.14 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ec6040f2-a217-55f3-b7f0-08c44dbe13b6")
+		(property "Reference" "R402"
+			(at 358.14 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 358.14 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 358.14 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 358.14 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 358.14 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7e9283d1-0776-5a1b-94d3-17e9e0541b9b")
+		)
+		(pin "2"
+			(uuid "1effc5ca-7fd6-598f-824f-8ed753210312")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_REGN"
+		(shape passive)
+		(at 358.14 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "b38c06b4-9dc7-5181-9e93-5a4b5a068e97")
+	)
+	(global_label "S4_TS"
+		(shape passive)
+		(at 358.14 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "07179aec-dd9a-5b23-9739-aa9a08da3ba2")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 369.57 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8d097903-89cd-5645-9f36-c32e55cb44ab")
+		(property "Reference" "R403"
+			(at 369.57 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 369.57 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 369.57 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 369.57 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 369.57 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2735c538-ef9b-5051-830c-9d79cd31a4f2")
+		)
+		(pin "2"
+			(uuid "9c149fe8-2e2a-5d1b-b40a-542c579f4519")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R403")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_TS"
+		(shape passive)
+		(at 369.57 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "82f23969-3201-5137-9217-f78fec867d02")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 369.57 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "6d99bb55-bdd2-55ee-8448-7e829a4ca87a")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 381 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a7e0b892-7570-5bb8-b415-e7b6469b2322")
+		(property "Reference" "R404"
+			(at 381 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100R"
+			(at 381 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 381 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1000TCE"
+			(at 381 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25076"
+			(at 381 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d775dd95-02ed-5eca-9d11-402aeee654f2")
+		)
+		(pin "2"
+			(uuid "6e8d3b36-7c73-5158-9b6c-2a12813747d4")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R404")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BATP"
+		(shape passive)
+		(at 381 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "24fcd322-2f8a-5110-a719-5bbba8db96f3")
+	)
+	(global_label "S4_BAT"
+		(shape passive)
+		(at 381 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "6f443416-2228-549e-836c-a329dd073814")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 393.7 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "bd120934-0889-5325-b982-794e9bdbe4cd")
+		(property "Reference" "R405"
+			(at 393.7 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 393.7 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 393.7 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF4701TCE"
+			(at 393.7 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25900"
+			(at 393.7 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9fdc7e78-1144-5144-bb9c-48a8f68cbd53")
+		)
+		(pin "2"
+			(uuid "1b165e60-1abf-552f-a2a1-b7ac412dd429")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R405")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PROG"
+		(shape passive)
+		(at 393.7 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "fa441e9f-f381-5457-a401-1736ababde4f")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 393.7 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "36ab48f6-3a1b-59b9-a7f6-841206740ced")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 405.13 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "49c73323-a4ad-5072-8afe-a0220099982e")
+		(property "Reference" "R406"
+			(at 405.13 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47k"
+			(at 405.13 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 405.13 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF4702TCE"
+			(at 405.13 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 405.13 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "564fe9dc-0ed0-5da8-9fe2-3c3003e2e857")
+		)
+		(pin "2"
+			(uuid "0af8f546-a0bc-5be3-8972-864497696ed6")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R406")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PB_G"
+		(shape passive)
+		(at 405.13 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "eedfcc40-d1ee-5d94-8821-d49ae9b940ff")
+	)
+	(global_label "S4_PB_S"
+		(shape passive)
+		(at 405.13 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "43b6762f-6e19-5631-ac7c-f4bc5b5592ad")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 417.83 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0267337c-a5ad-59e3-b532-0a328734191c")
+		(property "Reference" "R407"
+			(at 417.83 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 417.83 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 417.83 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 417.83 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 417.83 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b62f9312-00da-50b6-8e1f-bfb8878df38f")
+		)
+		(pin "2"
+			(uuid "0acbd44c-443d-5f42-bab7-001f9ed64c6a")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R407")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_PB_G"
+		(shape passive)
+		(at 417.83 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "4f36899b-a733-532a-858f-44e35b4e34e4")
+	)
+	(global_label "S4_PB_GD"
+		(shape passive)
+		(at 417.83 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "8fcd73c4-c03e-5d1c-90b5-18ec78c41bd7")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 429.26 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0f06e388-a26a-5b3f-9725-cee624379161")
+		(property "Reference" "R408"
+			(at 429.26 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "68k"
+			(at 429.26 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 429.26 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF6802TCE"
+			(at 429.26 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C36871"
+			(at 429.26 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a2cac429-bd31-52d4-b5f9-c7bbf54acf90")
+		)
+		(pin "2"
+			(uuid "bcdd821c-97b7-5a8b-91dc-2c6177ace097")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R408")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_EN_PB"
+		(shape passive)
+		(at 429.26 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "3589ff2d-7c2e-5cce-b304-0503430cf956")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 429.26 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "a23e68cc-73d1-5c92-a18d-0a4ae0867add")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 441.96 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "984ef05e-163a-5c22-80f1-8644575909e5")
+		(property "Reference" "R409"
+			(at 441.96 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "47k"
+			(at 441.96 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 441.96 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF4702TCE"
+			(at 441.96 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25792"
+			(at 441.96 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ae24df27-fd92-57c2-b2e9-14693692ca9c")
+		)
+		(pin "2"
+			(uuid "2b76fa51-7373-58a9-a80c-dca4fe9529f6")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R409")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_XT_G"
+		(shape passive)
+		(at 441.96 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "e31d5e6a-b950-52ed-bc45-73218bba072c")
+	)
+	(global_label "S4_XT_S"
+		(shape passive)
+		(at 441.96 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3b9db8ac-0a5e-5698-9f02-a3daed1c23ec")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 453.39 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "cb997ad5-15ff-51e9-ab3c-6a6b27d655df")
+		(property "Reference" "R410"
+			(at 453.39 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 453.39 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 453.39 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 453.39 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 453.39 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "62e833c7-c81c-5484-b6c8-625166762167")
+		)
+		(pin "2"
+			(uuid "b1e316fe-3ea7-50fa-9c3c-44ebaa1dc71b")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R410")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_XT_G"
+		(shape passive)
+		(at 453.39 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "97771ccc-e21b-51c0-a098-2061694746ba")
+	)
+	(global_label "S4_XT_GD"
+		(shape passive)
+		(at 453.39 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "19c10b37-c8d8-568f-90bf-6c3f26ec7d8d")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 466.09 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f7c56f29-1865-5f3d-86ac-9656ed9bfbdc")
+		(property "Reference" "R411"
+			(at 466.09 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "68k"
+			(at 466.09 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 466.09 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF6802TCE"
+			(at 466.09 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C36871"
+			(at 466.09 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "caf1544e-b18c-596e-ab63-6b3e6f6db511")
+		)
+		(pin "2"
+			(uuid "b584ce05-8886-579c-86b0-9abbeb1d2358")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R411")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_EN_XT"
+		(shape passive)
+		(at 466.09 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "83146888-dea9-5e60-9d9d-fafe6ceaf288")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 466.09 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "e6d2ed97-4740-5620-a526-4d5b3eb8ea40")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 477.52 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1c5d75cb-694a-5a6f-9dff-0183415520df")
+		(property "Reference" "R412"
+			(at 477.52 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 477.52 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 477.52 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 477.52 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 477.52 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "83887677-abf5-519f-aaf1-1ccf81ebca92")
+		)
+		(pin "2"
+			(uuid "c583ed16-8449-5ca0-ae0e-c68aace50df0")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R412")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 477.52 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "3de57564-e3c3-55f8-b003-b027743f3752")
+	)
+	(global_label "S4_SDA"
+		(shape passive)
+		(at 477.52 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "de736f43-5ff0-53c9-b08a-bf7898b99563")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 490.22 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "df2507f7-ebc1-5d9e-af99-d52c2702523a")
+		(property "Reference" "R413"
+			(at 490.22 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 490.22 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 490.22 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1002TCE"
+			(at 490.22 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25744"
+			(at 490.22 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e8d5e98d-7236-5b02-be8a-94d75f061760")
+		)
+		(pin "2"
+			(uuid "2326b890-96ad-5c7f-9ef6-0a95bf00e5e1")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R413")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "+3V3"
+		(shape passive)
+		(at 490.22 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "25d5a7ff-a1f0-5123-b97e-c200dcf1e322")
+	)
+	(global_label "S4_SCL"
+		(shape passive)
+		(at 490.22 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "5a8a6011-3a28-5044-b4a5-57ea0501498e")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 501.65 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3ae9d1f8-5cb0-5336-817f-81bcdee852ae")
+		(property "Reference" "R414"
+			(at 501.65 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "120R"
+			(at 501.65 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 501.65 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1200TCE"
+			(at 501.65 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 501.65 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "97fa3352-1ba2-50dc-acc3-4e9243c9b460")
+		)
+		(pin "2"
+			(uuid "81520dcd-85ef-5410-bea7-7cc54deef927")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R414")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_MID"
+		(shape passive)
+		(at 501.65 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "42b0a62b-bc54-54a8-ba96-245c654a14a1")
+	)
+	(global_label "S4_CB"
+		(shape passive)
+		(at 501.65 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "4fd89d51-66c5-5c2d-a25e-fe037fb1266f")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 513.08 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "08efe343-319a-5ad0-b8aa-761b5c33394e")
+		(property "Reference" "R415"
+			(at 513.08 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100R"
+			(at 513.08 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 513.08 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1000TCE"
+			(at 513.08 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25076"
+			(at 513.08 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "28f008ad-a493-5620-9f57-fbd1f8b89ba7")
+		)
+		(pin "2"
+			(uuid "53ea325c-08b5-5a01-9b81-de7e2e75ff39")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R415")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BALP"
+		(shape passive)
+		(at 513.08 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "a401f776-d31f-523a-b0d4-c4fd93708728")
+	)
+	(global_label "S4_BVDD"
+		(shape passive)
+		(at 513.08 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "57cb9130-d2e4-5487-824b-0c7642f580ea")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 525.78 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "25eba4bf-dc7f-59a5-9323-264e64f0cbe3")
+		(property "Reference" "R416"
+			(at 525.78 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 525.78 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 525.78 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "0402WGF1003TCE"
+			(at 525.78 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C25741"
+			(at 525.78 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "15bb6eb2-cd66-5783-9dfd-e3e2f0063023")
+		)
+		(pin "2"
+			(uuid "972934cb-5b21-50c4-b4ac-cb8b1277d5a1")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R416")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_OV"
+		(shape passive)
+		(at 525.78 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "dc18c883-e933-5c4b-856d-1a44ff0df9f6")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 525.78 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "e477bc22-cf16-5637-af46-d77179e92238")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 537.21 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "211f2613-4d5f-5911-aed2-26b7c3fa772c")
+		(property "Reference" "R417"
+			(at 537.21 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 537.21 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 537.21 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 537.21 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 537.21 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "187df18a-4ec5-5922-9a32-9e4e1d79c619")
+		)
+		(pin "2"
+			(uuid "feeace3b-8428-5bf6-b640-875124889b14")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R417")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_MID"
+		(shape passive)
+		(at 537.21 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "fa401402-d13d-5cec-8774-69ba7827ac35")
+	)
+	(global_label "S4_MIDS"
+		(shape passive)
+		(at 537.21 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3c7c8252-746f-57fd-b32c-df6219f6ef7b")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 549.91 297.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61e136a4-f94e-5d64-86f1-d09fdc521571")
+		(property "Reference" "R418"
+			(at 549.91 290.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 549.91 303.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 549.91 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 549.91 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 549.91 297.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4ede69b9-108a-5336-9bb1-3e1d17734fed")
+		)
+		(pin "2"
+			(uuid "a76e9e72-4789-5666-b4cc-750f0d8407d5")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R418")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_MIDS"
+		(shape passive)
+		(at 549.91 293.37 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "7f8c12ee-3ea5-5475-a4a9-1bfbba156c5a")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 549.91 300.99 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "c1ae856d-64aa-5f23-9937-214d463ca90f")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 34.29 375.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "75751a79-f167-5fe0-8cb4-751b1243e353")
+		(property "Reference" "R419"
+			(at 34.29 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 34.29 382.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 34.29 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 34.29 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 34.29 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fdd7c5e9-9c16-5886-958d-1c0d1ac93d98")
+		)
+		(pin "2"
+			(uuid "98bb2e7f-9556-58e5-951e-fa80a3b912e5")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R419")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BALP"
+		(shape passive)
+		(at 34.29 372.11 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "f4820e5d-850b-5d3b-9d23-1eada149832d")
+	)
+	(global_label "S4_BALA"
+		(shape passive)
+		(at 34.29 379.73 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "1cd1de2b-98ab-58c2-abf6-bcc6fd2a35ad")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 45.72 375.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "faf7572b-a0c2-5cba-a698-2f1805754873")
+		(property "Reference" "R420"
+			(at 45.72 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 45.72 382.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 45.72 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 45.72 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 45.72 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c119cbb5-163e-5c1a-8642-836a13847fc8")
+		)
+		(pin "2"
+			(uuid "390668be-727c-5bb8-af6c-95a6a9aeca4a")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R420")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BALA"
+		(shape passive)
+		(at 45.72 372.11 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "f512a394-67bd-5739-918a-7175bf6bd495")
+	)
+	(global_label "S4_BALS"
+		(shape passive)
+		(at 45.72 379.73 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "a701859a-f5f5-550d-9fe7-f087534f50fc")
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 58.42 375.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7d771390-bfd5-532d-9ed8-3159af3f30ce")
+		(property "Reference" "R421"
+			(at 58.42 369.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1M 0.1%"
+			(at 58.42 382.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 58.42 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "RT0402BRD071ML"
+			(at 58.42 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" ""
+			(at 58.42 375.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "45ecc32f-cf14-5f93-8b7a-6ed9758dc851")
+		)
+		(pin "2"
+			(uuid "d13f3be4-140a-5657-9f69-3e763b81ba5f")
+		)
+		(instances
+			(project "lipo-charger"
+				(path "/2ec4bc2e-299c-51d0-8e3e-20eeebee05c7/bcfdafb3-19ee-5f97-9a71-b23ddd4b630b"
+					(reference "R421")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(global_label "S4_BALS"
+		(shape passive)
+		(at 58.42 372.11 90)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left)
+		)
+		(uuid "f4785cf8-c7a4-5a68-be5f-6ffb14d2f67e")
+	)
+	(global_label "GND"
+		(shape passive)
+		(at 58.42 379.73 270)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "8fba5e2f-dcb1-5291-8878-edce7b144647")
+	)
+)
