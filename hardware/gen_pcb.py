@@ -45,9 +45,10 @@ VIA_D, VIA_DRILL = 0.6, 0.3
 W_SIG, W_PWR = 0.15, 0.4
 VIA_COST = 40.0                # a via is only used if it saves 4 mm of track
 SHARE_REACH = 2.0              # a power/ground pad joins an existing via of its net within this distance
+CHAMFER_MAX = 1.5              # longest leg of a 45 degree corner cut
 
 PLANE_NETS = {"GND": None, "VBUS_PD": VBUS_POLY, "+3V3": V33_POLY}
-NET_WIDTH = {"VBUS_RAW": 0.8, "VBUS_SNS": 0.8, "BUCK_SW": 0.5, "PD_VOUT": 0.2, "PD_GATE": 0.2}
+NET_WIDTH = {"VBUS_RAW": 0.2, "VBUS_SNS": 0.2, "BUCK_SW": 0.5, "PD_VOUT": 0.2, "PD_GATE": 0.2}
 for _s in range(1, design.SLOTS + 1):
     for _n in ("BAT", "PB_P", "PB_S", "XT_P", "XT_S"):
         NET_WIDTH[f"S{_s}_{_n}"] = W_PWR
@@ -102,7 +103,7 @@ CORE = {
     "R8": (15.6, 34.9, 90), "D1": (15.6, 32.3, 90),
     "C2": (18.4, 38.4, 0), "R4": (18.2, 40.0, 0), "R5": (18.2, 41.2, 0),
     "R3": (19.6, 34.0, 0), "Q1": (24.0, 34.0, 180), "C1": (24.0, 36.6, 0),
-    "C4": (10.2, 32.6, 0), "C5": (27.4, 33.4, 90), "C6": (29.6, 33.4, 90),
+    "C4": (10.2, 32.6, 0), "C5": (28.0, 33.4, 90), "C6": (30.2, 33.4, 90),
     "U4": (9.6, 45.4, 0),
     "U2": (25.4, 42.6, 0), "C7": (21.5, 43.6, 180), "L1": (30.2, 42.6, 0), "C8": (26.8, 40.0, 0),
     "C9": (34.6, 41.4, 0), "C10": (34.6, 44.0, 0),
@@ -370,6 +371,8 @@ class Router:
         self.failed = []
         self.items = []     # every track / via created, in order (for rip-up)
         self.via_at = {}
+        self.pad_centre = {}   # cell on a pad's centre line -> exact pad centre (tracks end there)
+        self.pad_inner = set() # pad cells off the centre lines: not used to start or end a track
         self.via_cost = VIA_COST        # slots: stay on the top layer unless a via saves real distance
         self.step_cost = (1.0, 1.0)
         self._edges()
@@ -467,6 +470,22 @@ class Router:
                         continue
                     self.pad_cells.setdefault(key, set()).update(cells)
                     self.tree.setdefault(self.bd.pad_net[key], []).append(set(cells))
+                    # tracks should run into the middle of a pad: keep only the cells on its centre lines
+                    # (and the diagonals of a round pad) as places a track may start or end
+                    gxc, gyc = int(round(x / PITCH)), int(round(y / PITCH))
+                    is_round = pad.GetShape(pcbnew.F_Cu) in (pcbnew.PAD_SHAPE_CIRCLE, pcbnew.PAD_SHAPE_OVAL)
+                    axis = {c for c in cells if c[1] == gxc or c[2] == gyc
+                            or (is_round and abs(c[1] - gxc) == abs(c[2] - gyc))}
+                    if axis:
+                        for c in axis:
+                            self.pad_centre[c] = (round(x, 4), round(y, 4))
+                        self.pad_inner |= cells - axis
+        self.pad_inner -= set(self.pad_centre)
+
+    def _term(self, cells):
+        """The cells of a copper group that a new track may start or end on."""
+        t = {c for c in cells if c not in self.pad_inner}
+        return t or cells
 
     def _custom_pad(self, ref, pad):
         ps = pad.GetEffectivePolygon(pcbnew.F_Cu, pcbnew.ERROR_INSIDE)
@@ -526,9 +545,8 @@ class Router:
                 for gy in range(int(math.ceil((y - r) / PITCH - 1e-6)), int(math.floor((y + r) / PITCH + 1e-6)) + 1):
                     if 0 <= gx < self.nx and 0 <= gy < self.ny:
                         cells.add((layer, gx, gy))
-        if not cells:
-            g = (int(round(a[0] / PITCH)), int(round(a[1] / PITCH)))
-            cells.add((layer, g[0], g[1]))
+        for e in (a, b):                 # both ends always count, so consecutive pieces join up
+            cells.add((layer, int(round(e[0] / PITCH)), int(round(e[1] / PITCH))))
         self.tree.setdefault(net, []).append(cells)
 
     def add_via(self, net, x, y):
@@ -584,19 +602,104 @@ class Router:
         print(f"{label}: FAILED nets {sorted(set(self.failed[before:]))}", flush=True)
         return False
 
+    def seg_clear(self, layer, a, b, w, code, extra=0.10):
+        """True if a track from a to b keeps its clearance to everything that is not this net.
+
+        Every foreign (already clearance-grown) cell must be further than w/2 + extra from the
+        track's centre line, measured as a true distance so that 45 degree runs are not penalised.
+        """
+        rad = w / 2 + extra
+        n = max(1, int(math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05))
+        for i in range(n + 1):
+            t = i / n
+            x, y = a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])
+            i0, i1 = self._rng(x - rad, x + rad, self.nx)
+            j0, j1 = self._rng(y - rad, y + rad, self.ny)
+            reg = self.occ[layer, i0:i1 + 1, j0:j1 + 1]
+            bad = (reg != 0) & (reg != code)
+            if bad.any():
+                for bi, bj in np.argwhere(bad):
+                    if math.hypot((i0 + bi) * PITCH - x, (j0 + bj) * PITCH - y) <= rad:
+                        return False
+        return True
+
+    @staticmethod
+    def _simplify(pts):
+        out = []
+        for p in pts:
+            if out and math.hypot(p[0] - out[-1][0], p[1] - out[-1][1]) < 1e-6:
+                continue
+            while len(out) >= 2:
+                ax, ay = out[-1][0] - out[-2][0], out[-1][1] - out[-2][1]
+                bx, by = p[0] - out[-1][0], p[1] - out[-1][1]
+                if abs(ax * by - ay * bx) < 1e-7 and ax * bx + ay * by > 0:
+                    out.pop()
+                else:
+                    break
+            out.append(p)
+        return out
+
+    def _chamfer(self, pts, layer, w, code):
+        """Replace right-angle corners of a polyline by 45 degree cuts wherever there is room."""
+        pts = self._simplify(pts)
+        i = 1
+        while i < len(pts) - 1:
+            p, c, n = pts[i - 1], pts[i], pts[i + 1]
+            d1 = (c[0] - p[0], c[1] - p[1])
+            d2 = (n[0] - c[0], n[1] - c[1])
+            l1, l2 = math.hypot(*d1), math.hypot(*d2)
+            cosang = (d1[0] * d2[0] + d1[1] * d2[1]) / (l1 * l2)
+            if abs(cosang) > 0.2 or (int(round(c[0] / PITCH)), int(round(c[1] / PITCH))) in self.via_at:
+                i += 1                                      # not a right angle, or a via sits on the corner
+                continue
+            sign = 1 if d1[0] * d2[1] - d1[1] * d2[0] > 0 else -1
+            cut = (d1[0] / l1 + d2[0] / l2, d1[1] / l1 + d2[1] / l2)       # direction of the 45 degree cut
+            # how much of each neighbouring segment this corner may use: all of it when the cut then
+            # runs on in line with what comes before / after, otherwise leave a short straight piece
+            a1 = l1 - PITCH
+            if i - 1 == 0:
+                a1 = l1
+            else:
+                din = (p[0] - pts[i - 2][0], p[1] - pts[i - 2][1])
+                if abs(din[0] * cut[1] - din[1] * cut[0]) < 1e-6 * math.hypot(*din) and din[0] * cut[0] + din[1] * cut[1] > 0:
+                    a1 = l1
+            a2 = l2 - PITCH
+            if i + 2 >= len(pts):
+                a2 = l2
+            else:
+                d3 = (pts[i + 2][0] - n[0], pts[i + 2][1] - n[1])
+                l3 = math.hypot(*d3)
+                turn = d2[0] * d3[1] - d2[1] * d3[0]
+                square = abs(d2[0] * d3[0] + d2[1] * d3[1]) < 0.2 * l2 * l3
+                if square and turn * sign < 0:
+                    a2 = l2                                 # Z-shaped jog: one diagonal replaces both corners
+                elif square:
+                    a2 = l2 / 2 - PITCH                     # U-turn: leave a straight piece between the cuts
+                elif abs(d3[0] * cut[1] - d3[1] * cut[0]) < 1e-6 * l3 and d3[0] * cut[0] + d3[1] * cut[1] > 0:
+                    a2 = l2
+            k = math.floor(min(a1, a2, CHAMFER_MAX) / PITCH + 1e-6) * PITCH
+            while k >= PITCH - 1e-9:
+                A = (round(c[0] - d1[0] / l1 * k, 4), round(c[1] - d1[1] / l1 * k, 4))
+                B = (round(c[0] + d2[0] / l2 * k, 4), round(c[1] + d2[1] / l2 * k, 4))
+                if self.seg_clear(layer, A, B, w, code):
+                    new = [A, B]
+                    if math.hypot(A[0] - p[0], A[1] - p[1]) < 1e-6:
+                        new = new[1:]
+                    if math.hypot(B[0] - n[0], B[1] - n[1]) < 1e-6:
+                        new = new[:-1]
+                    pts[i:i + 1] = new
+                    i += len(new) - 1
+                    break
+                k = math.floor(k / 2 / PITCH + 1e-6) * PITCH
+            i += 1
+        return self._simplify(pts)
+
     def polyline(self, net, pts, w, layer=0):
         code = self.bd.nets[net].GetNetCode()
+        pts = self._chamfer(pts, layer, w, code)
         for a, b in zip(pts, pts[1:]):
-            n = max(1, int(math.hypot(b[0] - a[0], b[1] - a[1]) / 0.05))
-            for i in range(n + 1):
-                t = i / n
-                x, y = a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1])
-                i0, i1 = self._rng(x - w / 2, x + w / 2, self.nx)
-                j0, j1 = self._rng(y - w / 2, y + w / 2, self.ny)
-                reg = self.occ[layer, i0:i1 + 1, j0:j1 + 1]
-                if ((reg != 0) & (reg != code)).any():
-                    print(f"  HAND TRACK CLASH {net} near {x:.2f},{y:.2f}")
-                    break
+            if not self.seg_clear(layer, a, b, w, code, extra=0.0):
+                print(f"  HAND TRACK CLASH {net} near {a[0]:.2f},{a[1]:.2f} - {b[0]:.2f},{b[1]:.2f}")
             self.add_track(net, a, b, w, layer)
         self._merge(net)
 
@@ -692,31 +795,37 @@ class Router:
         return [(l, x + a, y + c) for l, x, y in path]
 
     def emit(self, net, path, w):
-        mmxy = lambda x, y: (round(x * PITCH, 4), round(y * PITCH, 4))
-        start = path[0]
-        for i in range(1, len(path)):
-            cur, prev = path[i], path[i - 1]
-            if cur[0] != prev[0]:
-                self.add_track(net, mmxy(start[1], start[2]), mmxy(prev[1], prev[2]), w, prev[0])
-                self.add_via(net, *mmxy(cur[1], cur[2]))
-                start = cur
-                continue
-            last = i == len(path) - 1
-            turn = last
-            if not last:
-                nxt = path[i + 1]
-                turn = nxt[0] != cur[0] or (cur[1] - prev[1], cur[2] - prev[2]) != (nxt[1] - cur[1], nxt[2] - cur[2])
-            if turn:
-                self.add_track(net, mmxy(start[1], start[2]), mmxy(cur[1], cur[2]), w, cur[0])
-                start = cur
+        code = self.bd.nets[net].GetNetCode()
+        mmxy = lambda c: (round(c[1] * PITCH, 4), round(c[2] * PITCH, 4))
+        runs = [[path[0]]]
+        for c in path[1:]:
+            if c[0] != runs[-1][-1][0]:
+                runs.append([c])
+            else:
+                runs[-1].append(c)
+        for k, run in enumerate(runs):
+            layer = run[0][0]
+            pts = [mmxy(c) for c in run]
+            if k == 0 and run[0] in self.pad_centre:
+                pts.insert(0, self.pad_centre[run[0]])
+            if k == len(runs) - 1 and run[-1] in self.pad_centre:
+                pts.append(self.pad_centre[run[-1]])
+            pts = self._chamfer(pts, layer, w, code)
+            for a, b in zip(pts, pts[1:]):
+                self.add_track(net, a, b, w, layer)
+            if k < len(runs) - 1:
+                self.add_via(net, *mmxy(runs[k + 1][0]))
 
     def connect(self, net, src, dst, w, allow_via=True):
         code = self.bd.nets[net].GetNetCode()
-        for margin in (2.5, 6.0, 15.0, 40.0):
-            path = self.search(code, w, src, dst, margin, allow_via)
-            if path:
-                self.emit(net, path, w)
-                return True
+        s2, d2 = self._term(src), self._term(dst)
+        tries = [(s2, d2)] + ([(src, dst)] if (len(s2), len(d2)) != (len(src), len(dst)) else [])
+        for s, d in tries:
+            for margin in (2.5, 6.0, 15.0, 40.0):
+                path = self.search(code, w, s, d, margin, allow_via)
+                if path:
+                    self.emit(net, path, w)
+                    return True
         return False
 
     def route_net(self, net, w=None, only_refs=None):
@@ -750,6 +859,7 @@ class Router:
                 self._merge(net)
                 base = next(g for g in self.tree[net] if g & best)
             elif w > W_SIG and self.connect(net, base, best, 0.2):
+                print(f"  note: {net} had to use a 0.2 mm link (wanted {w})", flush=True)
                 self._merge(net)
                 base = next(g for g in self.tree[net] if g & best)
             else:
@@ -777,7 +887,7 @@ class Router:
             ok = (lambda gx, gy: True) if poly is None else (lambda gx, gy: in_poly(gx * PITCH, gy * PITCH, poly))
             done = False
             # first choice: a short top-layer link to a via this net already has nearby
-            layer0 = {c for c in grp if c[0] == 0}
+            layer0 = self._term({c for c in grp if c[0] == 0})
             if layer0:
                 gxs = [c[1] for c in layer0]
                 gys = [c[2] for c in layer0]
@@ -792,7 +902,7 @@ class Router:
                         self._merge(net)
                         continue
             for margin in (1.5, 3.0, 8.0, 25.0):
-                path = self.search(code, 0.25, grp, [], margin, allow_via=False, via_goal=ok)
+                path = self.search(code, 0.25, self._term(grp), [], margin, allow_via=False, via_goal=ok)
                 if path:
                     self.emit(net, path, 0.25)
                     l, x, y = path[-1]
@@ -814,35 +924,36 @@ def hand_routes(rt):
         cx, cy = cell_origin(s) + IC_X, IC_Y
         P = lambda dx, dy: (round(cx + dx, 4), round(cy + dy, 4))
         n = lambda name: f"S{s}_{name}"
-        # input capacitor bank
-        rt.polyline(n("PMID"), [P(-0.9, -1.7), P(-0.9, -2.8)], 0.2)
-        rt.polyline(n("PMID"), [P(-0.9, -2.8), P(-5.85, -2.8)], 0.3)
-        # output (SYS) capacitor bank
-        rt.polyline(n("SYS"), [P(0.9, -1.7), P(0.9, -2.8)], 0.2)
-        rt.polyline(n("SYS"), [P(0.9, -2.8), P(5.85, -2.8)], 0.3)
-        # switch nodes to the inductor, bootstrap caps
-        rt.polyline(n("SW1"), [P(-0.45, -1.7), P(-0.45, -3.6)], 0.2)
-        rt.polyline(n("SW1"), [P(-0.45, -3.6), P(-1.5, -4.7), P(-1.5, -5.6)], 0.3)
-        rt.polyline(n("SW1"), [P(-2.87, -6.6), P(-1.5, -6.6)], 0.25)
-        rt.polyline(n("SW2"), [P(0.45, -1.7), P(0.45, -3.6)], 0.2)
-        rt.polyline(n("SW2"), [P(0.45, -3.6), P(1.5, -4.7), P(1.5, -5.6)], 0.3)
-        rt.polyline(n("SW2"), [P(2.87, -6.6), P(1.5, -6.6)], 0.25)
+        # input (PMID) and output (SYS) capacitor banks: thin only inside the pin, then wide to the caps
+        rt.polyline(n("PMID"), [P(-0.9, -1.7), P(-0.9, -2.65), P(-1.3, -3.05)], 0.2)
+        rt.polyline(n("PMID"), [P(-1.3, -3.05), P(-5.85, -3.05)], 0.5)
+        rt.polyline(n("SYS"), [P(0.9, -1.7), P(0.9, -2.65), P(1.3, -3.05)], 0.2)
+        rt.polyline(n("SYS"), [P(1.3, -3.05), P(5.85, -3.05)], 0.5)
+        # switch nodes to the inductor: widen as soon as the neighbouring pins allow; bootstrap caps
+        rt.polyline(n("SW1"), [P(-0.45, -1.7), P(-0.45, -3.35)], 0.2)
+        rt.polyline(n("SW1"), [P(-0.45, -3.35), P(-1.5, -4.4)], 0.35)
+        rt.polyline(n("SW1"), [P(-1.5, -4.4), P(-1.5, -6.8)], 0.5)
+        rt.polyline(n("SW1"), [P(-2.87, -6.6), P(-2.4, -6.6), P(-2.2, -6.8), P(-1.5, -6.8)], 0.25)
+        rt.polyline(n("SW2"), [P(0.45, -1.7), P(0.45, -3.35)], 0.2)
+        rt.polyline(n("SW2"), [P(0.45, -3.35), P(1.5, -4.4)], 0.35)
+        rt.polyline(n("SW2"), [P(1.5, -4.4), P(1.5, -6.8)], 0.5)
+        rt.polyline(n("SW2"), [P(2.87, -6.6), P(2.4, -6.6), P(2.2, -6.8), P(1.5, -6.8)], 0.25)
         # ground finger under the inductor, stitched to the plane
         rt.polyline("GND", [P(0, -1.7), P(0, -4.9)], 0.2)
         rt.polyline("GND", [P(0, -4.9), P(0, -9.4)], 1.0)
         for dy in (-5.6, -7.2, -8.8):
             rt.add_via("GND", *P(0, dy))
-        # battery node: IC pins -> caps -> trunk up the right edge to the PicoBlade switch
-        rt.polyline(n("BAT"), [P(1.9, -1.2), P(2.6, -1.2), P(2.6, -0.8), P(1.9, -0.8)], 0.2)
-        rt.polyline(n("BAT"), [P(2.6, -1.0), P(6.65, -1.0), P(6.65, -1.85), P(8.5, -1.85),
-                               P(8.5, -14.6), P(6.6, -14.6)], W_PWR)
-        # VBUS pins to local decoupling
-        rt.polyline("VBUS_PD", [P(-1.9, -1.2), P(-2.45, -1.2), P(-2.45, -0.8)], 0.2)
-        rt.polyline("VBUS_PD", [P(-1.9, -0.8), P(-3.5, -0.8)], 0.2)
-        rt.polyline("VBUS_PD", [P(-3.5, -0.8), P(-5.35, -0.8)], W_PWR)
+        # battery node: both IC pins -> caps -> trunk up the right edge to the PicoBlade switch
+        rt.polyline(n("BAT"), [P(1.9, -1.2), P(1.9, -0.8)], 0.2)
+        rt.polyline(n("BAT"), [P(1.9, -1.0), P(6.65, -1.0), P(6.65, -1.85), P(8.5, -1.85),
+                               P(8.5, -14.91), P(6.6, -14.91)], W_PWR)
+        # VBUS pins: one wide track from both pins to the local decoupling, with its own plane via
+        rt.polyline("VBUS_PD", [P(-1.9, -1.2), P(-1.9, -0.8)], 0.2)
+        rt.polyline("VBUS_PD", [P(-1.9, -1.0), P(-4.3, -1.0), P(-4.48, -0.82), P(-5.35, -0.82)], 0.5)
+        rt.add_via("VBUS_PD", *P(-3.0, -1.0))
         # VAC1/VAC2 sense pins get their own plane via so they do not fence in pins 4-7
-        rt.polyline("VBUS_PD", [P(-1.9, 1.2), P(-2.15, 1.2), P(-2.15, 2.7), P(-2.6, 2.7), P(-2.6, 3.3)], 0.2)
-        rt.polyline("VBUS_PD", [P(-1.4, 1.85), P(-1.4, 2.7), P(-2.15, 2.7)], 0.15)
+        rt.polyline("VBUS_PD", [P(-1.9, 1.2), P(-2.15, 1.2), P(-2.15, 2.4), P(-2.6, 2.85), P(-2.6, 3.3)], 0.2)
+        rt.polyline("VBUS_PD", [P(-1.4, 1.85), P(-1.4, 2.0), P(-1.8, 2.4), P(-2.15, 2.4)], 0.15)
         rt.add_via("VBUS_PD", *P(-2.6, 3.3))
         # switch-enable pins (D+ / D-): escape inwards to vias under the chip, then travel on the back
         rt.polyline(n("EN_PB"), [P(-1.9, 0.4), P(-1.3, 0.4), P(-1.1, 0.2), P(-0.9, 0.2)], 0.15)
@@ -864,17 +975,35 @@ def hand_routes(rt):
         rt.polyline("GND", [P(5.8 + 0.325, -29.7 - 1.45), P(5.8 + 0.325, -29.7 - 0.6)], 0.25)
         # balance-current pin down the gap between the two columns of passives to its resistor
         rt.polyline(n("CB"), [P(6.125, -28.25), P(6.125, -27.75), P(5.8, -27.5), P(5.8, -25.8), P(6.52, -25.8)], 0.15)
-    # full adapter current enters the VBUS plane here: wide link across both bulk caps, three vias
-    rt.polyline("VBUS_PD", [(24.94, 33.05 + DY), (26.2, 33.05 + DY), (26.2, 34.4 + DY), (30.8, 34.4 + DY)], 0.6)
-    rt.polyline("VBUS_PD", [(26.2, 34.4 + DY), (26.2, 35.5 + DY)], 0.6)
-    rt.polyline("VBUS_PD", [(28.5, 34.4 + DY), (28.5, 35.5 + DY)], 0.6)
-    for vx, vy in ((26.2, 35.5 + DY), (28.5, 35.5 + DY), (30.8, 34.4 + DY)):
-        rt.add_via("VBUS_PD", vx, vy)
-    # USB-C VBUS pins: fixed escapes to vias before ground vias crowd the connector
+    # full adapter current enters the VBUS plane here: 1 mm copper past both bulk caps, five vias
+    rt.polyline("VBUS_PD", [(24.94, 45.05), (26.5, 45.05), (26.5, 46.35), (30.2, 46.35)], 1.0)
+    rt.polyline("VBUS_PD", [(26.5, 46.35), (26.5, 47.2), (27.0, 47.7), (30.9, 47.7)], 0.8)
+    rt.polyline("VBUS_PD", [(28.0, 46.35), (28.0, 47.7)], 0.8)
+    rt.polyline("VBUS_PD", [(30.2, 46.35), (30.2, 47.7)], 0.8)
+    for vx in (27.0, 28.0, 29.1, 30.2, 30.9):
+        rt.add_via("VBUS_PD", vx, 47.7)
+    # sense resistor to the switch
+    rt.polyline("VBUS_SNS", [(21.06, 46.0), (23.06, 46.0)], 1.0)
+    # USB-C VBUS: both pin pairs join (the lower pair on the back), then 1 mm copper to the sense
+    # resistor.  The PD controller's sense pin has its own thin track from the resistor pad and
+    # carries no load current (datasheet: sense traces start at the resistor's pads).
     for vy in (47.6, 52.4):
-        rt.polyline("VBUS_RAW", [(7.08, vy - 12.0 + DY), (8.5, vy - 12.0 + DY)], 0.5)
-        rt.add_via("VBUS_RAW", 8.5, vy - 12.0 + DY)
+        rt.polyline("VBUS_RAW", [(7.08, vy), (8.5, vy)], 0.5)
+        rt.add_via("VBUS_RAW", 8.5, vy)
+    rt.polyline("VBUS_RAW", [(8.5, 47.6), (8.5, 52.4)], 0.8, layer=1)
+    rt.polyline("VBUS_RAW", [(8.5, 47.6), (8.5, 46.4), (9.25, 45.65), (9.25, 43.2), (10.05, 42.4),
+                             (17.34, 42.4), (18.14, 43.2), (18.14, 46.0)], 1.0)
+    rt.polyline("VBUS_RAW", [(15.97, 50.0), (16.5, 50.0), (17.0, 49.5), (17.0, 46.4), (17.4, 46.0),
+                             (18.14, 46.0)], 0.2)
     rt._merge("VBUS_RAW")
+    rt._merge("VBUS_SNS")
+    # per-slot I2C pull-ups: each bus pad gets its own via just above it, before the row is fenced in
+    for s in range(1, design.SLOTS + 1):
+        for k, name in enumerate(("SDA", "SCL")):
+            x = 27.6 + 1.5 * (2 * (s - 1) + k)
+            rt.polyline(f"S{s}_{name}", [(x, 58.89), (x, 57.9)], 0.15)
+            rt.add_via(f"S{s}_{name}", x, 57.9)
+            rt._merge(f"S{s}_{name}")
     # PD controller ground pin to its exposed pad, one thermal via in the pad
     rt.polyline("GND", [(15.98, 37.6 + DY), (15.0, 37.6 + DY)], 0.2)
     rt.add_via("GND", 14.5, 38.0 + DY)
@@ -937,6 +1066,13 @@ def route_all(rt):
     # long cross-board runs belong on the back layer: cheaper vias and a mild back-layer preference
     rt.via_cost, rt.step_cost = 15.0, (1.0, 0.8)
     rt.route_block(first + rest, "core", tries=8)
+    left = sorted(set(rt.failed))
+    if left:                                  # last resort: let the stragglers change layer freely
+        rt.failed = []
+        rt.via_cost = 4.0
+        for net in left:
+            rt.route_net(net)
+        print("second pass for", left, "-> still failed:", sorted(set(rt.failed)), flush=True)
     missing = 0
     for net, poly in (("VBUS_PD", VBUS_POLY), ("+3V3", V33_POLY), ("GND", None)):
         missing += rt.drop_to_plane(net, poly)
@@ -1052,6 +1188,35 @@ def prune_dead_ends(board, plane_nets):
           f"trimmed {trimmed}", flush=True)
 
 
+def split_at_vias(b):
+    """Where a via sits part-way along a track of its net, split the track so it ends on the via centre."""
+    n = 0
+    vias = [t for t in b.GetTracks() if isinstance(t, pcbnew.PCB_VIA)]
+    for v in vias:
+        p = v.GetPosition()
+        for t in list(b.GetTracks()):
+            if isinstance(t, pcbnew.PCB_VIA) or t.GetNetCode() != v.GetNetCode():
+                continue
+            s, e = t.GetStart(), t.GetEnd()
+            dx, dy = e.x - s.x, e.y - s.y
+            ln = math.hypot(dx, dy)
+            if ln == 0:
+                continue
+            u = ((p.x - s.x) * dx + (p.y - s.y) * dy) / (ln * ln)
+            off = abs((p.x - s.x) * dy - (p.y - s.y) * dx) / ln
+            if off <= mm(0.005) and mm(0.02) < u * ln < ln - mm(0.02):
+                rest = pcbnew.PCB_TRACK(b)
+                rest.SetStart(pcbnew.VECTOR2I(p.x, p.y))
+                rest.SetEnd(pcbnew.VECTOR2I(e.x, e.y))
+                rest.SetWidth(t.GetWidth())
+                rest.SetLayer(t.GetLayer())
+                rest.SetNet(t.GetNet())
+                b.Add(rest)
+                t.SetEnd(pcbnew.VECTOR2I(p.x, p.y))
+                n += 1
+    print(f"split {n} tracks at vias", flush=True)
+
+
 # ------------------------------------------------------------------ finishing
 def outline(board):
     c = [(0, 0), (BOARD_W, 0), (BOARD_W, BOARD_H), (0, BOARD_H)]
@@ -1088,6 +1253,11 @@ def silk(board):
 
 
 def zones(board):
+    # the PicoBlade ground pins sit in a crowd of tracks: connect them solidly instead of by spokes
+    for s in range(1, design.SLOTS + 1):
+        for pad in board.fps[f"J{s}02"].Pads():
+            if pad.GetNetname() == "GND":
+                pad.SetLocalZoneConnection(pcbnew.ZONE_CONNECTION_FULL)
     board.zone("GND", pcbnew.In1_Cu, GND_POLY, thermal=True)
     board.zone("VBUS_PD", pcbnew.In2_Cu, VBUS_POLY, thermal=True)
     board.zone("+3V3", pcbnew.In2_Cu, V33_POLY, thermal=True)
@@ -1107,9 +1277,14 @@ def main():
         print("failed nets:", sorted(set(rt.failed)))
         if "--debug" not in sys.argv:
             prune_dead_ends(board, set(PLANE_NETS))
+            split_at_vias(board.b)
         zones(board)
     silk(board)
+    pro = OUT.replace(".kicad_pcb", ".kicad_pro")
+    keep = open(pro, "rb").read() if os.path.exists(pro) else None
     pcbnew.SaveBoard(OUT, board.b)
+    if keep is not None:                      # saving resets the project's rule severities: put them back
+        open(pro, "wb").write(keep)
     print("saved", OUT, "| courtyard overlaps:", bad)
 
 

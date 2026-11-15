@@ -194,7 +194,7 @@ Nothing here has been built. Do these first:
 
 ## Rule-check results
 
-From the last run on 2026-11-11 (KiCad 10.0, `hardware/make_outputs.py`):
+From the last run on 2026-11-14 (KiCad 10.0, `hardware/make_outputs.py`):
 
 | Check | Result |
 |---|---|
@@ -203,13 +203,25 @@ From the last run on 2026-11-11 (KiCad 10.0, `hardware/make_outputs.py`):
 | Board DRC errors | 0 |
 | Unconnected nets | 0 |
 | Board DRC warnings | 2: silkscreen lines of the ESP32 module at the board edge |
-| Via audit (`hardware/audit_vias.py`) | 602 vias (233 to planes, 369 on signals), 0 unused |
+| Dangling tracks, track ends off a via centre | 0 (both checks are switched on in the project file) |
+| Via audit (`hardware/audit_vias.py`) | 595 vias (236 to planes, 359 on signals), 0 unused |
+| Track corners | 45 degree bends; 14 visible right angles remain where two separately routed tracks meet, plus short turns hidden inside pads |
 | Schematic ERC | 3 "power pin not driven" (the schematic has no power-flag symbols) and 7 library notes about generated symbols. No wiring faults. |
 | Case meshes | both STLs closed (every edge shared by exactly two faces) |
 
 Board rules used: 0.127 mm clearance, 0.15 mm minimum track, 0.6/0.3 mm vias,
 0.2 mm minimum hole (the ESP32 footprint's thermal vias), 0.18 mm hole clearance
 (the USB-C footprint's own locating holes sit 0.194 mm from its pads).
+
+Routing style: tracks bend at 45 degrees and end on the centre of the pad or via they
+connect to. Pads that are not on the 0.1 mm routing grid get a short, slightly angled last
+piece to reach the exact centre.
+
+Power copper: the USB input runs on 1.0 mm track to the 5 mΩ sense resistor, and the PD
+controller's sense pin has its own thin track from the resistor pad (it carries no load
+current). The switched 9 V enters its plane through five vias. Around each charger chip the
+inductor, input-cap and output-cap tracks are 0.5 mm; they are 0.2 mm only for the first
+1.2 mm out of the chip's 0.2 mm wide pins.
 
 DRC proves the copper matches the netlist and meets spacing rules. It does not
 prove the circuit works: see "Before you order".
