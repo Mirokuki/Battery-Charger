@@ -101,6 +101,7 @@ Hold **OK** while plugging in USB to put the ESP32 into download mode.
 | `hardware/gen_pcb.py` | Places and routes the 108 x 80 mm 4-layer board (`lipo-charger.kicad_pcb`). |
 | `hardware/make_outputs.py` | Gerbers, drill, BOM, pick-and-place, schematic PDF, DRC/ERC reports. |
 | `hardware/render_copper.py` | Quick picture of the routed copper (`docs/copper.png`). |
+| `hardware/audit_vias.py` | Lists vias that do no work: unused ones and same-net pairs close together. |
 | `fab/` | What you upload to JLCPCB. |
 | `firmware/lipo_charger/` | Arduino sketch for the ESP32-C3. |
 | `case/make_case.py` | Generates `case_base.stl` and `case_lid.stl`. |
@@ -201,7 +202,8 @@ From the last run on 2026-11-11 (KiCad 10.0, `hardware/make_outputs.py`):
 | Board vs schematic (parity) | 0 issues |
 | Board DRC errors | 0 |
 | Unconnected nets | 0 |
-| Board DRC warnings | 9: seven unused escape vias on I2C lines, two silkscreen lines of the ESP32 module at the board edge |
+| Board DRC warnings | 2: silkscreen lines of the ESP32 module at the board edge |
+| Via audit (`hardware/audit_vias.py`) | 602 vias (233 to planes, 369 on signals), 0 unused |
 | Schematic ERC | 3 "power pin not driven" (the schematic has no power-flag symbols) and 7 library notes about generated symbols. No wiring faults. |
 | Case meshes | both STLs closed (every edge shared by exactly two faces) |
 

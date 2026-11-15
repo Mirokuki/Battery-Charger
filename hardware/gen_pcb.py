@@ -43,6 +43,8 @@ PITCH = 0.1
 CLR = 0.15                     # router clearance; board rule is 0.127
 VIA_D, VIA_DRILL = 0.6, 0.3
 W_SIG, W_PWR = 0.15, 0.4
+VIA_COST = 40.0                # a via is only used if it saves 4 mm of track
+SHARE_REACH = 2.0              # a power/ground pad joins an existing via of its net within this distance
 
 PLANE_NETS = {"GND": None, "VBUS_PD": VBUS_POLY, "+3V3": V33_POLY}
 NET_WIDTH = {"VBUS_RAW": 0.8, "VBUS_SNS": 0.8, "BUCK_SW": 0.5, "PD_VOUT": 0.2, "PD_GATE": 0.2}
@@ -368,6 +370,8 @@ class Router:
         self.failed = []
         self.items = []     # every track / via created, in order (for rip-up)
         self.via_at = {}
+        self.via_cost = VIA_COST        # slots: stay on the top layer unless a via saves real distance
+        self.step_cost = (1.0, 1.0)
         self._edges()
         self._pads()
 
@@ -636,7 +640,7 @@ class Router:
             def hfun(x, y):
                 dx = gx1 - x if x < gx1 else (x - gx2 if x > gx2 else 0)
                 dy = gy1 - y if y < gy1 else (y - gy2 if y > gy2 else 0)
-                return 0.7 * (dx + dy)
+                return min(self.step_cost) * (dx + dy)
         else:
             def hfun(x, y):
                 return 0.0
@@ -646,7 +650,7 @@ class Router:
                 k = (l, x - a, y - c)
                 dist[k] = 0.0
                 heapq.heappush(pq, (hfun(k[1], k[2]), 0.0, k))
-        step_cost = (1.0, 0.7)
+        step_cost = self.step_cost
         found = None
         while pq:
             _, g, k = heapq.heappop(pq)
@@ -674,7 +678,7 @@ class Router:
             if allow_via and viaok[x][y]:
                 nk = (1 - l, x, y)
                 if free[1 - l][x][y]:
-                    ng = g + 12.0
+                    ng = g + self.via_cost
                     if ng < dist.get(nk, 1e18):
                         dist[nk] = ng
                         parent[nk] = k
@@ -772,6 +776,21 @@ class Router:
                     continue
             ok = (lambda gx, gy: True) if poly is None else (lambda gx, gy: in_poly(gx * PITCH, gy * PITCH, poly))
             done = False
+            # first choice: a short top-layer link to a via this net already has nearby
+            layer0 = {c for c in grp if c[0] == 0}
+            if layer0:
+                gxs = [c[1] for c in layer0]
+                gys = [c[2] for c in layer0]
+                r = int(SHARE_REACH / PITCH)
+                near = {(0, vx, vy) for (vx, vy), vnet in self.via_at.items()
+                        if vnet == net and min(gxs) - r <= vx <= max(gxs) + r and min(gys) - r <= vy <= max(gys) + r
+                        and ok(vx, vy) and (0, vx, vy) not in grp}
+                if near:
+                    path = self.search(code, 0.25, layer0, near, SHARE_REACH, allow_via=False)
+                    if path and len(path) <= r + 6:
+                        self.emit(net, path, 0.25)
+                        self._merge(net)
+                        continue
             for margin in (1.5, 3.0, 8.0, 25.0):
                 path = self.search(code, 0.25, grp, [], margin, allow_via=False, via_goal=ok)
                 if path:
@@ -825,6 +844,11 @@ def hand_routes(rt):
         rt.polyline("VBUS_PD", [P(-1.9, 1.2), P(-2.15, 1.2), P(-2.15, 2.7), P(-2.6, 2.7), P(-2.6, 3.3)], 0.2)
         rt.polyline("VBUS_PD", [P(-1.4, 1.85), P(-1.4, 2.7), P(-2.15, 2.7)], 0.15)
         rt.add_via("VBUS_PD", *P(-2.6, 3.3))
+        # switch-enable pins (D+ / D-): escape inwards to vias under the chip, then travel on the back
+        rt.polyline(n("EN_PB"), [P(-1.9, 0.4), P(-1.3, 0.4), P(-1.1, 0.2), P(-0.9, 0.2)], 0.15)
+        rt.add_via(n("EN_PB"), *P(-0.9, 0.2))
+        rt.polyline(n("EN_XT"), [P(-1.9, 0.8), P(0.1, 0.8)], 0.15)
+        rt.add_via(n("EN_XT"), *P(0.1, 0.8))
         # bottom-row pins: fixed escapes to vias so later routing cannot fence them in
         rt.polyline("GND", [P(-1.0, 1.9), P(-1.0, 2.9), P(-0.6, 2.9), P(-0.6, 1.9)], 0.2)
         rt.polyline("GND", [P(-0.8, 2.9), P(-0.8, 3.3)], 0.2)
@@ -846,6 +870,11 @@ def hand_routes(rt):
     rt.polyline("VBUS_PD", [(28.5, 34.4 + DY), (28.5, 35.5 + DY)], 0.6)
     for vx, vy in ((26.2, 35.5 + DY), (28.5, 35.5 + DY), (30.8, 34.4 + DY)):
         rt.add_via("VBUS_PD", vx, vy)
+    # USB-C VBUS pins: fixed escapes to vias before ground vias crowd the connector
+    for vy in (47.6, 52.4):
+        rt.polyline("VBUS_RAW", [(7.08, vy - 12.0 + DY), (8.5, vy - 12.0 + DY)], 0.5)
+        rt.add_via("VBUS_RAW", 8.5, vy - 12.0 + DY)
+    rt._merge("VBUS_RAW")
     # PD controller ground pin to its exposed pad, one thermal via in the pad
     rt.polyline("GND", [(15.98, 37.6 + DY), (15.0, 37.6 + DY)], 0.2)
     rt.add_via("GND", 14.5, 38.0 + DY)
@@ -888,6 +917,10 @@ def slot_nets(s):
 def route_all(rt):
     hand_routes(rt)
     debug = "--debug" in sys.argv
+    # power and ground pads claim their plane vias first, so signal tracks cannot fence them in
+    for net, poly in (("VBUS_PD", VBUS_POLY), ("+3V3", V33_POLY), ("GND", None)):
+        rt.drop_to_plane(net, poly)
+    print("plane vias reserved (all)", flush=True)
     for s in range(1, design.SLOTS + 1):
         rt.route_block(slot_nets(s), f"slot {s}")
         if debug:
@@ -901,12 +934,122 @@ def route_all(rt):
     for net, poly in (("VBUS_PD", VBUS_POLY), ("+3V3", V33_POLY), ("GND", None)):
         rt.drop_to_plane(net, poly)
     print("plane vias reserved", flush=True)
+    # long cross-board runs belong on the back layer: cheaper vias and a mild back-layer preference
+    rt.via_cost, rt.step_cost = 15.0, (1.0, 0.8)
     rt.route_block(first + rest, "core", tries=8)
     missing = 0
     for net, poly in (("VBUS_PD", VBUS_POLY), ("+3V3", V33_POLY), ("GND", None)):
         missing += rt.drop_to_plane(net, poly)
     print(f"plane drops missing: {missing}", flush=True)
     return missing
+
+
+def prune_dead_ends(board, plane_nets):
+    """Remove signal vias that join nothing, and cut dead-end track back to the last junction."""
+    b = board.b
+    removed_vias = removed_tracks = trimmed = 0
+    pad_boxes = {}
+    for fp in b.GetFootprints():
+        for pad in fp.Pads():
+            bb = pad.GetBoundingBox()
+            thru = pad.GetDrillSize().x > 0
+            ls = pad.GetLayerSet()
+            pad_boxes.setdefault(pad.GetNetCode(), []).append(
+                (bb.GetLeft(), bb.GetTop(), bb.GetRight(), bb.GetBottom(),
+                 ls.Contains(pcbnew.F_Cu) or thru, ls.Contains(pcbnew.B_Cu) or thru))
+    tol = mm(0.02)
+
+    def param(p, t):
+        """(distance from p to segment t, position along t from 0 to 1)."""
+        a, e = t.GetStart(), t.GetEnd()
+        dx, dy = e.x - a.x, e.y - a.y
+        ln = dx * dx + dy * dy
+        u = 0.0 if ln == 0 else max(0.0, min(1.0, ((p.x - a.x) * dx + (p.y - a.y) * dy) / ln))
+        return math.hypot(p.x - a.x - u * dx, p.y - a.y - u * dy), u
+
+    def on_seg(p, t):
+        return param(p, t)[0] <= t.GetWidth() / 2 + tol
+
+    for _ in range(200):
+        by_net = {}
+        for t in b.GetTracks():
+            by_net.setdefault(t.GetNetCode(), []).append(t)
+        changed = False
+        for code, items in by_net.items():
+            name = board.code_name.get(code, "")
+            vias = [t for t in items if isinstance(t, pcbnew.PCB_VIA)]
+            segs = [t for t in items if not isinstance(t, pcbnew.PCB_VIA)]
+            pads = pad_boxes.get(code, [])
+
+            def pad_at(p, layer):
+                return any((on_f if layer == pcbnew.F_Cu else on_b) and x1 - tol <= p.x <= x2 + tol
+                           and y1 - tol <= p.y <= y2 + tol for x1, y1, x2, y2, on_f, on_b in pads)
+
+            def anchored(p, layer, me):
+                if pad_at(p, layer):
+                    return True
+                if any(math.hypot(p.x - v.GetPosition().x, p.y - v.GetPosition().y) <= mm(0.31) for v in vias):
+                    return True
+                return any(s is not me and s.GetLayer() == layer and on_seg(p, s) for s in segs)
+
+            for s in segs:
+                layer = s.GetLayer()
+                ok_a, ok_e = anchored(s.GetStart(), layer, s), anchored(s.GetEnd(), layer, s)
+                if ok_a and ok_e:
+                    continue
+                changed = True
+                if not ok_a and not ok_e:
+                    b.Remove(s)
+                    removed_tracks += 1
+                    continue
+                # one live end: keep the part up to the farthest thing that joins this segment
+                if ok_e:                                    # make the live end the start
+                    st, en = s.GetEnd(), s.GetStart()
+                    s.SetStart(st)
+                    s.SetEnd(en)
+                joins = []
+                for o in segs:
+                    if o is s or o.GetLayer() != layer:
+                        continue
+                    for q in (o.GetStart(), o.GetEnd()):
+                        d, u = param(q, s)
+                        if d <= s.GetWidth() / 2 + tol:
+                            joins.append((u, q))
+                for v in vias:
+                    d, u = param(v.GetPosition(), s)
+                    if d <= mm(0.31):
+                        joins.append((u, v.GetPosition()))
+                far = max(joins, key=lambda j: j[0]) if joins else None
+                if far is None or far[0] < 1e-3:
+                    if pad_at(s.GetStart(), layer) and not joins:
+                        b.Remove(s)                         # a stub from a pad to nowhere
+                        removed_tracks += 1
+                    elif far is None:
+                        b.Remove(s)
+                        removed_tracks += 1
+                    else:
+                        b.Remove(s)
+                        removed_tracks += 1
+                    continue
+                a0 = s.GetStart()
+                e0 = s.GetEnd()
+                s.SetEnd(pcbnew.VECTOR2I(int(a0.x + far[0] * (e0.x - a0.x)), int(a0.y + far[0] * (e0.y - a0.y))))
+                trimmed += 1
+            if name in plane_nets:
+                continue                      # a plane via is connected by the plane itself
+            for v in vias:
+                p = v.GetPosition()
+                layers = 0
+                for layer in (pcbnew.F_Cu, pcbnew.B_Cu):
+                    layers += any(s.GetLayer() == layer and on_seg(p, s) for s in segs) or pad_at(p, layer)
+                if layers < 2:
+                    b.Remove(v)
+                    removed_vias += 1
+                    changed = True
+        if not changed:
+            break
+    print(f"clean-up: removed {removed_vias} unused vias and {removed_tracks} dead-end track pieces, "
+          f"trimmed {trimmed}", flush=True)
 
 
 # ------------------------------------------------------------------ finishing
@@ -962,6 +1105,8 @@ def main():
         rt = Router(board)
         route_all(rt)
         print("failed nets:", sorted(set(rt.failed)))
+        if "--debug" not in sys.argv:
+            prune_dead_ends(board, set(PLANE_NETS))
         zones(board)
     silk(board)
     pcbnew.SaveBoard(OUT, board.b)
