@@ -5847,7 +5847,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "AP33771CFBZ-13-FA02"
+		(property "MPN" "AP33771CFBZ-13-FA01"
 			(at 289.56 54.61 0)
 			(effects
 				(font
@@ -5856,7 +5856,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C24735840"
 			(at 289.56 54.61 0)
 			(effects
 				(font
@@ -7946,7 +7946,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "PTS645SM95SMTR92 LFS"
+		(property "MPN" "ZX-QC66-9.5TP"
 			(at 148.59 284.48 0)
 			(effects
 				(font
@@ -7955,7 +7955,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7470161"
 			(at 148.59 284.48 0)
 			(effects
 				(font
@@ -8035,7 +8035,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "PTS645SM95SMTR92 LFS"
+		(property "MPN" "ZX-QC66-9.5TP"
 			(at 222.25 284.48 0)
 			(effects
 				(font
@@ -8044,7 +8044,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7470161"
 			(at 222.25 284.48 0)
 			(effects
 				(font
@@ -8124,7 +8124,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "PTS645SM95SMTR92 LFS"
+		(property "MPN" "ZX-QC66-9.5TP"
 			(at 297.18 284.48 0)
 			(effects
 				(font
@@ -8133,7 +8133,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7470161"
 			(at 297.18 284.48 0)
 			(effects
 				(font
@@ -8222,7 +8222,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C22359707"
 			(at 368.3 287.02 0)
 			(effects
 				(font
@@ -11239,7 +11239,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "PE1206FKF470R005Z"
+		(property "MPN" "RLM12FTCMR005"
 			(at 548.64 401.32 0)
 			(effects
 				(font
@@ -11248,7 +11248,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C316225"
 			(at 548.64 401.32 0)
 			(effects
 				(font
@@ -11337,7 +11337,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25915"
 			(at 34.29 481.33 0)
 			(effects
 				(font
@@ -11506,7 +11506,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "0402WGF8202TCE"
+		(property "MPN" "RC0402FR-0782KL"
 			(at 58.42 481.33 0)
 			(effects
 				(font
@@ -11515,7 +11515,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C25958"
+		(property "LCSC" "C137932"
 			(at 58.42 481.33 0)
 			(effects
 				(font

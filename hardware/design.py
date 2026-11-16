@@ -43,10 +43,10 @@ SOT23 = "Package_TO_SOT_SMD:SOT-23"
 
 RES = {  # value -> (mpn, lcsc)
     "5.1k": ("0402WGF5101TCE", "C25905"),
-    "82k": ("0402WGF8202TCE", "C25958"),
+    "82k": ("RC0402FR-0782KL", "C137932"),
     "100k": ("0402WGF1003TCE", "C25741"),
     "2.2k": ("0402WGF2201TCE", "C25879"),
-    "6.2k": ("0402WGF6201TCE", ""),
+    "6.2k": ("0402WGF6201TCE", "C25915"),
     "200R": ("0402WGF2000TCE", "C25087"),
     "10k": ("0402WGF1002TCE", "C25744"),
     "4.7k": ("0402WGF4701TCE", "C25900"),
@@ -54,8 +54,8 @@ RES = {  # value -> (mpn, lcsc)
     "100R": ("0402WGF1000TCE", "C25076"),
     "47k": ("0402WGF4702TCE", "C25792"),
     "68k": ("0402WGF6802TCE", "C36871"),
-    "120R": ("0402WGF1200TCE", ""),
-    "1M 0.1%": ("RT0402BRD071ML", ""),
+    "120R": ("0402WGF1200TCE", "C25079"),
+    "1M 0.1%": ("RTT021004BTH", "C525710"),
 }
 CAPS = {  # value -> (footprint, mpn, lcsc)
     "10uF 25V": (C0805, "CL21A106KAYNNNE", "C15850"),
@@ -98,11 +98,11 @@ part("U1", "charger:AP33771C", "Package_DFN_QFN:DFN-14-1EP_3x3mm_P0.4mm_EP1.78x2
      {1: VBUS, 2: "PD_PWR_EN", 3: "VBUS_SNS", 4: "VBUS_RAW", 5: GND, 6: None,
       7: "PD_LED", 8: "PD_VSEL", 9: "PD_ISEL", 10: "USB_CC2", 11: "USB_CC1",
       12: None, 13: None, 14: "PD_V5V", 15: GND},
-     "AP33771CFBZ-13-FA02", "")
+     "AP33771CFBZ-13-FA01", "C24735840")
 NC_PINS.discard(("U1", "1"))
 PARTS["U1"]["pins"]["1"] = "PD_VOUT"
 part("R3", "Device:R", "Resistor_SMD:R_1206_3216Metric", "5mR 1%",
-     {1: "VBUS_RAW", 2: "VBUS_SNS"}, "PE1206FKF470R005Z", "")
+     {1: "VBUS_RAW", 2: "VBUS_SNS"}, "RLM12FTCMR005", "C316225")
 part("Q1", "Transistor_FET:AO3400A", SOT23, "AO3400A",
      {1: "PD_GATE", 2: VBUS, 3: "VBUS_SNS"}, "AO3400A", "C20917")
 R("R4", "6.2k", "PD_PWR_EN", "PD_GATE")
@@ -158,10 +158,10 @@ part("J2", "Connector_Generic:Conn_01x04", "Connector_PinHeader_2.54mm:PinHeader
      {1: GND, 2: V33, 3: "I2C_SCL", 4: "I2C_SDA"}, "", "", tht=True)
 for i, (ref, net) in enumerate((("SW1", "BTN_UP"), ("SW2", "BTN_OK"), ("SW3", "BTN_DN"))):
     part(ref, "Switch:SW_Push", "Button_Switch_SMD:SW_SPST_PTS645Sx43SMTR92", net,
-         {1: net, 2: GND}, "PTS645SM95SMTR92 LFS", "")
+         {1: net, 2: GND}, "ZX-QC66-9.5TP", "C7470161")
     R(f"R{14 + i}", "10k", V33, net)
 part("BZ1", "Device:Buzzer", "Buzzer_Beeper:MagneticBuzzer_CUI_CMT-8504-100-SMT", "CMT-8504-100-SMT",
-     {1: V33, 2: "BUZZ_D", 3: None, 4: None}, "CMT-8504-100-SMT-TR", "")
+     {1: V33, 2: "BUZZ_D", 3: None, 4: None}, "CMT-8504-100-SMT-TR", "C22359707")
 part("D2", "Device:D", "Diode_SMD:D_SOD-323", "1N4148WS",
      {1: V33, 2: "BUZZ_D"}, "1N4148WS", "C2128")
 part("Q2", "Transistor_FET:2N7002", SOT23, "2N7002", {1: "BUZZ", 2: GND, 3: "BUZZ_D"}, "2N7002", "C8545")
@@ -191,7 +191,7 @@ for s in range(1, SLOTS + 1):
           16: n("TS"), 17: n("REGN"), 18: n("BATP"), 19: n("BTST2"), 20: n("PROG"), 21: None,
           22: n("BAT"), 23: n("BAT"), 24: n("SDRV"), 25: n("SYS"), 26: n("SW2"), 27: GND,
           28: n("SW1"), 29: n("PMID")},
-         "BQ25798RQMR", "C2876768", g)
+         "BQ25798RQMR", "C2876593", g)
     part(r("L", 1), "Device:L", "Inductor_SMD:L_Changjiang_FNR4030S", "2.2uH 3A",
          {1: n("SW1"), 2: n("SW2")}, "FNR4030S2R2MT", "", g)
     C(r("C", 1), "47nF 50V", n("BTST1"), n("SW1"), g)
@@ -254,7 +254,7 @@ for s in range(1, SLOTS + 1):
          {1: GND, 2: n("MID"), 3: n("BALP")}, "B3B-XH-A", "C144394", g, tht=True)
     part(r("U", 2), "charger:BQ29209", "charger:BQ29209_VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm", "BQ29209",
          {1: n("BALP"), 2: n("MID"), 3: n("CB"), 4: n("CD"), 5: GND, 6: GND, 7: n("BVDD"), 8: n("OV"), 9: GND},
-         "BQ29209DRBR", "", g)
+         "BQ29209DRBR", "C139352", g)
     R(r("R", 14), "120R", n("MID"), n("CB"), g)
     R(r("R", 15), "100R", n("BALP"), n("BVDD"), g)
     C(r("C", 18), "100nF 50V", n("BVDD"), GND, g)

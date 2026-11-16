@@ -126,9 +126,14 @@ like a netlist rather than a hand-drawn schematic.
 - Upload `fab/lipo-charger-gerbers.zip`: 4 layers, 1.6 mm, 1 oz.
 - SMT assembly, top side only: `fab/BOM_JLCPCB.csv` and `fab/CPL_JLCPCB.csv`.
   Every surface-mount part is on the top; the bottom carries only copper.
-- Rows in the BOM with an empty LCSC number need to be matched by MPN in
-  JLCPCB's parts search. The LCSC numbers that are filled in were entered from
-  memory and **must be checked** against the part description when you upload.
+- The LCSC numbers in the BOM were checked against JLCPCB's catalogue on 2026-11-16 (part
+  number, value and package). Three rows are still blank and need picking by hand in JLCPCB's
+  parts search: the 47 nF 0402 capacitors and the two 4 x 4 x 3 mm inductors (2.2 uH with at
+  least 3 A saturation current, 4.7 uH with at least 2 A).
+- Still confirm each match on JLCPCB's BOM page before paying, above all the BQ25798, the
+  82 k resistor (it sets the 9 V request) and the 1 M 0.1 % resistors (must be 0402).
+- The AP33771C is listed as the -FA01 variant, the one JLCPCB carries. Its datasheet names a
+  standard-firmware part and a custom-firmware part; confirm -FA01 is the standard one.
 - Check part rotations in JLCPCB's placement preview, especially the BQ25798,
   the BQ29209, the ADS1115s, the SOT-23 FETs, the LEDs and the ESP32 module.
 
@@ -140,7 +145,8 @@ SDA**. Some modules swap GND and VCC: check yours against the silkscreen. Solder
 it on a plain pin header (not a socket) so the glass sits about 5.5 mm above the
 board, hanging towards the front edge.
 
-Buttons need the tall version (PTS645, 9.5 mm) to reach through the lid.
+Buttons are 6 x 6 mm surface-mount tactile switches, 9.5 mm tall, to reach through the lid
+(ZX-QC66-9.5TP in the BOM; a C&K PTS645SM95 fits the same pads).
 
 ## Firmware
 

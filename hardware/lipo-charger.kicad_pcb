@@ -152,7 +152,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -164,7 +164,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -172,6 +172,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -676,7 +677,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -684,6 +685,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -1196,6 +1198,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -1366,6 +1369,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -1798,7 +1802,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2490,6 +2494,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -2640,7 +2645,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2652,7 +2657,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -2660,6 +2665,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -7075,7 +7081,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -7087,7 +7093,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -7095,6 +7101,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -7436,6 +7443,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -7769,7 +7777,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -7777,6 +7785,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -8844,7 +8853,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -8856,7 +8865,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -8864,6 +8873,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -9698,7 +9708,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -9710,7 +9720,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -9718,6 +9728,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -11319,6 +11330,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -12031,7 +12043,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12043,7 +12055,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12051,6 +12063,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -14131,7 +14144,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -14143,7 +14156,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -14151,6 +14164,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -15849,6 +15863,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -16170,7 +16185,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -16182,7 +16197,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -16190,6 +16205,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -16360,6 +16376,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -17194,7 +17211,7 @@
 				)
 			)
 		)
-		(property "MPN" "PE1206FKF470R005Z"
+		(property "MPN" "RLM12FTCMR005"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17206,7 +17223,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C316225"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17214,6 +17231,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -17706,7 +17724,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17718,7 +17736,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -17726,6 +17744,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -18401,7 +18420,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -18409,6 +18428,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -18804,7 +18824,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -18812,6 +18832,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -19133,7 +19154,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -19145,7 +19166,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -19153,6 +19174,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -21734,7 +21756,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -21742,6 +21764,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -23538,7 +23561,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -23546,6 +23569,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -24291,6 +24315,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -30341,7 +30366,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -30349,6 +30374,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -31245,7 +31271,7 @@
 				)
 			)
 		)
-		(property "MPN" "0402WGF8202TCE"
+		(property "MPN" "RC0402FR-0782KL"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -31257,7 +31283,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25958"
+		(property "LCSC" "C137932"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -32540,7 +32566,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -32552,7 +32578,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -32560,6 +32586,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -33437,6 +33464,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -33750,7 +33778,7 @@
 				)
 			)
 		)
-		(property "MPN" "PTS645SM95SMTR92 LFS"
+		(property "MPN" "ZX-QC66-9.5TP"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -33762,7 +33790,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7470161"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -33770,6 +33798,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -34085,6 +34114,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -34577,7 +34607,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -34589,7 +34619,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -34597,6 +34627,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -35486,7 +35517,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -35498,7 +35529,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -35506,6 +35537,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -38156,7 +38188,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -38168,7 +38200,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -38176,6 +38208,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -38859,6 +38892,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -40670,6 +40704,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -42320,7 +42355,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -42332,7 +42367,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -42340,6 +42375,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -43243,6 +43279,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -43588,6 +43625,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -44092,6 +44130,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -44103,6 +44142,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -46209,7 +46249,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -46221,7 +46261,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -46229,6 +46269,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -46733,7 +46774,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -46741,6 +46782,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -47455,7 +47497,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -48127,7 +48169,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -48139,7 +48181,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -48147,6 +48189,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -48680,7 +48723,7 @@
 				)
 			)
 		)
-		(property "MPN" "PTS645SM95SMTR92 LFS"
+		(property "MPN" "ZX-QC66-9.5TP"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -48692,7 +48735,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7470161"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -48700,6 +48743,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -49015,6 +49059,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -49680,7 +49725,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -51769,7 +51814,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -51781,7 +51826,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -51789,6 +51834,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -52110,7 +52156,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -52122,7 +52168,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -52130,6 +52176,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -54843,7 +54890,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -54855,7 +54902,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -54863,6 +54910,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -55033,6 +55081,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -55549,6 +55598,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -58469,7 +58519,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C22359707"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -58477,6 +58527,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -58968,7 +59019,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -58980,7 +59031,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -58988,6 +59039,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -59824,7 +59876,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -60842,6 +60894,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -61570,7 +61623,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -61578,6 +61631,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -61748,6 +61802,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -62073,7 +62128,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -62085,7 +62140,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -62093,6 +62148,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -62634,7 +62690,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -62646,7 +62702,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -62654,6 +62710,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -63842,7 +63899,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -63850,6 +63907,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -65030,6 +65088,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -66555,6 +66614,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -69670,7 +69730,7 @@
 				)
 			)
 		)
-		(property "MPN" "PTS645SM95SMTR92 LFS"
+		(property "MPN" "ZX-QC66-9.5TP"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -69682,7 +69742,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C7470161"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -69690,6 +69750,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -70176,6 +70237,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -70626,6 +70688,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -70967,6 +71030,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -71508,7 +71572,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -71520,7 +71584,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -71528,6 +71592,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -71849,7 +71914,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -71861,7 +71926,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -71869,6 +71934,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -72363,7 +72429,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -73206,7 +73272,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -73218,7 +73284,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -73226,6 +73292,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -74500,7 +74567,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -74512,7 +74579,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -74520,6 +74587,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -76539,7 +76607,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -76547,6 +76615,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -77895,7 +77964,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25915"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -77903,6 +77972,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -79299,7 +79369,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -79311,7 +79381,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -79319,6 +79389,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -82028,7 +82099,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -82040,7 +82111,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -82048,6 +82119,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -83222,7 +83294,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -83230,6 +83302,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -83895,7 +83968,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -85919,6 +85992,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -85930,6 +86004,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -86341,7 +86416,7 @@
 				)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -86353,7 +86428,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -86361,6 +86436,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -87920,7 +87996,7 @@
 				)
 			)
 		)
-		(property "MPN" "AP33771CFBZ-13-FA02"
+		(property "MPN" "AP33771CFBZ-13-FA01"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -87932,7 +88008,7 @@
 				)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C24735840"
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -87940,6 +88016,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -89549,6 +89626,7 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
 				)
 			)
 		)

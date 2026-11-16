@@ -2874,7 +2874,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C2876768"
+		(property "LCSC" "C2876593"
 			(at 261.62 97.79 0)
 			(effects
 				(font
@@ -3327,7 +3327,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C139352"
 			(at 351.79 50.8 0)
 			(effects
 				(font
@@ -7350,7 +7350,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C25079"
 			(at 501.65 297.18 0)
 			(effects
 				(font
@@ -7608,7 +7608,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 537.21 297.18 0)
 			(effects
 				(font
@@ -7617,7 +7617,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 537.21 297.18 0)
 			(effects
 				(font
@@ -7697,7 +7697,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 549.91 297.18 0)
 			(effects
 				(font
@@ -7706,7 +7706,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 549.91 297.18 0)
 			(effects
 				(font
@@ -7786,7 +7786,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 34.29 375.92 0)
 			(effects
 				(font
@@ -7795,7 +7795,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 34.29 375.92 0)
 			(effects
 				(font
@@ -7875,7 +7875,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 45.72 375.92 0)
 			(effects
 				(font
@@ -7884,7 +7884,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 45.72 375.92 0)
 			(effects
 				(font
@@ -7964,7 +7964,7 @@
 				(hide yes)
 			)
 		)
-		(property "MPN" "RT0402BRD071ML"
+		(property "MPN" "RTT021004BTH"
 			(at 58.42 375.92 0)
 			(effects
 				(font
@@ -7973,7 +7973,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" ""
+		(property "LCSC" "C525710"
 			(at 58.42 375.92 0)
 			(effects
 				(font
