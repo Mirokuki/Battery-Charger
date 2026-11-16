@@ -26,6 +26,7 @@ import design  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 FP_ROOT = r"C:\Program Files\KiCad\10.0\share\kicad\footprints"
 OUT = os.path.join(HERE, "lipo-charger.kicad_pcb")
+LOCAL_LIB = os.path.join(HERE, "charger.pretty")   # project footprint library (nickname "charger")
 
 X0, Y0 = 50.0, 40.0            # board origin on the KiCad sheet
 BOARD_W, BOARD_H = 108.0, 80.0
@@ -140,6 +141,19 @@ def placement():
 
 
 # ------------------------------------------------------------------ helpers
+def set_part_fields(fp, p):
+    """Carry the schematic symbol's MPN / LCSC fields on the footprint (KiCad's parity check compares them)."""
+    for key, val in (("MPN", p["mpn"]), ("LCSC", p["lcsc"])):
+        if fp.HasField(key):
+            fp.GetField(key).SetText(val)
+        else:
+            f = pcbnew.PCB_FIELD(fp, pcbnew.FIELD_T_USER, key)
+            f.SetText(val)
+            f.SetVisible(False)
+            f.SetLayer(pcbnew.F_Fab)
+            fp.Add(f)
+
+
 def mm(v):
     return pcbnew.FromMM(float(v))
 
@@ -186,7 +200,7 @@ class Board:
     def load(self, pos):
         for ref, p in design.PARTS.items():
             lib, name = p["fp"].split(":")
-            fp = pcbnew.FootprintLoad(os.path.join(FP_ROOT, lib + ".pretty"), name)
+            fp = pcbnew.FootprintLoad(LOCAL_LIB if lib == "charger" else os.path.join(FP_ROOT, lib + ".pretty"), name)
             fp.SetFPIDAsString(p["fp"])
             fp.SetReference(ref)
             fp.SetValue(p["value"])
@@ -196,21 +210,10 @@ class Board:
             fp.Reference().SetTextThickness(mm(0.08))
             if p["dnp"]:
                 fp.SetDNP(True)
+            set_part_fields(fp, p)
             for item in fp.GraphicalItems():        # library polarity texts collide with the next connector
-                if item.GetLayer() == pcbnew.F_SilkS and (isinstance(item, pcbnew.PCB_TEXT)
-                                                         or (ref[0] == "U" and ref.endswith("02") and len(ref) == 4)):
+                if item.GetLayer() == pcbnew.F_SilkS and isinstance(item, pcbnew.PCB_TEXT):
                     item.SetLayer(pcbnew.F_Fab)
-            if ref == "U3":
-                for item in list(fp.GraphicalItems()):
-                    if item.GetLayer() == pcbnew.F_CrtYd:
-                        fp.Remove(item)
-                box = pcbnew.PCB_SHAPE(fp)
-                box.SetShape(pcbnew.SHAPE_T_RECT)
-                box.SetLayer(pcbnew.F_CrtYd)
-                box.SetStart(pcbnew.VECTOR2I(mm(-9.25), mm(-12.8)))
-                box.SetEnd(pcbnew.VECTOR2I(mm(9.25), mm(7.4)))
-                box.SetWidth(mm(0.05))
-                fp.Add(box)
             x, y, rot = pos[ref]
             fp.SetPosition(pt(x, y))
             fp.SetOrientationDegrees(rot)

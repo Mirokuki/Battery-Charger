@@ -3309,7 +3309,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SON:VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm"
+		(property "Footprint" "charger:BQ29209_VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm"
 			(at 351.79 50.8 0)
 			(effects
 				(font

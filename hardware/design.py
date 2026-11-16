@@ -134,7 +134,7 @@ C("C9", "22uF 25V", V33, GND)
 C("C10", "22uF 25V", V33, GND)
 
 # ---------------------------------------------------------------- MCU
-part("U3", "RF_Module:ESP32-C3-WROOM-02", "RF_Module:ESP32-C3-WROOM-02",
+part("U3", "RF_Module:ESP32-C3-WROOM-02", "charger:ESP32-C3-WROOM-02_board-edge",
      "ESP32-C3-WROOM-02-N4",
      {1: V33, 2: "MCU_EN", 3: "I2C_SDA", 4: "I2C_SCL", 5: "MUX_RST_N", 6: None,
       7: "BTN_UP", 8: "BTN_OK", 9: GND, 10: "BTN_DN", 11: "UART_RX", 12: "UART_TX",
@@ -252,7 +252,7 @@ for s in range(1, SLOTS + 1):
     part(r("J", 3), "Connector_Generic:Conn_01x03",
          "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical", "XH balance 2S",
          {1: GND, 2: n("MID"), 3: n("BALP")}, "B3B-XH-A", "C144394", g, tht=True)
-    part(r("U", 2), "charger:BQ29209", "Package_SON:VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm", "BQ29209",
+    part(r("U", 2), "charger:BQ29209", "charger:BQ29209_VSON-8-1EP_3x3mm_P0.65mm_EP1.65x2.4mm", "BQ29209",
          {1: n("BALP"), 2: n("MID"), 3: n("CB"), 4: n("CD"), 5: GND, 6: GND, 7: n("BVDD"), 8: n("OV"), 9: GND},
          "BQ29209DRBR", "", g)
     R(r("R", 14), "120R", n("MID"), n("CB"), g)

@@ -99,6 +99,7 @@ Hold **OK** while plugging in USB to put the ESP32 into download mode.
 | `hardware/design.py` | The circuit: every part, value, order code and net. Edit this, then regenerate. |
 | `hardware/gen_schematic.py` | Writes the KiCad schematic (`lipo-charger.kicad_sch`, `slot1..6.kicad_sch`). |
 | `hardware/gen_pcb.py` | Places and routes the 108 x 80 mm 4-layer board (`lipo-charger.kicad_pcb`). |
+| `hardware/charger.pretty`, `hardware/make_footprints.py` | Project footprint library: the two KiCad footprints this board alters (BQ29209 silkscreen, ESP32 courtyard at the board edge), and the script that writes them. |
 | `hardware/make_outputs.py` | Gerbers, drill, BOM, pick-and-place, schematic PDF, DRC/ERC reports. |
 | `hardware/render_copper.py` | Quick picture of the routed copper (`docs/copper.png`). |
 | `hardware/audit_vias.py` | Lists vias that do no work: unused ones and same-net pairs close together. |
@@ -200,6 +201,7 @@ From the last run on 2026-11-14 (KiCad 10.0, `hardware/make_outputs.py`):
 |---|---|
 | Schematic netlist vs `design.py` | 397 of 397 parts, 0 net mismatches |
 | Board vs schematic (parity) | 0 issues |
+| Footprints vs library copies | 0 mismatches |
 | Board DRC errors | 0 |
 | Unconnected nets | 0 |
 | Board DRC warnings | 2: silkscreen lines of the ESP32 module at the board edge |

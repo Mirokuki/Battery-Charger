@@ -6233,7 +6233,7 @@
 				)
 			)
 		)
-		(property "Footprint" "RF_Module:ESP32-C3-WROOM-02"
+		(property "Footprint" "charger:ESP32-C3-WROOM-02_board-edge"
 			(at 468.63 92.71 0)
 			(effects
 				(font
